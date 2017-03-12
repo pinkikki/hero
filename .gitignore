@@ -12,9 +12,9 @@ Sprite/
 SpriteInServer/
 
 
-# ===================================== #
-# Visual Studio / MonoDevelop generated #
-# ===================================== #
+# ======================================================= #
+# Visual Studio / MonoDevelop generated / RIDER / Consulo #
+# ======================================================= #
 ExportedObj/
 *.svd
 *.userprefs
@@ -25,6 +25,8 @@ ExportedObj/
 *.user
 *.unityproj
 *.booproj
+*.idea
+*.consulo
 
 
 # ============ #
