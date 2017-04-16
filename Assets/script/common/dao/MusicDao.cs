@@ -4,89 +4,92 @@ using Plugins;
 using script.common.entity;
 using script.core.db;
 
-public static class MusicDao
+namespace script.common.dao
 {
-    public static List<MusicEntity> SelectAll()
+    public static class MusicDao
     {
-        List<MusicEntity> entityList = new List<MusicEntity>();
-        StringBuilder sb = new StringBuilder();
-        sb.Append("SELECT * FROM MUSIC;");
-        DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
-        dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
-        return entityList;
-    }
+        public static List<MusicEntity> SelectAll()
+        {
+            List<MusicEntity> entityList = new List<MusicEntity>();
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SELECT * FROM MUSIC;");
+            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
+            return entityList;
+        }
 
-    public static MusicEntity SelectByPrimaryKey(int musicId)
-    {
-        StringBuilder sb = new StringBuilder();
-        sb.Append("SELECT * FROM MUSIC WHERE MUSIC_ID = ")
-            .Append(musicId)
-            .Append(";");
-        DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
-        return dataTable.Rows.Count == 0 ? null : CreateEntity(dataTable[0]);
-    }
+        public static MusicEntity SelectByPrimaryKey(int musicId)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SELECT * FROM MUSIC WHERE MUSIC_ID = ")
+                .Append(musicId)
+                .Append(";");
+            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            return dataTable.Rows.Count == 0 ? null : CreateEntity(dataTable[0]);
+        }
 
-    public static void Insert(MusicEntity entity)
-    {
-        StringBuilder sb = new StringBuilder();
-        sb.Append("INSERT INTO MUSIC VALUES (")
+        public static void Insert(MusicEntity entity)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("INSERT INTO MUSIC VALUES (")
         
             
-            .Append(entity.MusicId)
+                .Append(entity.MusicId)
             
-            .Append(",")
+                .Append(",")
         
-            .Append("'")
-            .Append(entity.MusicName)
-            .Append("'")
-            .Append(",")
+                .Append("'")
+                .Append(entity.MusicName)
+                .Append("'")
+                .Append(",")
         
-            .Append("'")
-            .Append(entity.Time)
-            .Append("'")
+                .Append("'")
+                .Append(entity.Time)
+                .Append("'")
             
         
-            .Append(");");
-        DbManager.ExecuteNonQuery(sb.ToString());
-    }
+                .Append(");");
+            DbManager.ExecuteNonQuery(sb.ToString());
+        }
 
-    public static void Update(MusicEntity entity)
-    {
-        StringBuilder sb = new StringBuilder();
-        sb.Append("UPDATE MUSIC SET ")
+        public static void Update(MusicEntity entity)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("UPDATE MUSIC SET ")
         
-            .Append("MUSIC_ID = ")
+                .Append("MUSIC_ID = ")
             
-            .Append(entity.MusicId)
+                .Append(entity.MusicId)
             
-            .Append(",")
+                .Append(",")
         
-            .Append("MUSIC_NAME = ")
-            .Append("'")
-            .Append(entity.MusicName)
-            .Append("'")
-            .Append(",")
+                .Append("MUSIC_NAME = ")
+                .Append("'")
+                .Append(entity.MusicName)
+                .Append("'")
+                .Append(",")
         
-            .Append("TIME = ")
-            .Append("'")
-            .Append(entity.Time)
-            .Append("'")
+                .Append("TIME = ")
+                .Append("'")
+                .Append(entity.Time)
+                .Append("'")
             
         
-            .Append(";");
-        DbManager.ExecuteNonQuery(sb.ToString());
-    }
+                .Append(";");
+            DbManager.ExecuteNonQuery(sb.ToString());
+        }
 
-    private static MusicEntity CreateEntity(DataRow row)
-    {
-        MusicEntity entity = new MusicEntity();
+        private static MusicEntity CreateEntity(DataRow row)
+        {
+            MusicEntity entity = new MusicEntity();
         
-        entity.MusicId = DaoSupport.GetIntValue(row, "MusicId");
+            entity.MusicId = DaoSupport.GetIntValue(row, "MusicId");
         
-        entity.MusicName = DaoSupport.GetStringValue(row, "MusicName");
+            entity.MusicName = DaoSupport.GetStringValue(row, "MusicName");
         
-        entity.Time = DaoSupport.GetStringValue(row, "Time");
+            entity.Time = DaoSupport.GetStringValue(row, "Time");
         
-        return entity;
+            return entity;
+        }
     }
 }

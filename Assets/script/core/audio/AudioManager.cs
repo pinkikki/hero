@@ -1,81 +1,83 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using script.core.assetbandle;
 using script.core.monoBehaviour;
+using UnityEngine;
 
-public class AudioManager : SingletonMonoBehaviour<AudioManager>
+namespace script.core.audio
 {
-    [SerializeField] List<String> bgmClipList;
-    [SerializeField] List<String> bgmAssetBundleList;
-    [SerializeField] List<String> seClipList;
-    [SerializeField] List<String> seAssetBundleList;
-    [SerializeField] bool isDestruction;
-
-    AudioSource bgmSource;
-    AudioSource bgmCrossFadingSource;
-    List<AudioSource> seSourceList = new List<AudioSource>();
-    Dictionary<String, AudioClip> bgmDict = new Dictionary<String, AudioClip>();
-    Dictionary<String, AudioClip> seDict = new Dictionary<String, AudioClip>();
-    float delayTime;
-    float crossTime;
-    float startTime;
-    LoadStatus loadStatus = LoadStatus.LOAD_WAIT;
-
-    void Awake()
+    public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
-        bgmSource = gameObject.AddComponent<AudioSource>();
-        bgmCrossFadingSource = gameObject.AddComponent<AudioSource>();
+        [SerializeField] List<string> bgmClipList;
+        [SerializeField] List<string> bgmAssetBundleList;
+        [SerializeField] List<string> seClipList;
+        [SerializeField] List<string> seAssetBundleList;
+        [SerializeField] bool isDestruction;
 
-        if (!isDestruction)
+        AudioSource bgmSource;
+        AudioSource bgmCrossFadingSource;
+        readonly List<AudioSource> seSourceList = new List<AudioSource>();
+        readonly Dictionary<string, AudioClip> bgmDict = new Dictionary<string, AudioClip>();
+        readonly Dictionary<string, AudioClip> seDict = new Dictionary<string, AudioClip>();
+        float delayTime;
+        float crossTime;
+        float startTime;
+        LoadAssetBandles.LoadStatus loadStatus = LoadAssetBandles.LoadStatus.LoadWait;
+
+        void Awake()
         {
-            DontDestroyOnLoad(this);
-        }
-    }
+            bgmSource = gameObject.AddComponent<AudioSource>();
+            bgmCrossFadingSource = gameObject.AddComponent<AudioSource>();
 
-    void Start()
-    {
-        StartCoroutine(Load());
-    }
-
-    IEnumerator Load()
-    {
-        loadStatus = LoadStatus.LOAD_EXECUTE;
-        while (true)
-        {
-            if (LoadAssetBandles.Instance.loadStatus == LoadStatus.LOAD_COMPLETE)
+            if (!isDestruction)
             {
-                foreach (var bgmClip in bgmClipList.Select((value, index) => new {value, index}))
-                {
-                    bgmDict.Add(bgmClip.value,
-                        LoadAssetBandles.Instance.loadAudio(bgmAssetBundleList[bgmClip.index], bgmClip.value));
-                }
-
-                foreach (var seClip in seClipList.Select((value, index) => new {value, index}))
-                {
-                    seDict.Add(seClip.value,
-                        LoadAssetBandles.Instance.loadAudio(seAssetBundleList[seClip.index], seClip.value));
-                }
-                loadStatus = LoadStatus.LOAD_COMPLETE;
-                break;
+                DontDestroyOnLoad(this);
             }
-            yield return null;
         }
-    }
 
-    public bool IsLoadComplete()
-    {
-        return loadStatus == LoadStatus.LOAD_COMPLETE;
-    }
+        void Start()
+        {
+            StartCoroutine(Load());
+        }
 
-    void Update()
-    {
-    }
+        IEnumerator Load()
+        {
+            loadStatus = LoadAssetBandles.LoadStatus.LoadExecute;
+            while (true)
+            {
+                if (LoadAssetBandles.Instance.CurrentLoadStatus == LoadAssetBandles.LoadStatus.LoadComplete)
+                {
+                    foreach (var bgmClip in bgmClipList.Select((value, index) => new {value, index}))
+                    {
+                        bgmDict.Add(bgmClip.value,
+                            LoadAssetBandles.Instance.LoadAudio(bgmAssetBundleList[bgmClip.index], bgmClip.value));
+                    }
 
-    void FixedUpdate()
-    {
-        // TODO delayTimeがいるのかどうか不明なので一旦コメントアウト
+                    foreach (var seClip in seClipList.Select((value, index) => new {value, index}))
+                    {
+                        seDict.Add(seClip.value,
+                            LoadAssetBandles.Instance.LoadAudio(seAssetBundleList[seClip.index], seClip.value));
+                    }
+                    loadStatus = LoadAssetBandles.LoadStatus.LoadComplete;
+                    break;
+                }
+                yield return null;
+            }
+        }
+
+        public bool IsLoadComplete()
+        {
+            return loadStatus == LoadAssetBandles.LoadStatus.LoadComplete;
+        }
+
+        void Update()
+        {
+        }
+
+        void FixedUpdate()
+        {
+            // TODO delayTimeがいるのかどうか不明なので一旦コメントアウト
 //        if (bgmSource != null)
 //        {
 //            if (0 < bgmSource.time && bgmSource.time < delayTime)
@@ -90,114 +92,115 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 //                bgmCrossFadingSource.time = delayTime;
 //            }
 //        }
-        if (!bgmSource.isPlaying && bgmCrossFadingSource.isPlaying)
-        {
-            bgmSource.PlayDelayed(crossTime - bgmCrossFadingSource.time);
-            bgmSource.time = startTime + delayTime;
-        }
-        else if (bgmSource.isPlaying && !bgmCrossFadingSource.isPlaying)
-        {
-            bgmCrossFadingSource.PlayDelayed(crossTime - bgmSource.time);
-            bgmCrossFadingSource.time = startTime + delayTime;
-        }
-    }
-
-    public void Destroy()
-    {
-        Destroy(this);
-    }
-
-    public void PlaySe(string seName)
-    {
-        var playSource = seSourceList.FirstOrDefault(seSource => !seSource.isPlaying);
-
-        if (playSource == null)
-        {
-            playSource = gameObject.AddComponent<AudioSource>();
-            seSourceList.Add(playSource);
+            if (!bgmSource.isPlaying && bgmCrossFadingSource.isPlaying)
+            {
+                bgmSource.PlayDelayed(crossTime - bgmCrossFadingSource.time);
+                bgmSource.time = startTime + delayTime;
+            }
+            else if (bgmSource.isPlaying && !bgmCrossFadingSource.isPlaying)
+            {
+                bgmCrossFadingSource.PlayDelayed(crossTime - bgmSource.time);
+                bgmCrossFadingSource.time = startTime + delayTime;
+            }
         }
 
-        playSource.clip = seDict[seName];
-        playSource.Play();
-    }
-
-    public void StopSe(string seName)
-    {
-        foreach (var seSource in seSourceList)
+        public void Destroy()
         {
-            if (seSource.clip.name != seName) continue;
-            seSource.Stop();
-            seSource.clip = null;
+            Destroy(this);
         }
-    }
 
-    public void PlayBgm(string bgmName)
-    {
-        bgmSource.Stop();
-        bgmSource.clip = bgmDict[bgmName];
-        delayTime = bgmSource.clip.length / bgmSource.clip.samples * 1152;
-        bgmSource.loop = true;
-        bgmSource.Play();
-    }
+        public void PlaySe(string seName)
+        {
+            var playSource = seSourceList.FirstOrDefault(seSource => !seSource.isPlaying);
 
-    public void PlayBgm(string bgmName, float tmpCrossTime)
-    {
-        PlayBgm(bgmName, tmpCrossTime, 0f);
-    }
+            if (playSource == null)
+            {
+                playSource = gameObject.AddComponent<AudioSource>();
+                seSourceList.Add(playSource);
+            }
 
-    public void PlayBgm(string bgmName, float tmpCrossTime, float tmpStartTime)
-    {
-        var bgm = bgmDict[bgmName];
-        bgmSource.Stop();
-        bgmSource.clip = bgm;
-        bgmSource.time = 0.0f;
-        delayTime = bgm.length / bgm.samples * 1152;
-        // TODO delayTimeがいるのかどうか不明なので一旦コメントアウト
+            playSource.clip = seDict[seName];
+            playSource.Play();
+        }
+
+        public void StopSe(string seName)
+        {
+            foreach (var seSource in seSourceList)
+            {
+                if (seSource.clip.name != seName) continue;
+                seSource.Stop();
+                seSource.clip = null;
+            }
+        }
+
+        public void PlayBgm(string bgmName)
+        {
+            bgmSource.Stop();
+            bgmSource.clip = bgmDict[bgmName];
+            delayTime = bgmSource.clip.length / bgmSource.clip.samples * 1152;
+            bgmSource.loop = true;
+            bgmSource.Play();
+        }
+
+        public void PlayBgm(string bgmName, float tmpCrossTime)
+        {
+            PlayBgm(bgmName, tmpCrossTime, 0f);
+        }
+
+        public void PlayBgm(string bgmName, float tmpCrossTime, float tmpStartTime)
+        {
+            var bgm = bgmDict[bgmName];
+            bgmSource.Stop();
+            bgmSource.clip = bgm;
+            bgmSource.time = 0.0f;
+            delayTime = bgm.length / bgm.samples * 1152;
+            // TODO delayTimeがいるのかどうか不明なので一旦コメントアウト
 //	crossTime = tmpCrossTime + delayTime;
 //	startTime = tmpStartTime + delayTime;
-        crossTime = tmpCrossTime;
-        startTime = tmpStartTime;
-        bgmSource.Play();
-        bgmCrossFadingSource.clip = bgm;
-        bgmCrossFadingSource.PlayDelayed(crossTime);
-        bgmCrossFadingSource.time = startTime;
-    }
+            crossTime = tmpCrossTime;
+            startTime = tmpStartTime;
+            bgmSource.Play();
+            bgmCrossFadingSource.clip = bgm;
+            bgmCrossFadingSource.PlayDelayed(crossTime);
+            bgmCrossFadingSource.time = startTime;
+        }
 
-    public void StopBgm()
-    {
-        bgmSource.Stop();
-        bgmSource.clip = null;
-        bgmCrossFadingSource.Stop();
-        bgmCrossFadingSource.clip = null;
-    }
-
-    public void StopBgmAtFadeOut(float interval)
-    {
-        StartCoroutine(StopBgmAtFadeOutCoroutine(interval));
-    }
-
-    public void downBgmVolume(float interval, float downVolumn)
-    {
-        StartCoroutine(DownBgmVolumeCoroutine(interval, downVolumn));
-    }
-
-    IEnumerator StopBgmAtFadeOutCoroutine(float interval)
-    {
-        var bgmMaxVolume = bgmSource.volume;
-        yield return DownBgmVolumeCoroutine(interval, 0.0f);
-        StopBgm();
-        bgmSource.volume = bgmMaxVolume;
-    }
-
-    IEnumerator DownBgmVolumeCoroutine(float interval, float downVolumn) {
-        var time = 0.0f;
-        var bgmMaxVolume = bgmSource.volume;
-        while (time < interval)
+        public void StopBgm()
         {
-            bgmSource.volume = Mathf.Lerp(bgmMaxVolume, downVolumn, time / interval);
-            bgmCrossFadingSource.volume = Mathf.Lerp(bgmMaxVolume, downVolumn, time / interval);
-            time += Time.deltaTime;
-            yield return null;
+            bgmSource.Stop();
+            bgmSource.clip = null;
+            bgmCrossFadingSource.Stop();
+            bgmCrossFadingSource.clip = null;
+        }
+
+        public void StopBgmAtFadeOut(float interval)
+        {
+            StartCoroutine(StopBgmAtFadeOutCoroutine(interval));
+        }
+
+        public void DownBgmVolume(float interval, float downVolumn)
+        {
+            StartCoroutine(DownBgmVolumeCoroutine(interval, downVolumn));
+        }
+
+        IEnumerator StopBgmAtFadeOutCoroutine(float interval)
+        {
+            var bgmMaxVolume = bgmSource.volume;
+            yield return DownBgmVolumeCoroutine(interval, 0.0f);
+            StopBgm();
+            bgmSource.volume = bgmMaxVolume;
+        }
+
+        IEnumerator DownBgmVolumeCoroutine(float interval, float downVolumn) {
+            var time = 0.0f;
+            var bgmMaxVolume = bgmSource.volume;
+            while (time < interval)
+            {
+                bgmSource.volume = Mathf.Lerp(bgmMaxVolume, downVolumn, time / interval);
+                bgmCrossFadingSource.volume = Mathf.Lerp(bgmMaxVolume, downVolumn, time / interval);
+                time += Time.deltaTime;
+                yield return null;
+            }
         }
     }
 }

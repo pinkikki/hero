@@ -10,21 +10,9 @@ namespace script.core.character
         protected bool warlkingFlg;
         protected bool collisionFlg;
         protected Animator anim;
-        Direction preDirection = Direction.W;
 
-        public Direction PreDirection
-        {
-            get { return preDirection; }
-            private set { preDirection = value; }
-        }
-
-        Direction currentDirection = Direction.W;
-
-        public Direction CurrentDirection
-        {
-            get { return currentDirection; }
-            private set { currentDirection = value; }
-        }
+        public Direction PreDirection { get; private set; }
+        public Direction CurrentDirection { get; private set; }
 
         public enum Direction
         {
@@ -33,6 +21,12 @@ namespace script.core.character
             L,
             R,
             W
+        }
+
+        public CharacterBase()
+        {
+            CurrentDirection = Direction.W;
+            PreDirection = Direction.W;
         }
 
         protected void WalkFront()
@@ -52,7 +46,7 @@ namespace script.core.character
                     WalkStop();
                 }
             }
-            PreDirection = currentDirection;
+            PreDirection = CurrentDirection;
             CurrentDirection = Direction.F;
         }
 

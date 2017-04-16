@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using script.common.dao;
 using script.common.entity;
 using script.core.monoBehaviour;
 using UnityEngine;

@@ -7,8 +7,7 @@ namespace script.core.character
 {
     public class SortingCharacterManager : MonoBehaviour
     {
-        [SerializeField]
-        List<GameObject> playerList;
+        [SerializeField] List<GameObject> playerList;
         Dictionary<String, int> defaultPlayerNameDic = new Dictionary<String, int>();
 
         void Start()
