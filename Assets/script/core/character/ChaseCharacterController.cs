@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 
 namespace script.core.character
 {
@@ -6,8 +7,9 @@ namespace script.core.character
     {
         [SerializeField] GameObject target;
         [SerializeField] GameObject otherChaseTarget;
-        [SerializeField] float defaultWalkSpeed = 0.09f;
+        [SerializeField] float defaultWalkSpeed = 0.065f;
         [SerializeField] float defaultCollisionWalkSpeed = 0.04f;
+        [SerializeField] float defaultCatchUpWalkSpeed = 0.12f;
         [SerializeField] float maxDestNum = 0.771f;
         float minDestNum;
         float destX;
@@ -42,7 +44,7 @@ namespace script.core.character
             walkSpeed = defaultWalkSpeed;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             SetDirectionInfo();
 
@@ -346,10 +348,11 @@ namespace script.core.character
 
         void MoveX(float absX, float selfX, float targetX, Vector2 selfPos)
         {
-            var tmpWalkSpeed = walkSpeed;
+            float tmpWalkSpeed = walkSpeed;
             float inclementNumX;
 
-            walkSpeed = absX - walkSpeed < 0 ? absX : tmpWalkSpeed;
+            float differenceX = absX - destX;
+            walkSpeed = differenceX < defaultCatchUpWalkSpeed ? differenceX : defaultCatchUpWalkSpeed;
             if (targetX < selfX)
             {
                 inclementNumX = -walkSpeed;
@@ -369,7 +372,8 @@ namespace script.core.character
         {
             var tmpWalkSpeed = walkSpeed;
             float inclementNumY;
-            walkSpeed = absY - walkSpeed < 0 ? absY : tmpWalkSpeed;
+            float differenceY = absY - destY;
+            walkSpeed = differenceY < defaultCatchUpWalkSpeed ? differenceY : defaultCatchUpWalkSpeed;
             if (targetY < selfY)
             {
                 inclementNumY = -walkSpeed;

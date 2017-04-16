@@ -17,6 +17,10 @@ namespace script.core.character
             {
                 defaultPlayerNameDic[playerList[i].name] = i;
             }
+            foreach (var playerObj in playerList.Select((value, index) => new {value, index}))
+            {
+                defaultPlayerNameDic[playerObj.value.name] = playerObj.index;
+            }
         }
 
         void Update()
