@@ -20,7 +20,7 @@ namespace script.core.assetbandle
             LoadComplete
         }
 
-        public LoadStatus CurrentLoadStatus { get; set; }
+        public LoadStatus CurrentLoadStatus { get; private set; }
 
         enum LoadType
         {

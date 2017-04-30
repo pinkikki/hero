@@ -2,6 +2,7 @@
 using script.common.dao;
 using script.common.entity;
 using script.core.audio;
+using script.core.message;
 
 namespace script.core.@event
 {
@@ -52,32 +53,32 @@ namespace script.core.@event
                     case 3:
                         if (task.Attr1 == "del")
                         {
-                            mmInstance.hide();
+                            MessageManager.Instance.Hide();
                         }
                         else
                         {
                             StopFlg = true;
                             EventDetailEntity nextTask = eventDetailList[CurrentIndex + 1];
                             bool lastMsgFlg = nextTask.Attr1 == "del";
-                            mmInstance.changeMessage(nmInstance.convert(task.Attr1), nmInstance.convert(task.Attr2),
+                            MessageManager.Instance.ChangeMessage(task.Attr1, task.Attr2,
                                 lastMsgFlg,
                                 false);
                         }
                         break;
                     // msg_autoの場合
                     case 4:
-                        mmInstance.changeMessage(nmInstance.convert(task.Attr1), nmInstance.convert(task.Attr2), true,
+                        MessageManager.Instance.ChangeMessage(task.Attr1, task.Attr2, true,
                             true);
                         break;
                     // msg_selectの場合
                     case 5:
                         StopFlg = true;
-                        mmInstance.createSelectMessageDialog(task);
+                        MessageManager.Instance.CreateSelectMessageDialog(int.Parse(task.Attr1), task.Attr2);
                         break;
                     // actionの場合
                     case 6:
                         StopFlg = true;
-                        mmInstance.gameObject.SendMessage(task.TypeId + task.Attr1);
+                        MessageManager.Instance.gameObject.SendMessage(task.TypeId + task.Attr1);
                         break;
                     // sleepの場合
                     case 7:

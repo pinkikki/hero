@@ -63,6 +63,7 @@ namespace script.core.character
 
         void OnCollisionEnter2D(Collision2D other)
         {
+            // TODO にわとりのレイヤーはこのフラグはtrueにしないようにすること！！
             collisionFlg = true;
         }
 

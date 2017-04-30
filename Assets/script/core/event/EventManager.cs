@@ -38,9 +38,12 @@ namespace script.core.@event
             switch (eventMode)
             {
                 case Mode.WaitTrigger:
-                    if ((!AudioManager.Exist() && !AudioManager.Instance.IsLoadComplete()) ||
-                        (ciInstance != null && !ciInstance.isLoadComplete()) ||
-                        (oiInstance != null && !oiInstance.isLoadComplete())) return;
+                    // TODO 元のソースから条件を再取得すること！！！！
+                    if ((!AudioManager.Exist() && !AudioManager.Instance.IsLoadComplete())
+//                        ||
+//                        (ciInstance != null && !ciInstance.isLoadComplete()) ||
+//                        (oiInstance != null && !oiInstance.isLoadComplete())
+                    ) return;
                     if (eventList.Count <= 0) return;
                     eventMode = Mode.ExecuteEvent;
                     currentEvent = eventList[0];
