@@ -1,0 +1,16 @@
+﻿using UnityEngine.SceneManagement;
+
+namespace Assets.script.core.scene
+{
+    public class SceneStatus
+    {
+        public static string SceneId
+        {
+            get { return SceneManager.GetActiveScene().name; }
+        }
+
+        public static int Procedure { get; set; }
+
+        public static int EntranceNo { get; set; }
+    }
+}

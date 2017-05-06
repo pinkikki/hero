@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using script.core.assetbandle;
-using script.core.monoBehaviour;
+using Assets.script.core.asset;
+using Assets.script.core.monoBehaviour;
 using UnityEngine;
 
-namespace script.core.audio
+namespace Assets.script.core.audio
 {
     public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
@@ -23,7 +23,7 @@ namespace script.core.audio
         float delayTime;
         float crossTime;
         float startTime;
-        LoadAssetBandles.LoadStatus loadStatus = LoadAssetBandles.LoadStatus.LoadWait;
+        AssetLoader.LoadStatus loadStatus = AssetLoader.LoadStatus.LoadWait;
 
         void Awake()
         {
@@ -43,23 +43,23 @@ namespace script.core.audio
 
         IEnumerator Load()
         {
-            loadStatus = LoadAssetBandles.LoadStatus.LoadExecute;
+            loadStatus = AssetLoader.LoadStatus.LoadExecute;
             while (true)
             {
-                if (LoadAssetBandles.Instance.CurrentLoadStatus == LoadAssetBandles.LoadStatus.LoadComplete)
+                if (AssetLoader.Instance.CurrentLoadStatus == AssetLoader.LoadStatus.LoadComplete)
                 {
                     foreach (var bgmClip in bgmClipList.Select((value, index) => new {value, index}))
                     {
                         bgmDict.Add(bgmClip.value,
-                            LoadAssetBandles.Instance.LoadAudio(bgmAssetBundleList[bgmClip.index], bgmClip.value));
+                            AssetLoader.Instance.LoadAudio(bgmAssetBundleList[bgmClip.index], bgmClip.value));
                     }
 
                     foreach (var seClip in seClipList.Select((value, index) => new {value, index}))
                     {
                         seDict.Add(seClip.value,
-                            LoadAssetBandles.Instance.LoadAudio(seAssetBundleList[seClip.index], seClip.value));
+                            AssetLoader.Instance.LoadAudio(seAssetBundleList[seClip.index], seClip.value));
                     }
-                    loadStatus = LoadAssetBandles.LoadStatus.LoadComplete;
+                    loadStatus = AssetLoader.LoadStatus.LoadComplete;
                     break;
                 }
                 yield return null;
@@ -68,7 +68,7 @@ namespace script.core.audio
 
         public bool IsLoadComplete()
         {
-            return loadStatus == LoadAssetBandles.LoadStatus.LoadComplete;
+            return loadStatus == AssetLoader.LoadStatus.LoadComplete;
         }
 
         void Update()

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace script.logic.smartball
+namespace Assets.script.logic.smartball
 {
     public class SmartBallLogic : MonoBehaviour
     {

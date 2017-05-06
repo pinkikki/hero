@@ -1,12 +1,10 @@
-namespace script.common.entity
+namespace Assets.script.common.entity
 {
-    public class EventEntity
+    public class AutoEventEntity
     {
         public int EventId { get; set; }
 
         public string SceneId { get; set; }
-
-        public bool CompleteFlg { get; set; }
 
         public int Procedure { get; set; }
     }

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace script.core.camera
+namespace Assets.script.core.camera
 {
     public class ScaleCamera : MonoBehaviour
     {
-        [SerializeField] float targetWidth = 1136;
+        [SerializeField] float targetWidth = 640;
         [SerializeField] float pixelsToUnits = 100;
         [SerializeField] GameObject target;
         [SerializeField] Vector3 offset;
@@ -36,7 +36,7 @@ namespace script.core.camera
             }
         }
 
-        void SetTarget(GameObject obj)
+        public void SetTarget(GameObject obj)
         {
             target = obj;
             Vector3 pos = transform.position;

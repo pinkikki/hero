@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Text;
-using Plugins;
-using script.common.entity;
-using script.core.db;
+using Assets.Plugins;
+using Assets.script.common.entity;
+using Assets.script.core.db;
 
-namespace script.common.dao
+namespace Assets.script.common.dao
 {
     public static class LocationDao
     {
@@ -28,7 +28,7 @@ namespace script.common.dao
             return dataTable.Rows.Count == 0 ? null : CreateEntity(dataTable[0]);
         }
 
-        public static List<LocationEntity> SelectBySceneIdAndEntranceId(string sceneId, int entranceId)
+        public static List<LocationEntity> SelectBySceneStatus(string sceneId, int entranceId, int procedure)
         {
             List<LocationEntity> entityList = new List<LocationEntity>();
             StringBuilder sb = new StringBuilder();
@@ -36,6 +36,8 @@ namespace script.common.dao
                 .Append(sceneId)
                 .Append("' AND ENTRANCE_ID = ")
                 .Append(entranceId)
+                .Append("' AND PROCEDURE = ")
+                .Append(procedure)
                 .Append(";");
             DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
             dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
@@ -75,6 +77,8 @@ namespace script.common.dao
                 .Append("'")
                 .Append(",")
                 .Append(entity.Direction)
+                .Append(",")
+                .Append(entity.Procedure)
                 .Append(");");
             DbManager.ExecuteNonQuery(sb.ToString());
         }
@@ -121,6 +125,9 @@ namespace script.common.dao
                 .Append(",")
                 .Append("DIRECTION = ")
                 .Append(entity.Direction)
+                .Append(",")
+                .Append("PROCEDURE = ")
+                .Append(entity.Procedure)
                 .Append(";");
             DbManager.ExecuteNonQuery(sb.ToString());
         }
@@ -129,23 +136,25 @@ namespace script.common.dao
         {
             LocationEntity entity = new LocationEntity();
 
-            entity.LocationId = DaoSupport.GetIntValue(row, "LocationId");
+            entity.LocationId = DaoSupport.GetIntValue(row, "LOCATION_ID");
 
-            entity.SceneId = DaoSupport.GetStringValue(row, "SceneId");
+            entity.SceneId = DaoSupport.GetStringValue(row, "SCENE_ID");
 
-            entity.EntranceNo = DaoSupport.GetIntValue(row, "EntranceNo");
+            entity.EntranceNo = DaoSupport.GetIntValue(row, "ENTRANCE_NO");
 
-            entity.AssetBandlesName = DaoSupport.GetStringValue(row, "AssetBandlesName");
+            entity.AssetBandlesName = DaoSupport.GetStringValue(row, "ASSET_BANDLES_NAME");
 
-            entity.AssetName = DaoSupport.GetStringValue(row, "AssetName");
+            entity.AssetName = DaoSupport.GetStringValue(row, "ASSET_NAME");
 
-            entity.ObjectName = DaoSupport.GetStringValue(row, "ObjectName");
+            entity.ObjectName = DaoSupport.GetStringValue(row, "OBJECT_NAME");
 
-            entity.PositionX = DaoSupport.GetStringValue(row, "PositionX");
+            entity.PositionX = DaoSupport.GetStringValue(row, "POSITION_X");
 
-            entity.PositionY = DaoSupport.GetStringValue(row, "PositionY");
+            entity.PositionY = DaoSupport.GetStringValue(row, "POSITION_Y");
 
-            entity.Direction = DaoSupport.GetIntValue(row, "Direction");
+            entity.Direction = DaoSupport.GetIntValue(row, "DIRECTION");
+
+            entity.Procedure = DaoSupport.GetIntValue(row, "PROCEDURE");
 
             return entity;
         }

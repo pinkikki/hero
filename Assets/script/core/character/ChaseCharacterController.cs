@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace script.core.character
+namespace Assets.script.core.character
 {
     public class ChaseCharacterController : CharacterBase
     {

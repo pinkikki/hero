@@ -1,4 +1,4 @@
-namespace script.common.entity
+namespace Assets.script.common.entity
 {
     public class EventDetailEntity
     {

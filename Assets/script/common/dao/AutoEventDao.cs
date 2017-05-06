@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using System.Text;
-using Plugins;
-using script.common.entity;
-using script.core.db;
+using Assets.Plugins;
+using Assets.script.common.entity;
+using Assets.script.core.db;
 
-namespace script.common.dao
+namespace Assets.script.common.dao
 {
-    public static class EventDao
+    public static class AutoEventDao
     {
-        public static List<EventEntity> SelectAll()
+        public static List<AutoEventEntity> SelectAll()
         {
-            List<EventEntity> entityList = new List<EventEntity>();
+            List<AutoEventEntity> entityList = new List<AutoEventEntity>();
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM EVENT;");
             DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
@@ -18,7 +18,7 @@ namespace script.common.dao
             return entityList;
         }
 
-        public static EventEntity SelectByPrimaryKey(int eventId)
+        public static AutoEventEntity SelectByPrimaryKey(int eventId)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM EVENT WHERE EVENT_ID = ")
@@ -28,17 +28,15 @@ namespace script.common.dao
             return dataTable.Rows.Count == 0 ? null : CreateEntity(dataTable[0]);
         }
 
-        public static List<EventEntity> SelectBySceneId(string sceneId)
+        public static List<AutoEventEntity> SelectBySceneId(string sceneId, int procedure)
         {
-            List<EventEntity> entityList = new List<EventEntity>();
+            List<AutoEventEntity> entityList = new List<AutoEventEntity>();
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM EVENT e1 where SCENE_ID = '")
                 .Append(sceneId)
                 .Append("'")
-                .Append(" and COMPLETE_FLG <> 1 and NOT EXISTS (select 1 from EVENT e2 where SCENE_ID = '")
-                .Append(sceneId)
-                .Append("'")
-                .Append(" and COMPLETE_FLG <> 1 and e2.PROCEDURE < e1.PROCEDURE)")
+                .Append(" and PROCEDURE = ")
+                .Append(procedure)
                 .Append(";");
             DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
             dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
@@ -46,7 +44,7 @@ namespace script.common.dao
 
         }
 
-        public static void Insert(EventEntity entity)
+        public static void Insert(AutoEventEntity entity)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("INSERT INTO EVENT VALUES (")
@@ -56,14 +54,12 @@ namespace script.common.dao
                 .Append(entity.SceneId)
                 .Append("'")
                 .Append(",")
-                .Append(entity.CompleteFlg ? 1 : 0)
-                .Append(",")
                 .Append(entity.Procedure)
                 .Append(");");
             DbManager.ExecuteNonQuery(sb.ToString());
         }
 
-        public static void Update(EventEntity entity)
+        public static void Update(AutoEventEntity entity)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("UPDATE EVENT SET ")
@@ -75,24 +71,19 @@ namespace script.common.dao
                 .Append(entity.SceneId)
                 .Append("'")
                 .Append(",")
-                .Append("COMPLETE_FLG = ")
-                .Append(entity.CompleteFlg ? 1 : 0)
-                .Append(",")
                 .Append("PROCEDURE = ")
                 .Append(entity.Procedure)
                 .Append(";");
             DbManager.ExecuteNonQuery(sb.ToString());
         }
 
-        private static EventEntity CreateEntity(DataRow row)
+        private static AutoEventEntity CreateEntity(DataRow row)
         {
-            EventEntity entity = new EventEntity();
+            AutoEventEntity entity = new AutoEventEntity();
 
             entity.EventId = DaoSupport.GetIntValue(row, "EventId");
 
             entity.SceneId = DaoSupport.GetStringValue(row, "SceneId");
-
-            entity.CompleteFlg = DaoSupport.GetBoolValue(row, "CompleteFlg");
 
             entity.Procedure = DaoSupport.GetIntValue(row, "Procedure");
 

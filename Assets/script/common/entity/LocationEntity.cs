@@ -1,4 +1,4 @@
-namespace script.common.entity
+namespace Assets.script.common.entity
 {
     public class LocationEntity
     {
@@ -19,5 +19,7 @@ namespace script.common.entity
         public string PositionY { get; set; }
 
         public int Direction { get; set; }
+
+        public int Procedure { get; set; }
     }
 }

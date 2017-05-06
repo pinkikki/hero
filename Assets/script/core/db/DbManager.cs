@@ -1,7 +1,7 @@
 ﻿using System;
-using Plugins;
+using Assets.Plugins;
 
-namespace script.core.db
+namespace Assets.script.core.db
 {
     public class DbManager
     {

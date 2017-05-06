@@ -2,14 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using script.core.monoBehaviour;
+using Assets.script.core.monoBehaviour;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace script.core.assetbandle
+namespace Assets.script.core.asset
 {
-    public class LoadAssetBandles : SingletonMonoBehaviour<LoadAssetBandles>
+    public class AssetLoader : SingletonMonoBehaviour<AssetLoader>
     {
+        [SerializeField] bool isLoadFromAsssetBandles;
         Dictionary<string, AssetBundle> assetBundleDic;
         public Dictionary<string, int> AssetBundleInfoDic { get; set; }
 
@@ -31,7 +32,7 @@ namespace script.core.assetbandle
         [SerializeField] LoadType loadType = LoadType.CreateFile;
         private static readonly string Prefix = "/AssetBundles/android/";
 
-        public LoadAssetBandles()
+        public AssetLoader()
         {
             CurrentLoadStatus = LoadStatus.LoadWait;
         }
@@ -119,6 +120,10 @@ namespace script.core.assetbandle
 
         public Object LoadPrefab(string assetBundleName, string assetName)
         {
+            if (isLoadFromAsssetBandles)
+            {
+                return Resources.Load<Object>(assetBundleName + assetName);
+            }
             var assetBundle = assetBundleDic[assetBundleName];
             return assetBundle == null ? null : assetBundle.LoadAsset(assetName);
         }

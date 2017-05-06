@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using script.common.dao;
-using script.common.entity;
-using script.core.audio;
-using script.core.message;
+using Assets.script.common.dao;
+using Assets.script.common.entity;
+using Assets.script.core.audio;
+using Assets.script.core.message;
 
-namespace script.core.@event
+namespace Assets.script.core.@event
 {
     public class EventTask
     {

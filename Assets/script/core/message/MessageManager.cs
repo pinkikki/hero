@@ -1,17 +1,16 @@
 ﻿using System.Linq;
-using script.core.assetbandle;
-using script.core.monoBehaviour;
+using Assets.script.core.asset;
+using Assets.script.core.monoBehaviour;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace script.core.message
+namespace Assets.script.core.message
 {
     public class MessageManager : SingletonMonoBehaviour<MessageManager>
     {
         public bool AutoFlg { get; private set; }
         public bool ManualFlg { get; private set; }
 
-        GameObject msgDialog;
         Text contentText;
         Text titleText;
         GameObject nextButton;
@@ -24,12 +23,10 @@ namespace script.core.message
 
         void Start()
         {
-            msgDialog = (GameObject) Instantiate(LoadAssetBandles.Instance.LoadPrefab("prefab/msgdialog", "MsgDialog"),
-                new Vector2(0, 0), Quaternion.identity);
-            titleText = msgDialog.transform.FindChild("Body/TitleBox/TitleText").GetComponent<Text>();
-            contentText = msgDialog.transform.FindChild("Body/ContentBox/ContentText").GetComponent<Text>();
-            nextButton = msgDialog.transform.FindChild("Body/NextButton").gameObject;
-            msgDialog.SetActive(false);
+            titleText = transform.FindChild("Body/TitleBox/TitleText").GetComponent<Text>();
+            contentText = transform.FindChild("Body/ContentBox/ContentText").GetComponent<Text>();
+            nextButton = transform.FindChild("Body/NextButton").gameObject;
+            gameObject.SetActive(false);
         }
 
         void Update()
@@ -40,7 +37,7 @@ namespace script.core.message
         {
             AutoFlg = autoFlg;
             ManualFlg = false;
-            if (!msgDialog.activeSelf)
+            if (!gameObject.activeSelf)
             {
                 Show();
             }
@@ -52,25 +49,25 @@ namespace script.core.message
 
         public void Show()
         {
-            msgDialog.SetActive(true);
+            gameObject.SetActive(true);
         }
 
         public void Hide()
         {
             titleText.text = "";
             contentText.text = "";
-            msgDialog.SetActive(false);
+            gameObject.SetActive(false);
         }
 
         public void Destroy()
         {
-            Destroy(msgDialog);
+            Destroy(gameObject);
         }
 
         public void CreateSelectMessageDialog(int selectNum, string message)
         {
             var selectMsgDialog = (GameObject) Instantiate(
-                LoadAssetBandles.Instance.LoadPrefab("prefab/msgdialog", "SelectMsgDialog"), new Vector2(0.0f, 0.0f),
+                AssetLoader.Instance.LoadPrefab("prefab/msgdialog", "SelectMsgDialog"), new Vector2(0.0f, 0.0f),
                 Quaternion.identity);
             selectMsgDialog.name = "SelectMsgDialog";
             var msgText = selectMsgDialog.transform.FindChild("Body/ContentBox/ContentText").GetComponent<Text>();
@@ -84,7 +81,7 @@ namespace script.core.message
             foreach (var i in Enumerable.Range(0, selectNum))
             {
                 var buttonBase = (GameObject) Instantiate(
-                    LoadAssetBandles.Instance.LoadPrefab("prefab/msgdialog", "ButtonBase"), new Vector2(0.0f, 0.0f),
+                    AssetLoader.Instance.LoadPrefab("prefab/msgdialog", "ButtonBase"), new Vector2(0.0f, 0.0f),
                     Quaternion.identity);
                 var text = buttonBase.transform.FindChild("Text").GetComponent<Text>();
                 var button = buttonBase.GetComponent<Button>();

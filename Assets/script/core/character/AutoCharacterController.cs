@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace script.core.character
+namespace Assets.script.core.character
 {
     // TODO RididBodyのCollision Detectionは「Continous」に設定すること！！
     // 設定しないと、すり抜けてしまう

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace script.core.character
+namespace Assets.script.core.character
 {
     public class ChickenController : AutoCharacterController
     {
@@ -18,6 +18,7 @@ namespace script.core.character
             }
 
             // TODO にわとりが勝手にかごに入った時に、何かのボタンを押したらゴールする実装
+
         }
 
         void OnCollisionExit2D(Collision2D other)
