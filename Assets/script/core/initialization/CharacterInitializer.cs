@@ -12,7 +12,7 @@ namespace Assets.script.core.initialization
 {
     public class CharacterInitializer : SingletonMonoBehaviour<CharacterInitializer>
     {
-        [SerializeField] String cameraTarget;
+        [SerializeField] List<string> cameraTargetList;
         AssetLoader.LoadStatus loadStatus = AssetLoader.LoadStatus.LoadWait;
 
         public AssetLoader.LoadStatus LoadStatus
@@ -46,7 +46,7 @@ namespace Assets.script.core.initialization
                 var obj = (GameObject) Instantiate(prefab,
                     new Vector2(float.Parse(location.PositionX), float.Parse(location.PositionY)), Quaternion.identity);
                 obj.name = location.ObjectName;
-                if (cameraTarget == location.ObjectName)
+                if (cameraTargetList[SceneStatus.Procedure - 1] == location.ObjectName)
                 {
                     FindObjectOfType<ScaleCamera>().Target = obj;
                 }
@@ -108,6 +108,11 @@ namespace Assets.script.core.initialization
             animObj.SetBool("Bwait", bwFlg);
             animObj.SetBool("Lwait", lwFlg);
             animObj.SetBool("Rwait", rwFlg);
+        }
+
+        public bool IsLoadComplete()
+        {
+            return loadStatus == AssetLoader.LoadStatus.LoadComplete;
         }
     }
 }

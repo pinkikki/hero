@@ -15,7 +15,7 @@ namespace Assets.script.core.message
         GameObject nextButton;
 
 
-        private void Awake()
+        void Awake()
         {
             DontDestroyOnLoad(this);
         }

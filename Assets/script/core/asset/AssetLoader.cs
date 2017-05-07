@@ -50,6 +50,7 @@ namespace Assets.script.core.asset
         {
             if (AssetBundleInfoDic == null)
             {
+                CurrentLoadStatus = LoadStatus.LoadComplete;
                 return;
             }
             StartCoroutine(Download());

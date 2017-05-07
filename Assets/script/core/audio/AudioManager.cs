@@ -13,7 +13,12 @@ namespace Assets.script.core.audio
         [SerializeField] List<string> bgmAssetBundleList;
         [SerializeField] List<string> seClipList;
         [SerializeField] List<string> seAssetBundleList;
-        [SerializeField] bool isDestruction;
+        [SerializeField] bool destructionFlg;
+
+        public bool DestructionFlg
+        {
+            get { return destructionFlg; }
+        }
 
         AudioSource bgmSource;
         AudioSource bgmCrossFadingSource;
@@ -30,7 +35,7 @@ namespace Assets.script.core.audio
             bgmSource = gameObject.AddComponent<AudioSource>();
             bgmCrossFadingSource = gameObject.AddComponent<AudioSource>();
 
-            if (!isDestruction)
+            if (!destructionFlg)
             {
                 DontDestroyOnLoad(this);
             }

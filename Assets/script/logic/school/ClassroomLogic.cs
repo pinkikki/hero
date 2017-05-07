@@ -17,12 +17,18 @@ namespace Assets.script.logic.school
 
 		void Start()
 		{
+			if (SceneStatus.Procedure == 2)
+			{
+				EventManager.Instance.Register(502);
+			}
 		}
 
 		void Update()
 		{
-			if (isRegistered || 17 > EventManager.Instance.CompleteEventSet.Count) return;
-			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 17) return;
+			// TODO 1を17に変える事！
+			if (isRegistered || 1 > EventManager.Instance.CompleteEventSet.Count) return;
+			// TODO 1を17に変える事！
+			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 1) return;
 			isRegistered = true;
 			EventManager.Instance.Register(501);
 		}
@@ -37,6 +43,46 @@ namespace Assets.script.logic.school
 			teacher = GameObject.Find("teacherA");
 			niccTeacher = teacher.GetComponent<NoInputCharacterController>();
 			StartCoroutine(Action001Coroutine());
+		}
+
+		public void Action002()
+		{
+			SceneStatus.Procedure = 2;
+			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "classroom", null);
+		}
+
+		public void Action003()
+		{
+			SceneStatus.Procedure = 3;
+			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "classroom", null);
+		}
+
+		public void Action004()
+		{
+			var classmateC = GameObject.Find("classmateC");
+			classmateC.name = "classmateCA";
+			EventManager.Instance.NextTask();
+		}
+
+		public void Action005()
+		{
+			var classmateH = GameObject.Find("classmateH");
+			classmateH.name = "classmateHA";
+			EventManager.Instance.NextTask();
+		}
+
+		public void Action006()
+		{
+			var classmateHA = GameObject.Find("classmateHA");
+			classmateHA.name = "classmateHB";
+			EventManager.Instance.NextTask();
+		}
+
+		public void Action007()
+		{
+			var classmateHB = GameObject.Find("classmateHB");
+			classmateHB.name = "classmateHC";
+			EventManager.Instance.NextTask();
 		}
 
 		IEnumerator Action001Coroutine()
@@ -58,7 +104,6 @@ namespace Assets.script.logic.school
 			niccTeacher.WalkBackNoSpeed();
 			yield return null;
 			EventManager.Instance.NextTask();
-			yield return null;
 		}
 
 		public void SelectAButton()
