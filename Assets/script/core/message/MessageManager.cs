@@ -9,7 +9,6 @@ namespace Assets.script.core.message
     public class MessageManager : SingletonMonoBehaviour<MessageManager>
     {
         public bool AutoFlg { get; private set; }
-        public bool ManualFlg { get; private set; }
 
         Text contentText;
         Text titleText;
@@ -26,6 +25,8 @@ namespace Assets.script.core.message
             titleText = transform.FindChild("Body/TitleBox/TitleText").GetComponent<Text>();
             contentText = transform.FindChild("Body/ContentBox/ContentText").GetComponent<Text>();
             nextButton = transform.FindChild("Body/NextButton").gameObject;
+            // 非アクティブ状態だとインスタンスを取得できなくなるので、ここで取得しておく
+            var msg = Instance;
             gameObject.SetActive(false);
         }
 
@@ -36,7 +37,6 @@ namespace Assets.script.core.message
         public void ChangeMessage(string titleMessage, string contentMessage, bool lastMsgFlg, bool autoFlg)
         {
             AutoFlg = autoFlg;
-            ManualFlg = false;
             if (!gameObject.activeSelf)
             {
                 Show();
@@ -67,7 +67,7 @@ namespace Assets.script.core.message
         public void CreateSelectMessageDialog(int selectNum, string message)
         {
             var selectMsgDialog = (GameObject) Instantiate(
-                AssetLoader.Instance.LoadPrefab("prefab/msgdialog", "SelectMsgDialog"), new Vector2(0.0f, 0.0f),
+                AssetLoader.Instance.LoadPrefab("prefab/common/", "SelectMsgDialog"), new Vector2(0.0f, 0.0f),
                 Quaternion.identity);
             selectMsgDialog.name = "SelectMsgDialog";
             var msgText = selectMsgDialog.transform.FindChild("Body/ContentBox/ContentText").GetComponent<Text>();
@@ -81,30 +81,30 @@ namespace Assets.script.core.message
             foreach (var i in Enumerable.Range(0, selectNum))
             {
                 var buttonBase = (GameObject) Instantiate(
-                    AssetLoader.Instance.LoadPrefab("prefab/msgdialog", "ButtonBase"), new Vector2(0.0f, 0.0f),
+                    AssetLoader.Instance.LoadPrefab("prefab/common/", "ButtonBase"), new Vector2(0.0f, 0.0f),
                     Quaternion.identity);
-                var text = buttonBase.transform.FindChild("Text").GetComponent<Text>();
+                var text = buttonBase.transform.FindChild("ButtonText").GetComponent<Text>();
                 var button = buttonBase.GetComponent<Button>();
                 switch (i)
                 {
                     case 0:
-                        text.text = "A";
+                        text.text = "Ａ";
                         button.onClick.AddListener(script.OnAClick);
                         break;
                     case 1:
-                        text.text = "B";
+                        text.text = "Ｂ";
                         button.onClick.AddListener(script.OnBClick);
                         break;
                     case 2:
-                        text.text = "C";
+                        text.text = "Ｃ";
                         button.onClick.AddListener(script.OnCClick);
                         break;
                     case 3:
-                        text.text = "D";
+                        text.text = "Ｄ";
                         button.onClick.AddListener(script.OnDClick);
                         break;
                     case 4:
-                        text.text = "E";
+                        text.text = "Ｅ";
                         button.onClick.AddListener(script.OnEClick);
                         break;
                 }

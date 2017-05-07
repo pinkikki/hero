@@ -12,5 +12,7 @@ namespace Assets.script.core.scene
         public static int Procedure { get; set; }
 
         public static int EntranceNo { get; set; }
+
+        public static bool HasItem1 { get; set; }
     }
 }

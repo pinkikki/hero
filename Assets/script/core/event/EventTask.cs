@@ -78,7 +78,7 @@ namespace Assets.script.core.@event
                     // actionの場合
                     case 6:
                         StopFlg = true;
-                        MessageManager.Instance.gameObject.SendMessage(task.TypeId + task.Attr1);
+                        EventManager.Instance.gameObject.SendMessage("Action" + task.Attr1);
                         break;
                     // sleepの場合
                     case 7:
@@ -94,6 +94,14 @@ namespace Assets.script.core.@event
 
                 CurrentIndex++;
             }
+        }
+
+        public void Clear()
+        {
+            StopFlg = false;
+            TaskEndFlg = false;
+            SleepTime = 0.0f;
+            CurrentIndex = 0;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Assets.script.core.monoBehaviour
             {
                 if (instance == null)
                 {
-                    instance = (T) FindObjectOfType(typeof(T));
+                    instance = FindObjectOfType<T>();
                     if (instance == null)
                     {
                         Debug.LogError(typeof(T) + " is none");

@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.script.core.audio;
 using Assets.script.core.monoBehaviour;
 using UnityEngine;
 
 namespace Assets.script.core.@event
 {
-    public abstract class EventManager : SingletonMonoBehaviour<EventManager>
+    public class EventManager: SingletonMonoBehaviour<EventManager>
     {
-        protected Dictionary<int, EventTask> eventDct = new Dictionary<int, EventTask>();
-        protected List<int> eventList;
-        protected int currentEvent;
-        protected Mode eventMode;
+        [SerializeField] private IEventLoader loader = new BasicEventLoader();
+        Dictionary<int, EventTask> eventDct;
+        Dictionary<string, int> objectMappingDic;
+        readonly List<int> eventList = new List<int>();
+        readonly HashSet<int> completeEventSet = new HashSet<int>();
 
-        protected enum Mode
+        public HashSet<int> CompleteEventSet
+        {
+            get { return completeEventSet; }
+        }
+
+        int currentEvent;
+        Mode eventMode;
+
+        enum Mode
         {
             Loading,
             WaitTrigger,
@@ -22,7 +30,7 @@ namespace Assets.script.core.@event
             End
         }
 
-        protected float time;
+        float time;
 
         void Start()
         {
@@ -73,7 +81,25 @@ namespace Assets.script.core.@event
 
         public void Register(int eventId)
         {
+            if (eventMode == Mode.WaitTrigger || eventMode == Mode.Loading)
+            {
+                eventList.Add(eventId);
+            }
+        }
+
+        public void Register(string objectName)
+        {
+            Register(objectMappingDic[objectName]);
+        }
+
+        void RegisterByForce(int eventId)
+        {
             eventList.Add(eventId);
+        }
+
+        public void RegisterByForce(string objectName)
+        {
+            RegisterByForce(objectMappingDic[objectName]);
         }
 
         public void NextTask()
@@ -86,16 +112,22 @@ namespace Assets.script.core.@event
             eventDct[currentEvent].CurrentIndex += skipNum;
         }
 
-        protected abstract void Load();
+        protected void Load()
+        {
+            EventHolder holder = loader.Load();
+            eventDct = holder.EventDic;
+            objectMappingDic = holder.ObjectMappingDic;
+            eventMode = Mode.WaitTrigger;
+        }
 
         protected virtual void OnWaitTrigger()
         {
             // TODO 元のソースから条件を再取得すること！！！！
-            if ((!AudioManager.Exist() && !AudioManager.Instance.IsLoadComplete())
+//            if ((!AudioManager.Exist() && !AudioManager.Instance.IsLoadComplete())
 //                        ||
 //                        (ciInstance != null && !ciInstance.isLoadComplete()) ||
 //                        (oiInstance != null && !oiInstance.isLoadComplete())
-            ) return;
+//            ) return;
             if (eventList.Count <= 0) return;
             eventMode = Mode.ExecuteEvent;
             currentEvent = eventList[0];
@@ -111,8 +143,10 @@ namespace Assets.script.core.@event
         {
             if (eventDct[currentEvent].TaskEndFlg)
             {
-                currentEvent = 0;
+                completeEventSet.Add(currentEvent);
                 eventList.RemoveAt(0);
+                eventDct[currentEvent].Clear();
+                currentEvent = 0;
                 eventMode = Mode.WaitTrigger;
             }
             else if (!eventDct[currentEvent].StopFlg)

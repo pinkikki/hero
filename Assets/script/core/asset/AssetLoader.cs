@@ -122,10 +122,10 @@ namespace Assets.script.core.asset
         {
             if (isLoadFromAsssetBandles)
             {
-                return Resources.Load<Object>(assetBundleName + assetName);
+                var assetBundle = assetBundleDic[assetBundleName];
+                return assetBundle == null ? null : assetBundle.LoadAsset(assetName);
             }
-            var assetBundle = assetBundleDic[assetBundleName];
-            return assetBundle == null ? null : assetBundle.LoadAsset(assetName);
+            return Resources.Load<Object>(assetBundleName + assetName);
         }
 
         public void Unload()

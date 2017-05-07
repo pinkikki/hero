@@ -6,7 +6,10 @@ namespace Assets.script.core.character
     {
         protected float hSpeed;
         protected float vSpeed;
-        protected bool warlkingFlg;
+
+        public bool WarlkingFlg { get; protected set; }
+        public bool FreezeFlg { get; set; }
+
         protected bool collisionFlg;
         protected Animator anim;
 
@@ -28,7 +31,7 @@ namespace Assets.script.core.character
             PreDirection = Direction.W;
         }
 
-        protected void WalkFront()
+        public void WalkFront()
         {
             if (!collisionFlg)
             {
@@ -49,7 +52,7 @@ namespace Assets.script.core.character
             CurrentDirection = Direction.F;
         }
 
-        protected void WalkBack()
+        public void WalkBack()
         {
             if (!collisionFlg)
             {
@@ -70,7 +73,7 @@ namespace Assets.script.core.character
             CurrentDirection = Direction.B;
         }
 
-        protected void WalkLeft()
+        public void WalkLeft()
         {
             if (!collisionFlg)
             {
@@ -91,7 +94,7 @@ namespace Assets.script.core.character
             CurrentDirection = Direction.L;
         }
 
-        protected void WalkRight()
+        public void WalkRight()
         {
             if (!collisionFlg)
             {
@@ -112,9 +115,9 @@ namespace Assets.script.core.character
             CurrentDirection = Direction.R;
         }
 
-        protected void WalkStop()
+        public void WalkStop()
         {
-            warlkingFlg = false;
+            WarlkingFlg = false;
             if (vSpeed < 0.0f)
             {
                 anim.SetBool("Fwait", true);
@@ -169,7 +172,7 @@ namespace Assets.script.core.character
             anim.SetFloat("Vspeed", vSpeed);
             anim.SetBool("Hstop", hsFlg);
             anim.SetBool("Vstop", vsFlg);
-            warlkingFlg = true;
+            WarlkingFlg = true;
             collisionFlg = false;
         }
     }

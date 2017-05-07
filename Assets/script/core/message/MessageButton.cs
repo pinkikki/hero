@@ -14,14 +14,8 @@ namespace Assets.script.core.message
         }
 
         public void OnClick() {
-            if (!MessageManager.Instance.ManualFlg) {
-                if (!MessageManager.Instance.AutoFlg) {
-                    EventManager.Instance.NextTask();
-                }
-            } else {
-                MessageManager.Instance.Hide();
-                // TODO メニューができたらコメントアウト！！！
-//                FieldMenuManager.getInstance().SetActive(true);
+            if (!MessageManager.Instance.AutoFlg) {
+                EventManager.Instance.NextTask();
             }
         }
     }

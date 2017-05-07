@@ -6,11 +6,11 @@ using Assets.script.core.db;
 
 namespace Assets.script.common.dao
 {
-    public static class AutoEventDao
+    public static class EventDao
     {
-        public static List<AutoEventEntity> SelectAll()
+        public static List<EventEntity> SelectAll()
         {
-            List<AutoEventEntity> entityList = new List<AutoEventEntity>();
+            List<EventEntity> entityList = new List<EventEntity>();
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM EVENT;");
             DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
@@ -18,7 +18,7 @@ namespace Assets.script.common.dao
             return entityList;
         }
 
-        public static AutoEventEntity SelectByPrimaryKey(int eventId)
+        public static EventEntity SelectByPrimaryKey(int eventId)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM EVENT WHERE EVENT_ID = ")
@@ -28,9 +28,9 @@ namespace Assets.script.common.dao
             return dataTable.Rows.Count == 0 ? null : CreateEntity(dataTable[0]);
         }
 
-        public static List<AutoEventEntity> SelectBySceneId(string sceneId, int procedure)
+        public static List<EventEntity> SelectBySceneIdAndProcedure(string sceneId, int procedure)
         {
-            List<AutoEventEntity> entityList = new List<AutoEventEntity>();
+            List<EventEntity> entityList = new List<EventEntity>();
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM EVENT e1 where SCENE_ID = '")
                 .Append(sceneId)
@@ -44,7 +44,7 @@ namespace Assets.script.common.dao
 
         }
 
-        public static void Insert(AutoEventEntity entity)
+        public static void Insert(EventEntity entity)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("INSERT INTO EVENT VALUES (")
@@ -54,12 +54,16 @@ namespace Assets.script.common.dao
                 .Append(entity.SceneId)
                 .Append("'")
                 .Append(",")
+                .Append("'")
+                .Append(entity.ObjectName)
+                .Append("'")
+                .Append(",")
                 .Append(entity.Procedure)
                 .Append(");");
             DbManager.ExecuteNonQuery(sb.ToString());
         }
 
-        public static void Update(AutoEventEntity entity)
+        public static void Update(EventEntity entity)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("UPDATE EVENT SET ")
@@ -71,21 +75,28 @@ namespace Assets.script.common.dao
                 .Append(entity.SceneId)
                 .Append("'")
                 .Append(",")
+                .Append("OBJECT_NAME = ")
+                .Append("'")
+                .Append(entity.ObjectName)
+                .Append("'")
+                .Append(",")
                 .Append("PROCEDURE = ")
                 .Append(entity.Procedure)
                 .Append(";");
             DbManager.ExecuteNonQuery(sb.ToString());
         }
 
-        private static AutoEventEntity CreateEntity(DataRow row)
+        private static EventEntity CreateEntity(DataRow row)
         {
-            AutoEventEntity entity = new AutoEventEntity();
+            EventEntity entity = new EventEntity();
 
-            entity.EventId = DaoSupport.GetIntValue(row, "EventId");
+            entity.EventId = DaoSupport.GetIntValue(row, "EVENT_ID");
 
-            entity.SceneId = DaoSupport.GetStringValue(row, "SceneId");
+            entity.SceneId = DaoSupport.GetStringValue(row, "SCENE_ID");
 
-            entity.Procedure = DaoSupport.GetIntValue(row, "Procedure");
+            entity.ObjectName = DaoSupport.GetStringValue(row, "OBJECT_NAME");
+
+            entity.Procedure = DaoSupport.GetIntValue(row, "PROCEDURE");
 
             return entity;
         }

@@ -19,32 +19,32 @@ namespace Assets.script.core.message
 
         public void OnAClick()
         {
-            systemObj.SendMessage("SelectAButton");
             Destroy(selectMessageDialogObj);
+            systemObj.SendMessage("SelectAButton");
         }
 
         public void OnBClick()
         {
-            systemObj.SendMessage("SelectBButton");
             Destroy(selectMessageDialogObj);
+            systemObj.SendMessage("SelectBButton");
         }
 
         public void OnCClick()
         {
-            systemObj.SendMessage("SelectCButton");
             Destroy(selectMessageDialogObj);
+            systemObj.SendMessage("SelectCButton");
         }
 
         public void OnDClick()
         {
-            systemObj.SendMessage("SelectDButton");
             Destroy(selectMessageDialogObj);
+            systemObj.SendMessage("SelectDButton");
         }
 
         public void OnEClick()
         {
-            systemObj.SendMessage("SelectEButton");
             Destroy(selectMessageDialogObj);
+            systemObj.SendMessage("SelectEButton");
         }
     }
 }

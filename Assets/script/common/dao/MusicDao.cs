@@ -83,11 +83,11 @@ namespace Assets.script.common.dao
         {
             MusicEntity entity = new MusicEntity();
         
-            entity.MusicId = DaoSupport.GetIntValue(row, "MusicId");
+            entity.MusicId = DaoSupport.GetIntValue(row, "MUSIC_ID");
         
-            entity.MusicName = DaoSupport.GetStringValue(row, "MusicName");
+            entity.MusicName = DaoSupport.GetStringValue(row, "MUSIC_NAME");
         
-            entity.Time = DaoSupport.GetStringValue(row, "Time");
+            entity.Time = DaoSupport.GetStringValue(row, "TIME");
         
             return entity;
         }

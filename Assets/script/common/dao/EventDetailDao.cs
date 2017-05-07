@@ -21,7 +21,7 @@ namespace Assets.script.common.dao
         public static EventDetailEntity SelectByPrimaryKey(int eventId, int seq)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT * FROM Dummy WHERE EVENT_ID = ")
+            sb.Append("SELECT * FROM EVENT_DETAIL WHERE EVENT_ID = ")
                 .Append(eventId)
                 .Append(" SEQ = ")
                 .Append(seq)
@@ -34,7 +34,7 @@ namespace Assets.script.common.dao
         {
             List<EventDetailEntity> entityList = new List<EventDetailEntity>();
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT * FROM Dummy WHERE EVENT_ID = ")
+            sb.Append("SELECT * FROM EVENT_DETAIL WHERE EVENT_ID = ")
                 .Append(eventId)
                 .Append(";");
             DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
@@ -93,15 +93,15 @@ namespace Assets.script.common.dao
         {
             EventDetailEntity entity = new EventDetailEntity();
 
-            entity.EventId = DaoSupport.GetIntValue(row, "EventId");
+            entity.EventId = DaoSupport.GetIntValue(row, "EVENT_ID");
 
-            entity.Seq = DaoSupport.GetIntValue(row, "Seq");
+            entity.Seq = DaoSupport.GetIntValue(row, "SEQ");
 
-            entity.TypeId = DaoSupport.GetIntValue(row, "TypeId");
+            entity.TypeId = DaoSupport.GetIntValue(row, "TYPE_ID");
 
-            entity.Attr1 = DaoSupport.GetStringValue(row, "Attr1");
+            entity.Attr1 = DaoSupport.GetStringValue(row, "ATTR1");
 
-            entity.Attr2 = DaoSupport.GetStringValue(row, "Attr2");
+            entity.Attr2 = DaoSupport.GetStringValue(row, "ATTR2");
 
             return entity;
         }

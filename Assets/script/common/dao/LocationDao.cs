@@ -28,17 +28,17 @@ namespace Assets.script.common.dao
             return dataTable.Rows.Count == 0 ? null : CreateEntity(dataTable[0]);
         }
 
-        public static List<LocationEntity> SelectBySceneStatus(string sceneId, int entranceId, int procedure)
+        public static List<LocationEntity> SelectBySceneStatus(string sceneId, int entranceNo, int procedure)
         {
             List<LocationEntity> entityList = new List<LocationEntity>();
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM LOCATION WHERE SCENE_ID = '")
                 .Append(sceneId)
-                .Append("' AND ENTRANCE_ID = ")
-                .Append(entranceId)
-                .Append("' AND PROCEDURE = ")
+                .Append("' AND ENTRANCE_NO = ")
+                .Append(entranceNo)
+                .Append(" AND PROCEDURE = ")
                 .Append(procedure)
-                .Append(";");
+                .Append("");
             DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
             dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
             return entityList;

@@ -1,4 +1,5 @@
-﻿using Assets.script.core.monoBehaviour;
+﻿using Assets.script.core.message;
+using Assets.script.core.monoBehaviour;
 using Assets.script.core.scene;
 using UnityEngine.SceneManagement;
 

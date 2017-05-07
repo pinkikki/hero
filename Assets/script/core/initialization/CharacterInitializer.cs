@@ -31,7 +31,6 @@ namespace Assets.script.core.initialization
         {
             loadStatus = AssetLoader.LoadStatus.LoadExecute;
 
-            // TODO 何かしらの方法でEntranceNoを取得
             List<LocationEntity> locationList = LocationDao.SelectBySceneStatus(SceneStatus.SceneId,
                 SceneStatus.EntranceNo, SceneStatus.Procedure);
 
@@ -41,35 +40,15 @@ namespace Assets.script.core.initialization
                 return;
             }
 
-
-//            var lines : String[];
-//            var filePath = "file://" + Path.Combine(Application.streamingAssetsPath + PREFIX, fileName);
-//// 	var filePath = "http://pinkikki.jp/crino-r" + PREFIX + fileName;
-//            if (filePath.Contains("://")) {
-//                var www = new WWW(filePath);
-//
-//                yield www;
-//                if(www.error != null) {
-//                    throw System.Exception("通信障害が発生しました");
-//                }
-//
-//                lines = www.text.Split("\r"[0], "\n"[0]);
-//
-//            } else {
-//                lines = File.ReadAllLines(filePath);
-//            }
-//
             foreach (var location in locationList)
             {
-//                var loadInfoDto = new LoadInfoDto();
-//                var infos = parse(lines[j]);
                 var prefab = AssetLoader.Instance.LoadPrefab(location.AssetBandlesName, location.AssetName);
                 var obj = (GameObject) Instantiate(prefab,
                     new Vector2(float.Parse(location.PositionX), float.Parse(location.PositionY)), Quaternion.identity);
                 obj.name = location.ObjectName;
                 if (cameraTarget == location.ObjectName)
                 {
-                    FindObjectOfType<ScaleCamera>().SetTarget(obj);
+                    FindObjectOfType<ScaleCamera>().Target = obj;
                 }
 
                 var directionNum = location.Direction;
