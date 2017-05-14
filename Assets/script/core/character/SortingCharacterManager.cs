@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.script.core.character
+namespace script.core.character
 {
     public class SortingCharacterManager : MonoBehaviour
     {

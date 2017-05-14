@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.script.core.message
+namespace script.core.message
 {
     public class MessageSelectButton : MonoBehaviour
     {

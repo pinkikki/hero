@@ -9,7 +9,7 @@ using System.Xml.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Plugins.Editor.JetBrains
+namespace Plugins.Editor.JetBrains
 {
   public class RiderAssetPostprocessor : AssetPostprocessor
   {

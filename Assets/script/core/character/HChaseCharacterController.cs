@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Assets.script.core.character
+namespace script.core.character
 {
-    public class ChaseCharacterController : CharacterBase
+    public class HChaseCharacterController : CharacterBase
     {
         [SerializeField] GameObject target;
         [SerializeField] GameObject otherChaseTarget;

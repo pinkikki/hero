@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.script.core.asset;
-using Assets.script.core.audio;
-using Assets.script.core.initialization;
-using Assets.script.core.monoBehaviour;
+using script.core.asset;
+using script.core.audio;
+using script.core.initialization;
+using script.core.monoBehaviour;
+using script.core.operation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Assets.script.core.scene
+namespace script.core.scene
 {
 	public class SceneLoadManager : SingletonMonoBehaviour<SceneLoadManager>
 	{
@@ -81,6 +82,7 @@ namespace Assets.script.core.scene
 			TransType transType, string nextLevelName,
 			Dictionary<string, int> assetBundleInfoDic)
 		{
+			SearchButton.Instance.Hide();
 			var raw = CreateLayer();
 
 			var time = 0.0f;
@@ -142,6 +144,7 @@ namespace Assets.script.core.scene
 			}
 
 			Destroy();
+			SearchButton.Instance.Show();
 		}
 
 		IEnumerator FadeInScene(float fadeInInterval) {

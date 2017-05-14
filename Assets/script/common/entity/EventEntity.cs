@@ -1,4 +1,4 @@
-namespace Assets.script.common.entity
+namespace script.common.entity
 {
     public class EventEntity
     {

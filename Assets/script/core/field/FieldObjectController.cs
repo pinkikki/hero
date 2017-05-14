@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.script.core.field
+namespace script.core.field
 {
     public class FieldObjectController : MonoBehaviour
     {

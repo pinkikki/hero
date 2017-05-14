@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.script.core.monoBehaviour;
+using script.core.monoBehaviour;
 using UnityEngine;
 
-namespace Assets.script.core.@event
+namespace script.core.@event
 {
     public class EventManager: SingletonMonoBehaviour<EventManager>
     {

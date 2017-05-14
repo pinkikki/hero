@@ -1,6 +1,6 @@
 ﻿using UnityEngine.SceneManagement;
 
-namespace Assets.script.core.scene
+namespace script.core.scene
 {
     public class SceneStatus
     {

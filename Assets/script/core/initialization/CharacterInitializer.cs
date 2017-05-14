@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Assets.script.common.dao;
-using Assets.script.common.entity;
-using Assets.script.core.asset;
-using Assets.script.core.camera;
-using Assets.script.core.monoBehaviour;
-using Assets.script.core.scene;
+﻿using System.Collections.Generic;
+using script.common.dao;
+using script.common.entity;
+using script.core.asset;
+using script.core.camera;
+using script.core.monoBehaviour;
+using script.core.scene;
 using UnityEngine;
 
-namespace Assets.script.core.initialization
+namespace script.core.initialization
 {
     public class CharacterInitializer : SingletonMonoBehaviour<CharacterInitializer>
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.script.core.monoBehaviour
+namespace script.core.monoBehaviour
 {
     public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
     {

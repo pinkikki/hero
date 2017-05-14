@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
-using Assets.script.common.dao;
-using Assets.script.common.entity;
-using Assets.script.core.audio;
-using Assets.script.core.message;
+using script.common.dao;
+using script.common.entity;
+using script.core.audio;
+using script.core.message;
+using script.core.operation;
 
-namespace Assets.script.core.@event
+namespace script.core.@event
 {
     public class EventTask
     {
@@ -23,6 +24,7 @@ namespace Assets.script.core.@event
 
         public void Execute()
         {
+            SearchButton.Instance.OnNop();
             for (var i = CurrentIndex; i < eventDetailList.Count; i++)
             {
                 if (StopFlg)
@@ -102,6 +104,7 @@ namespace Assets.script.core.@event
             TaskEndFlg = false;
             SleepTime = 0.0f;
             CurrentIndex = 0;
+            SearchButton.Instance.OnDialog();
         }
     }
 }

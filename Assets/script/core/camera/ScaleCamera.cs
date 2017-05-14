@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.Assertions.Comparers;
 
-namespace Assets.script.core.camera
+namespace script.core.camera
 {
     public class ScaleCamera : MonoBehaviour
     {

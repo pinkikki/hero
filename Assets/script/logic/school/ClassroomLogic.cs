@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Linq;
-using Assets.script.core.camera;
-using Assets.script.core.character;
-using Assets.script.core.@event;
-using Assets.script.core.monoBehaviour;
-using Assets.script.core.scene;
+using script.core.asset;
+using script.core.camera;
+using script.core.character;
+using script.core.@event;
+using script.core.monoBehaviour;
+using script.core.operation;
+using script.core.scene;
 using UnityEngine;
 
-namespace Assets.script.logic.school
+namespace script.logic.school
 {
 	public class ClassroomLogic : SingletonMonoBehaviour<ClassroomLogic>
 	{
 		GameObject teacher;
 		NoInputCharacterController niccTeacher;
+		GameObject ako;
+		NoInputCharacterController niccAko;
+		GameObject masaki;
+		NoInputCharacterController niccMasaki;
 		bool isRegistered;
 
 		void Start()
@@ -21,6 +27,11 @@ namespace Assets.script.logic.school
 			{
 				EventManager.Instance.Register(502);
 			}
+			else if (SceneStatus.Procedure == 3)
+			{
+				GameObject.Find("chair_yusuke").AddComponent<QuizPaperALogic>();
+			}
+			SearchButton.Instance.Show();
 		}
 
 		void Update()
@@ -85,6 +96,49 @@ namespace Assets.script.logic.school
 			EventManager.Instance.NextTask();
 		}
 
+		public void Action008()
+		{
+			var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/common/", "QuizA"),
+				new Vector2(0.0f, 0.0f), Quaternion.identity);
+			obj.name = "QuizA";
+			EventManager.Instance.NextTask();
+		}
+
+		public void Action009()
+		{
+			Destroy(QuizPaperALogic.Instance);
+			Destroy(GameObject.Find("QuizA"));
+			EventManager.Instance.NextTask();
+		}
+
+		public void Action010()
+		{
+			ako = GameObject.Find("ako");
+			niccAko = ako.GetComponent<NoInputCharacterController>();
+			masaki = GameObject.Find("masaki");
+			niccMasaki = masaki.GetComponent<NoInputCharacterController>();
+			StartCoroutine(Action010Coroutine());
+		}
+
+		public void Action011()
+		{
+			masaki = GameObject.Find("masaki");
+			niccMasaki = masaki.GetComponent<NoInputCharacterController>();
+			StartCoroutine(Action011Coroutine());
+		}
+
+		public void Action012()
+		{
+			var yusuke = GameObject.Find("yusuke");
+			var vcccAko = ako.AddComponent<VChaseCharacterController>();
+			var vcccMasaki = masaki.AddComponent<VChaseCharacterController>();
+			vcccAko.Target = yusuke;
+			vcccAko.MinDestNum = 1.6f;
+			vcccMasaki.Target = yusuke;
+			vcccMasaki.MinDestNum = 0.8f;
+			EventManager.Instance.NextTask();
+		}
+
 		IEnumerator Action001Coroutine()
 		{
 			var scaleCamera = FindObjectOfType<ScaleCamera>();
@@ -103,6 +157,58 @@ namespace Assets.script.logic.school
 			}
 			niccTeacher.WalkBackNoSpeed();
 			yield return null;
+			EventManager.Instance.NextTask();
+		}
+
+		IEnumerator Action010Coroutine()
+		{
+			niccAko.ConditionX = -1.3f;
+			niccAko.WalkLeft();
+			while (true)
+			{
+				if (!niccAko.WarlkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
+			niccAko.ConditionY = 1.7f;
+			niccAko.WalkFront();
+			while (true)
+			{
+				if (!niccAko.WarlkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
+			niccAko.WalkRightNoSpeed();
+			yield return null;
+			EventManager.Instance.NextTask();
+		}
+
+		IEnumerator Action011Coroutine()
+		{
+			niccMasaki.ConditionY = 1.7f;
+			niccMasaki.WalkFront();
+			while (true)
+			{
+				if (!niccMasaki.WarlkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
+			niccMasaki.ConditionX = 0.5f;
+			niccMasaki.WalkLeft();
+			while (true)
+			{
+				if (!niccMasaki.WarlkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
 			EventManager.Instance.NextTask();
 		}
 

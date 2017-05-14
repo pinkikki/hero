@@ -1,9 +1,8 @@
-﻿using Assets.script.core.message;
-using Assets.script.core.monoBehaviour;
-using Assets.script.core.scene;
+﻿using script.core.monoBehaviour;
+using script.core.scene;
 using UnityEngine.SceneManagement;
 
-namespace Assets.script.logic.opening
+namespace script.logic.opening
 {
     public class OpeningLogic : SingletonMonoBehaviour<OpeningLogic>
     {

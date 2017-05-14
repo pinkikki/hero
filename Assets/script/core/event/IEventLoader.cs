@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Assets.script.core.@event
+﻿namespace script.core.@event
 {
 	public interface IEventLoader {
 

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using Assets.script.core.asset;
-using Assets.script.core.monoBehaviour;
+using script.core.asset;
+using script.core.monoBehaviour;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.script.core.message
+namespace script.core.message
 {
     public class MessageManager : SingletonMonoBehaviour<MessageManager>
     {
@@ -26,7 +26,7 @@ namespace Assets.script.core.message
             contentText = transform.FindChild("Body/ContentBox/ContentText").GetComponent<Text>();
             nextButton = transform.FindChild("Body/NextButton").gameObject;
             // 非アクティブ状態だとインスタンスを取得できなくなるので、ここで取得しておく
-            var msg = Instance;
+            var obj = Instance;
             gameObject.SetActive(false);
         }
 
