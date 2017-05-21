@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace script.core.character
 {
@@ -22,7 +23,7 @@ namespace script.core.character
 
 		void Start()
 		{
-			anim = gameObject.GetComponent<Animator>();
+			Anim = gameObject.GetComponent<Animator>();
 		}
 
 		void FixedUpdate()
@@ -71,10 +72,22 @@ namespace script.core.character
 		}
 
 		void SetDirection(bool fwFlg, bool bwFlg, bool lwFlg, bool rwFlg) {
-			anim.SetBool("Fwait", fwFlg);
-			anim.SetBool("Bwait", bwFlg);
-			anim.SetBool("Lwait", lwFlg);
-			anim.SetBool("Rwait", rwFlg);
+			Anim.SetBool("Fwait", fwFlg);
+			Anim.SetBool("Bwait", bwFlg);
+			Anim.SetBool("Lwait", lwFlg);
+			Anim.SetBool("Rwait", rwFlg);
+		}
+
+		public IEnumerator MoveUpOrDown(float upOrDownY, float interval) {
+			var pos = transform.position;
+			var currentY = pos.y;
+			var time = 0.0f;
+			while (time <= interval) {
+				pos.y = Mathf.Lerp(currentY, upOrDownY, time / interval);
+				transform.position = pos;
+				time += Time.deltaTime;
+				yield return null;
+			}
 		}
 	}
 }

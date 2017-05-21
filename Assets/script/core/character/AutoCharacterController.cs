@@ -13,7 +13,7 @@ namespace script.core.character
 
         void Start()
         {
-            anim = gameObject.GetComponent<Animator>();
+            Anim = gameObject.GetComponent<Animator>();
         }
 
         void FixedUpdate()

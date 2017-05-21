@@ -11,7 +11,8 @@ namespace script.core.character
         public bool FreezeFlg { get; set; }
 
         protected bool collisionFlg;
-        protected Animator anim;
+
+        public Animator Anim { get; set; }
 
         public Direction PreDirection { get; private set; }
         public Direction CurrentDirection { get; private set; }
@@ -39,7 +40,7 @@ namespace script.core.character
             }
             else
             {
-                if (!anim.GetBool("Fwait"))
+                if (!Anim.GetBool("Fwait"))
                 {
                     SetWalkValue(0.0f, -1.0f, true, false);
                 }
@@ -60,7 +61,7 @@ namespace script.core.character
             }
             else
             {
-                if (!anim.GetBool("Bwait"))
+                if (!Anim.GetBool("Bwait"))
                 {
                     SetWalkValue(0.0f, 1.0f, true, false);
                 }
@@ -81,7 +82,7 @@ namespace script.core.character
             }
             else
             {
-                if (!anim.GetBool("Lwait"))
+                if (!Anim.GetBool("Lwait"))
                 {
                     SetWalkValue(-1.0f, 0.0f, false, true);
                 }
@@ -102,7 +103,7 @@ namespace script.core.character
             }
             else
             {
-                if (!anim.GetBool("Rwait"))
+                if (!Anim.GetBool("Rwait"))
                 {
                     SetWalkValue(1.0f, 0.0f, false, true);
                 }
@@ -120,47 +121,47 @@ namespace script.core.character
             WarlkingFlg = false;
             if (vSpeed < 0.0f)
             {
-                anim.SetBool("Fwait", true);
-                anim.SetBool("Bwait", false);
-                anim.SetBool("Lwait", false);
-                anim.SetBool("Rwait", false);
+                Anim.SetBool("Fwait", true);
+                Anim.SetBool("Bwait", false);
+                Anim.SetBool("Lwait", false);
+                Anim.SetBool("Rwait", false);
                 PreDirection = CurrentDirection;
                 CurrentDirection = Direction.F;
             }
             else if (vSpeed > 0.0f)
             {
-                anim.SetBool("Fwait", false);
-                anim.SetBool("Bwait", true);
-                anim.SetBool("Lwait", false);
-                anim.SetBool("Rwait", false);
+                Anim.SetBool("Fwait", false);
+                Anim.SetBool("Bwait", true);
+                Anim.SetBool("Lwait", false);
+                Anim.SetBool("Rwait", false);
                 PreDirection = CurrentDirection;
                 CurrentDirection = Direction.B;
             }
             else if (hSpeed < 0.0f)
             {
-                anim.SetBool("Fwait", false);
-                anim.SetBool("Bwait", false);
-                anim.SetBool("Lwait", true);
-                anim.SetBool("Rwait", false);
+                Anim.SetBool("Fwait", false);
+                Anim.SetBool("Bwait", false);
+                Anim.SetBool("Lwait", true);
+                Anim.SetBool("Rwait", false);
                 PreDirection = CurrentDirection;
                 CurrentDirection = Direction.L;
             }
             else if (hSpeed > 0.0f)
             {
-                anim.SetBool("Fwait", false);
-                anim.SetBool("Bwait", false);
-                anim.SetBool("Lwait", false);
-                anim.SetBool("Rwait", true);
+                Anim.SetBool("Fwait", false);
+                Anim.SetBool("Bwait", false);
+                Anim.SetBool("Lwait", false);
+                Anim.SetBool("Rwait", true);
                 PreDirection = CurrentDirection;
                 CurrentDirection = Direction.R;
             }
 
             hSpeed = 0.0f;
             vSpeed = 0.0f;
-            anim.SetFloat("Hspeed", hSpeed);
-            anim.SetFloat("Vspeed", vSpeed);
-            anim.SetBool("Hstop", true);
-            anim.SetBool("Vstop", true);
+            Anim.SetFloat("Hspeed", hSpeed);
+            Anim.SetFloat("Vspeed", vSpeed);
+            Anim.SetBool("Hstop", true);
+            Anim.SetBool("Vstop", true);
         }
 
         private void SetWalkValue(float hsVal, float vsVal, bool hsFlg, bool vsFlg)
@@ -168,10 +169,10 @@ namespace script.core.character
             hSpeed = hsVal;
             vSpeed = vsVal;
 
-            anim.SetFloat("Hspeed", hSpeed);
-            anim.SetFloat("Vspeed", vSpeed);
-            anim.SetBool("Hstop", hsFlg);
-            anim.SetBool("Vstop", vsFlg);
+            Anim.SetFloat("Hspeed", hSpeed);
+            Anim.SetFloat("Vspeed", vSpeed);
+            Anim.SetBool("Hstop", hsFlg);
+            Anim.SetBool("Vstop", vsFlg);
             WarlkingFlg = true;
             collisionFlg = false;
         }

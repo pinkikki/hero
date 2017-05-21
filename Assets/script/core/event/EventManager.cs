@@ -92,7 +92,7 @@ namespace script.core.@event
             Register(objectMappingDic[objectName]);
         }
 
-        void RegisterByForce(int eventId)
+        public void RegisterByForce(int eventId)
         {
             eventList.Add(eventId);
         }

@@ -37,7 +37,7 @@ namespace script.core.character
 
         void Start()
         {
-            anim = gameObject.GetComponent<Animator>();
+            Anim = gameObject.GetComponent<Animator>();
             targetController = target.GetComponent<MainCharacterController>();
             minDestNum = maxDestNum / 1.5f;
             walkSpeed = defaultWalkSpeed;
