@@ -115,8 +115,12 @@ namespace script.core.asset
 
         public AudioClip LoadAudio(string assetBundleName, string assetName)
         {
-            var assetBundle = assetBundleDic[assetBundleName];
-            return assetBundle == null ? null : (AudioClip) assetBundle.LoadAsset(assetName);
+            if (isLoadFromAsssetBandles)
+            {
+                var assetBundle = assetBundleDic[assetBundleName];
+                return assetBundle == null ? null : (AudioClip) assetBundle.LoadAsset(assetName);
+            }
+            return Resources.Load<AudioClip>(assetBundleName + assetName);
         }
 
         public Object LoadPrefab(string assetBundleName, string assetName)

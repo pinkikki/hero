@@ -10,7 +10,8 @@ namespace script.logic.opening
         {
             SceneStatus.EntranceNo = 1;
             SceneStatus.Procedure = 1;
-            SceneManager.LoadScene("classroom");
+            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
+//            SceneManager.LoadScene("classroom");
         }
 
         void Update()

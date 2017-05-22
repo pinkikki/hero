@@ -25,7 +25,11 @@ namespace script.logic.school
 
 		void Start()
 		{
-			if (SceneStatus.Procedure == 2)
+			if (SceneStatus.Procedure == 1)
+			{
+				EventManager.Instance.Register(500);
+			}
+			else if (SceneStatus.Procedure == 2)
 			{
 				EventManager.Instance.Register(502);
 			}
@@ -39,9 +43,9 @@ namespace script.logic.school
 		void Update()
 		{
 			// TODO 1を17に変える事！
-			if (isRegistered || 17 > EventManager.Instance.CompleteEventSet.Count) return;
+			if (isRegistered || 1 > EventManager.Instance.CompleteEventSet.Count) return;
 			// TODO 1を17に変える事！
-			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 17) return;
+			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 1) return;
 			isRegistered = true;
 			EventManager.Instance.Register(501);
 		}

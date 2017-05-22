@@ -39,8 +39,8 @@ namespace script.core.@event
                     case 1:
                         if (task.Attr1 == "start")
                         {
-                            AudioManager.Instance.PlayBgm(task.Attr2,
-                                float.Parse(MusicDao.SelectByPrimaryKey(int.Parse(task.Attr2)).Time));
+                            MusicEntity entity = MusicDao.SelectByPrimaryKey(int.Parse(task.Attr2));
+                            AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
                         }
                         else
                         {
