@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using script.core.asset;
-using script.core.monoBehaviour;
+using Assets.script.core.asset;
+using Assets.script.core.monoBehaviour;
 using UnityEngine;
 
-namespace script.core.audio
+namespace Assets.script.core.audio
 {
     public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace script.core.character
+namespace Assets.script.core.character
 {
     // TODO RididBodyのCollision Detectionは「Continous」に設定すること！！
     // 設定しないと、すり抜けてしまう
@@ -8,8 +8,11 @@ namespace script.core.character
     // その場合、にわとりのシーンだけはゆうすけのCollision Detectionを「Continous」に設定すること
     public class AutoCharacterController : CharacterBase
     {
-        int type;
-        int repeatNum;
+        int currentRepeatNum;
+        protected int type;
+        [SerializeField] int repeatNum = 20;
+        [SerializeField] protected float speedFactor = 0.15f;
+
 
         void Start()
         {
@@ -18,12 +21,30 @@ namespace script.core.character
 
         void FixedUpdate()
         {
-            repeatNum++;
-            if (collisionFlg || repeatNum > 20)
+            if (!FreezeFlg)
             {
-                type = Random.Range(0, 4);
-                repeatNum = 0;
+                currentRepeatNum++;
+                if (collisionFlg || currentRepeatNum > repeatNum)
+                {
+                    type = Random.Range(0, 4);
+                    currentRepeatNum = 0;
+                }
+
+                Walk();
+
+                Vector3 pos = gameObject.transform.position;
+                pos.x += hSpeed * speedFactor;
+                pos.y += vSpeed * speedFactor;
+                gameObject.transform.position = pos;
             }
+        }
+
+        void Update()
+        {
+        }
+
+        protected virtual void Walk()
+        {
             switch (type)
             {
                 case 0:
@@ -39,15 +60,6 @@ namespace script.core.character
                     WalkRight();
                     break;
             }
-
-            Vector3 pos = gameObject.transform.position;
-            pos.x += hSpeed * 0.15f;
-            pos.y += vSpeed * 0.15f;
-            gameObject.transform.position = pos;
-        }
-
-        void Update()
-        {
         }
     }
 }

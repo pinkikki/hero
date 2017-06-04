@@ -1,4 +1,4 @@
-﻿namespace script.core.@event
+﻿namespace Assets.script.core.@event
 {
 	public interface IEventLoader {
 

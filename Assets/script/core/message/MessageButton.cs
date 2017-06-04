@@ -1,7 +1,7 @@
-﻿using script.core.@event;
+﻿using Assets.script.core.@event;
 using UnityEngine;
 
-namespace script.core.message
+namespace Assets.script.core.message
 {
     public class MessageButton : MonoBehaviour {
 

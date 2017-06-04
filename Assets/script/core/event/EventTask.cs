@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using script.common.dao;
-using script.common.entity;
-using script.core.audio;
-using script.core.message;
-using script.core.operation;
+using Assets.script.common.dao;
+using Assets.script.common.entity;
+using Assets.script.core.audio;
+using Assets.script.core.message;
+using Assets.script.core.operation;
 
-namespace script.core.@event
+namespace Assets.script.core.@event
 {
     public class EventTask
     {
@@ -13,6 +13,7 @@ namespace script.core.@event
         public bool TaskEndFlg { get; set; }
         public float SleepTime { get; set; }
         public int CurrentIndex { get; set; }
+        public int CurrentTaskTypeId  { get; set; }
 
         string eventName;
         readonly List<EventDetailEntity> eventDetailList;
@@ -32,7 +33,7 @@ namespace script.core.@event
                     break;
                 }
                 var task = eventDetailList[i];
-
+                CurrentTaskTypeId = task.TypeId;
                 switch (task.TypeId)
                 {
                     // bgmの場合

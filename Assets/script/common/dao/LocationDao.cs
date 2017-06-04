@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Text;
-using Plugins;
-using script.common.entity;
-using script.core.db;
+using Assets.Plugins;
+using Assets.script.common.entity;
+using Assets.script.core.db;
 
-namespace script.common.dao
+namespace Assets.script.common.dao
 {
     public static class LocationDao
     {
@@ -34,8 +34,9 @@ namespace script.common.dao
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM LOCATION WHERE SCENE_ID = '")
                 .Append(sceneId)
-                .Append("' AND ENTRANCE_NO = ")
+                .Append("' AND ENTRANCE_NO in (99, ")
                 .Append(entranceNo)
+                .Append(")")
                 .Append(" AND PROCEDURE = ")
                 .Append(procedure)
                 .Append("");

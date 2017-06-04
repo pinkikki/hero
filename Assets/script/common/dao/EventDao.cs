@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Text;
-using Plugins;
-using script.common.entity;
-using script.core.db;
+using Assets.Plugins;
+using Assets.script.common.entity;
+using Assets.script.core.db;
 
-namespace script.common.dao
+namespace Assets.script.common.dao
 {
     public static class EventDao
     {

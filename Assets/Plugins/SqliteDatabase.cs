@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace Plugins
+namespace Assets.Plugins
 {
 /*
  * please don't use this code for sell a asset

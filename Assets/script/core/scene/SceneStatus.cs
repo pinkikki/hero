@@ -1,6 +1,7 @@
-﻿using UnityEngine.SceneManagement;
+﻿using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
-namespace script.core.scene
+namespace Assets.script.core.scene
 {
     public class SceneStatus
     {
@@ -9,7 +10,20 @@ namespace script.core.scene
             get { return SceneManager.GetActiveScene().name; }
         }
 
-        public static int Procedure { get; set; }
+        private static readonly Dictionary<string, int> procedure = new Dictionary<string, int>();
+
+        public static int Procedure
+        {
+            get {
+                if (procedure.ContainsKey(SceneId))
+                {
+                    return procedure[SceneId];
+                }
+                procedure[SceneId] = 1;
+                return 1;
+            }
+            set { procedure[SceneId] = value; }
+        }
 
         public static int EntranceNo { get; set; }
 

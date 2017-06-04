@@ -1,7 +1,7 @@
-﻿using script.core.@event;
+﻿using Assets.script.core.@event;
 using UnityEngine;
 
-namespace script.core.character
+namespace Assets.script.core.character
 {
 	public class SubCharacterController : MonoBehaviour {
 

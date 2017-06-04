@@ -1,6 +1,6 @@
-﻿using script.core.monoBehaviour;
+﻿using Assets.script.core.monoBehaviour;
 
-namespace script.core.ui
+namespace Assets.script.core.ui
 {
 	public class UiEventMonoBehaviour : SingletonMonoBehaviour<UiEventMonoBehaviour>
 	{

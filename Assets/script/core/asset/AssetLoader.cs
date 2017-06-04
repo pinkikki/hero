@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using script.core.monoBehaviour;
+using Assets.script.core.monoBehaviour;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace script.core.asset
+namespace Assets.script.core.asset
 {
     public class AssetLoader : SingletonMonoBehaviour<AssetLoader>
     {

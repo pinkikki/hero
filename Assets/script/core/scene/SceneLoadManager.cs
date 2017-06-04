@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using script.core.asset;
-using script.core.audio;
-using script.core.initialization;
-using script.core.monoBehaviour;
-using script.core.operation;
+using Assets.script.core.asset;
+using Assets.script.core.audio;
+using Assets.script.core.initialization;
+using Assets.script.core.monoBehaviour;
+using Assets.script.core.operation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace script.core.scene
+namespace Assets.script.core.scene
 {
 	public class SceneLoadManager : SingletonMonoBehaviour<SceneLoadManager>
 	{

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
-using script.common.dao;
-using script.common.entity;
-using script.core.asset;
-using script.core.camera;
-using script.core.monoBehaviour;
-using script.core.scene;
+using Assets.script.common.dao;
+using Assets.script.common.entity;
+using Assets.script.core.asset;
+using Assets.script.core.camera;
+using Assets.script.core.character;
+using Assets.script.core.monoBehaviour;
+using Assets.script.core.scene;
 using UnityEngine;
 
-namespace script.core.initialization
+namespace Assets.script.core.initialization
 {
     public class CharacterInitializer : SingletonMonoBehaviour<CharacterInitializer>
     {
@@ -39,12 +40,20 @@ namespace script.core.initialization
                 return;
             }
 
+            // TODO ちょっとここで実装するべきものじゃない
+            Dictionary<string, GameObject> hChaseObjs = new Dictionary<string, GameObject>();
             foreach (var location in locationList)
             {
                 var prefab = AssetLoader.Instance.LoadPrefab(location.AssetBandlesName, location.AssetName);
                 var obj = (GameObject) Instantiate(prefab,
                     new Vector2(float.Parse(location.PositionX), float.Parse(location.PositionY)), Quaternion.identity);
                 obj.name = location.ObjectName;
+                if (location.AssetName == "yusuke" || 
+                        location.AssetName == "masaki_h_chase" ||
+                        location.AssetName == "ako_h_chase")
+                {
+                    hChaseObjs[obj.name] = obj;
+                }
                 if (cameraTargetList[SceneStatus.Procedure - 1] == location.ObjectName)
                 {
                     FindObjectOfType<ScaleCamera>().Target = obj;
@@ -74,6 +83,22 @@ namespace script.core.initialization
                 }
             }
 
+            if (hChaseObjs.Count == 3)
+            {
+                var masaki = hChaseObjs["masaki"];
+                var ako = hChaseObjs["ako"];
+                var masakiController = masaki.GetComponent<HChaseCharacterController>();
+                var akoController = ako.GetComponent<HChaseCharacterController>();
+                var yusukeController = hChaseObjs["yusuke"].GetComponent<MainCharacterController>();
+                
+                masakiController.Target = hChaseObjs["yusuke"];
+                masakiController.OtherChaseTarget = ako;
+                masakiController.TargetController = yusukeController;
+                akoController.Target = hChaseObjs["yusuke"];
+                akoController.OtherChaseTarget = masaki;
+                akoController.TargetController = yusukeController;
+            }
+            
             loadStatus = AssetLoader.LoadStatus.LoadComplete;
         }
 

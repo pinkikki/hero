@@ -1,11 +1,11 @@
-﻿using script.core.monoBehaviour;
-using script.core.operation;
-using script.core.scene;
+﻿using Assets.script.core.monoBehaviour;
+using Assets.script.core.operation;
+using Assets.script.core.scene;
 using UnityEngine;
 
-namespace script.logic.school
+namespace Assets.script.trigger.classroom
 {
-	public class QuizAnswerALogic : SingletonMonoBehaviour<QuizAnswerALogic>
+	public class QuizAnswerATrigger : SingletonMonoBehaviour<QuizAnswerATrigger>
 	{
 		private bool registrationFlg;
 

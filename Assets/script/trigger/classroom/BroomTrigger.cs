@@ -1,10 +1,10 @@
-﻿using script.core.operation;
-using script.core.scene;
+﻿using Assets.script.core.operation;
+using Assets.script.core.scene;
 using UnityEngine;
 
-namespace script.logic.school
+namespace Assets.script.trigger.classroom
 {
-	public class BroomLogic : MonoBehaviour {
+	public class BroomTrigger : MonoBehaviour {
 
 		// Use this for initialization
 		void Start () {

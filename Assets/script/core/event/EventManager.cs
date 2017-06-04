@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using script.core.monoBehaviour;
+using Assets.script.core.monoBehaviour;
 using UnityEngine;
 
-namespace script.core.@event
+namespace Assets.script.core.@event
 {
     public class EventManager: SingletonMonoBehaviour<EventManager>
     {
@@ -110,6 +110,11 @@ namespace script.core.@event
         public void SkipEvent(int skipNum)
         {
             eventDct[currentEvent].CurrentIndex += skipNum;
+        }
+
+        public bool IsMessageing()
+        {
+            return currentEvent != 0 && eventDct[currentEvent].CurrentTaskTypeId == 3;
         }
 
         protected void Load()

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.script.core.@event;
+using UnityEngine;
 
-namespace script.core.character
+namespace Assets.script.core.character
 {
     public class MainCharacterController : CharacterBase
     {
@@ -11,7 +12,7 @@ namespace script.core.character
 
         void FixedUpdate()
         {
-            if (!FreezeFlg)
+            if (!FreezeFlg && !EventManager.Instance.IsMessageing())
             {
                 if (!WarlkingFlg)
                 {

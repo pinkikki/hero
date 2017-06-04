@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using script.common.dao;
-using script.core.scene;
+using Assets.script.common.dao;
+using Assets.script.core.scene;
 
-namespace script.core.@event
+namespace Assets.script.core.@event
 {
     public class BasicEventLoader : IEventLoader
     {

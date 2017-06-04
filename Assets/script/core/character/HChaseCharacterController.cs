@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
-namespace script.core.character
+namespace Assets.script.core.character
 {
     public class HChaseCharacterController : CharacterBase
     {
-        [SerializeField] GameObject target;
-        [SerializeField] GameObject otherChaseTarget;
+        public GameObject Target { get; set; }
+        public GameObject OtherChaseTarget { get; set; }
+        public MainCharacterController TargetController { get; set; }
         [SerializeField] float defaultWalkSpeed = 0.065f;
         [SerializeField] float defaultCollisionWalkSpeed = 0.04f;
         [SerializeField] float defaultCatchUpWalkSpeed = 0.12f;
@@ -14,7 +15,6 @@ namespace script.core.character
         float destX;
         float destY;
         float walkSpeed;
-        MainCharacterController targetController;
         bool hFlg;
         bool vFlg;
 
@@ -38,7 +38,6 @@ namespace script.core.character
         void Start()
         {
             Anim = gameObject.GetComponent<Animator>();
-            targetController = target.GetComponent<MainCharacterController>();
             minDestNum = maxDestNum / 1.5f;
             walkSpeed = defaultWalkSpeed;
         }
@@ -47,8 +46,8 @@ namespace script.core.character
         {
             SetDirectionInfo();
 
-            var targetPos = target.transform.position;
-            var otherChaseTargetPos = otherChaseTarget.transform.position;
+            var targetPos = Target.transform.position;
+            var otherChaseTargetPos = OtherChaseTarget.transform.position;
             var selfPos = gameObject.transform.position;
 
             var targetX = targetPos.x;
@@ -83,7 +82,7 @@ namespace script.core.character
 
             currentSwitchingDirection = Direction.W;
 
-            if (isWaitF && targetController.CurrentDirection == Direction.F)
+            if (isWaitF && TargetController.CurrentDirection == Direction.F)
             {
                 WalkFront();
                 if (targetY > selfY)
@@ -91,7 +90,7 @@ namespace script.core.character
                     return;
                 }
             }
-            else if (isWaitB && targetController.CurrentDirection == Direction.B)
+            else if (isWaitB && TargetController.CurrentDirection == Direction.B)
             {
                 WalkBack();
                 if (targetY < selfY)
@@ -99,7 +98,7 @@ namespace script.core.character
                     return;
                 }
             }
-            else if (isWaitL && targetController.CurrentDirection == Direction.L)
+            else if (isWaitL && TargetController.CurrentDirection == Direction.L)
             {
                 WalkLeft();
                 if (targetX > selfX)
@@ -107,7 +106,7 @@ namespace script.core.character
                     return;
                 }
             }
-            else if (isWaitR && targetController.CurrentDirection == Direction.R)
+            else if (isWaitR && TargetController.CurrentDirection == Direction.R)
             {
                 WalkRight();
                 if (targetX < selfX)
@@ -142,8 +141,8 @@ namespace script.core.character
 
         void SetDirectionInfo()
         {
-            if (targetController.CurrentDirection == Direction.F ||
-                targetController.CurrentDirection == Direction.B)
+            if (TargetController.CurrentDirection == Direction.F ||
+                TargetController.CurrentDirection == Direction.B)
             {
                 destX = maxDestNum;
                 destY = minDestNum;
@@ -195,17 +194,17 @@ namespace script.core.character
             }
             else
             {
-                if ((targetController.PreDirection == Direction.R &&
-                     targetController.CurrentDirection == Direction.F) ||
-                    (targetController.PreDirection == Direction.L &&
-                     targetController.CurrentDirection == Direction.B))
+                if ((TargetController.PreDirection == Direction.R &&
+                     TargetController.CurrentDirection == Direction.F) ||
+                    (TargetController.PreDirection == Direction.L &&
+                     TargetController.CurrentDirection == Direction.B))
                 {
                     if (otherChaseTargetY < selfY)
                     {
                         inclementNumX = walkSpeed;
                         WalkRight();
                         currentSwitchingDirection = Direction.R;
-                        if (targetController.CurrentDirection == Direction.B)
+                        if (TargetController.CurrentDirection == Direction.B)
                         {
                             isWaitB = true;
                         }
@@ -215,7 +214,7 @@ namespace script.core.character
                         inclementNumX = -walkSpeed;
                         WalkLeft();
                         currentSwitchingDirection = Direction.L;
-                        if (targetController.CurrentDirection == Direction.F)
+                        if (TargetController.CurrentDirection == Direction.F)
                         {
                             isWaitF = true;
                         }
@@ -228,7 +227,7 @@ namespace script.core.character
                         inclementNumX = -walkSpeed;
                         WalkLeft();
                         currentSwitchingDirection = Direction.L;
-                        if (targetController.CurrentDirection == Direction.B)
+                        if (TargetController.CurrentDirection == Direction.B)
                         {
                             isWaitB = true;
                         }
@@ -238,7 +237,7 @@ namespace script.core.character
                         inclementNumX = walkSpeed;
                         WalkRight();
                         currentSwitchingDirection = Direction.R;
-                        if (targetController.CurrentDirection == Direction.F)
+                        if (TargetController.CurrentDirection == Direction.F)
                         {
                             isWaitF = true;
                         }
@@ -284,17 +283,17 @@ namespace script.core.character
             }
             else
             {
-                if ((targetController.PreDirection == Direction.B &&
-                     targetController.CurrentDirection == Direction.R) ||
-                    (targetController.PreDirection == Direction.F &&
-                     targetController.CurrentDirection == Direction.L))
+                if ((TargetController.PreDirection == Direction.B &&
+                     TargetController.CurrentDirection == Direction.R) ||
+                    (TargetController.PreDirection == Direction.F &&
+                     TargetController.CurrentDirection == Direction.L))
                 {
                     if (otherChaseTargetX < selfX)
                     {
                         inclementNumY = -walkSpeed;
                         WalkFront();
                         currentSwitchingDirection = Direction.F;
-                        if (targetController.CurrentDirection == Direction.R)
+                        if (TargetController.CurrentDirection == Direction.R)
                         {
                             isWaitR = true;
                         }
@@ -304,7 +303,7 @@ namespace script.core.character
                         inclementNumY = walkSpeed;
                         WalkBack();
                         currentSwitchingDirection = Direction.B;
-                        if (targetController.CurrentDirection == Direction.L)
+                        if (TargetController.CurrentDirection == Direction.L)
                         {
                             isWaitL = true;
                         }
@@ -317,7 +316,7 @@ namespace script.core.character
                         inclementNumY = walkSpeed;
                         WalkBack();
                         currentSwitchingDirection = Direction.B;
-                        if (targetController.CurrentDirection == Direction.R)
+                        if (TargetController.CurrentDirection == Direction.R)
                         {
                             isWaitR = true;
                         }
@@ -327,7 +326,7 @@ namespace script.core.character
                         inclementNumY = -walkSpeed;
                         WalkFront();
                         currentSwitchingDirection = Direction.F;
-                        if (targetController.CurrentDirection == Direction.L)
+                        if (TargetController.CurrentDirection == Direction.L)
                         {
                             isWaitL = true;
                         }

@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Linq;
-using script.core.asset;
-using script.core.camera;
-using script.core.character;
-using script.core.@event;
-using script.core.monoBehaviour;
-using script.core.operation;
-using script.core.scene;
+using Assets.script.core.asset;
+using Assets.script.core.camera;
+using Assets.script.core.character;
+using Assets.script.core.@event;
+using Assets.script.core.monoBehaviour;
+using Assets.script.core.operation;
+using Assets.script.core.scene;
+using Assets.script.trigger.classroom;
 using UnityEngine;
 
-namespace script.logic.school
+namespace Assets.script.logic.school
 {
 	public class ClassroomLogic : SingletonMonoBehaviour<ClassroomLogic>
 	{
@@ -35,7 +36,15 @@ namespace script.logic.school
 			}
 			else if (SceneStatus.Procedure == 3)
 			{
-				GameObject.Find("chair_yusuke").AddComponent<QuizPaperALogic>();
+				while (true)
+				{
+					var chair = GameObject.Find("chair_yusuke");
+					if (chair != null)
+					{
+						chair.AddComponent<QuizPaperATrigger>();
+						break;
+					}
+				}
 			}
 			SearchButton.Instance.Show();
 		}
@@ -127,7 +136,7 @@ namespace script.logic.school
 			masaki = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/mainCharacter/", "masaki_no_input"),
 				masakiPos, Quaternion.identity);
 			masaki.name = "masaki";
-			Destroy(QuizPaperALogic.Instance);
+			Destroy(QuizPaperATrigger.Instance);
 			Destroy(GameObject.Find("QuizA"));
 			EventManager.Instance.NextTask();
 		}

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace script.core.@event
+namespace Assets.script.core.@event
 {
     public class EventHolder {
         public Dictionary<string, int> ObjectMappingDic { get; set; }
