@@ -14,7 +14,8 @@ namespace Assets.script.core.scene
 
         public static int Procedure
         {
-            get {
+            get
+            {
                 if (procedure.ContainsKey(SceneId))
                 {
                     return procedure[SceneId];
@@ -35,5 +36,14 @@ namespace Assets.script.core.scene
 
         public static bool HasBroom { get; set; }
 
+        private static readonly ArtObject lastSearchedArtObject = ArtObject.None;
+        public static ArtObject LastSearchedArtObject { get; set; }
+
+        public enum ArtObject
+        {
+            Smartball,
+            Lion,
+            None
+        }
     }
 }

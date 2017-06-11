@@ -11,6 +11,17 @@ namespace Assets.script.core.character
         int currentRepeatNum;
         protected int type;
         [SerializeField] int repeatNum = 20;
+
+        public int RepeatNum
+        {
+            set { repeatNum = value; }
+        }
+
+        public float SpeedFactor
+        {
+            set { speedFactor = value; }
+        }
+
         [SerializeField] protected float speedFactor = 0.15f;
 
 
