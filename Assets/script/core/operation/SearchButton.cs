@@ -1,4 +1,5 @@
-﻿using Assets.script.core.@event;
+﻿using System;
+using Assets.script.core.@event;
 using Assets.script.core.monoBehaviour;
 using UnityEngine.UI;
 
@@ -52,6 +53,12 @@ namespace Assets.script.core.operation
 			button.onClick.AddListener(() => Register(eventId));
 		}
 
+		public void OnRegister(Action action)
+		{
+			button.onClick.RemoveAllListeners();
+			button.onClick.AddListener(() => action());
+		}
+		
 		public void Register(int eventId)
 		{
 			EventManager.Instance.Register(eventId);

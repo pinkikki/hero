@@ -1,7 +1,7 @@
 ﻿using Assets.script.core.scene;
 using UnityEngine;
 
-namespace Assets.script.trigger.corridor
+namespace Assets.script.trigger.artroom
 {
 	public class DoorTrigger : MonoBehaviour {
 
@@ -16,8 +16,8 @@ namespace Assets.script.trigger.corridor
 		void OnCollisionEnter2D(Collision2D other) {
 			if (other.gameObject.name == "yusuke")
 			{
-				SceneStatus.EntranceNo = 1;
-				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "artroom", null);
+				SceneStatus.EntranceNo = 3;
+				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "corridor", null);
 			}
 		}
 	}

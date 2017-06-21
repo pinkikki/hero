@@ -252,7 +252,7 @@ namespace Assets.script.logic.school
 
 		IEnumerator Action011Coroutine()
 		{
-			niccMasaki.ConditionY = 1.7f;
+			niccMasaki.ConditionY = 1.9f;
 			niccMasaki.WalkFront();
 			while (true)
 			{
