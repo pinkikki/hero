@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.script.core.character
+namespace script.core.character
 {
 	public class NoInputCharacterController : CharacterBase
 	{

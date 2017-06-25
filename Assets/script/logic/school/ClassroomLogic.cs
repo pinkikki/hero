@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Linq;
-using Assets.script.core.asset;
-using Assets.script.core.camera;
-using Assets.script.core.character;
-using Assets.script.core.@event;
-using Assets.script.core.monoBehaviour;
-using Assets.script.core.operation;
-using Assets.script.core.scene;
-using Assets.script.trigger.classroom;
+using script.core.asset;
+using script.core.camera;
+using script.core.character;
+using script.core.@event;
+using script.core.monoBehaviour;
+using script.core.operation;
+using script.core.scene;
+using script.trigger.classroom;
 using UnityEngine;
 
-namespace Assets.script.logic.school
+namespace script.logic.school
 {
 	public class ClassroomLogic : SingletonMonoBehaviour<ClassroomLogic>
 	{

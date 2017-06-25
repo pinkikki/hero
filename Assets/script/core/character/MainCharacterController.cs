@@ -1,7 +1,7 @@
-﻿using Assets.script.core.@event;
+﻿using script.core.@event;
 using UnityEngine;
 
-namespace Assets.script.core.character
+namespace script.core.character
 {
     public class MainCharacterController : CharacterBase
     {

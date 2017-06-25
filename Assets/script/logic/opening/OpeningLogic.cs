@@ -1,7 +1,7 @@
-﻿using Assets.script.core.monoBehaviour;
-using Assets.script.core.scene;
+﻿using script.core.monoBehaviour;
+using script.core.scene;
 
-namespace Assets.script.logic.opening
+namespace script.logic.opening
 {
     public class OpeningLogic : SingletonMonoBehaviour<OpeningLogic>
     {

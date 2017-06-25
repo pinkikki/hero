@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using Assets.script.core.asset;
-using Assets.script.core.monoBehaviour;
+using script.core.asset;
+using script.core.monoBehaviour;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.script.core.message
+namespace script.core.message
 {
     public class MessageManager : SingletonMonoBehaviour<MessageManager>
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Assets.Plugins
+namespace Plugins
 {
     public class DataRow : Dictionary<string, object>
     {

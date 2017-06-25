@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.script.logic.school
+namespace script.logic.school
 {
 	public class CorridorLogic : MonoBehaviour {
 

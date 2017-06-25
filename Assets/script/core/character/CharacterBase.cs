@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.script.core.character
+namespace script.core.character
 {
     public class CharacterBase : MonoBehaviour
     {

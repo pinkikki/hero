@@ -1,9 +1,9 @@
 ﻿using System;
-using Assets.script.core.@event;
-using Assets.script.core.monoBehaviour;
+using script.core.@event;
+using script.core.monoBehaviour;
 using UnityEngine.UI;
 
-namespace Assets.script.core.operation
+namespace script.core.operation
 {
 	public class SearchButton : SingletonMonoBehaviour<SearchButton>
 	{

@@ -1,8 +1,8 @@
-﻿using Assets.script.core.operation;
-using Assets.script.core.scene;
+﻿using script.core.operation;
+using script.core.scene;
 using UnityEngine;
 
-namespace Assets.script.trigger.classroom
+namespace script.trigger.classroom
 {
 	public class BroomTrigger : MonoBehaviour {
 

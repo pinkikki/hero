@@ -1,7 +1,7 @@
-﻿using Assets.script.core.scene;
+﻿using script.core.scene;
 using UnityEngine;
 
-namespace Assets.script.trigger.artroom
+namespace script.trigger.artroom
 {
 	public class DoorTrigger : MonoBehaviour {
 

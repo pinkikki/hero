@@ -1,6 +1,6 @@
-﻿using Assets.script.core.asset;
-using Assets.script.core.operation;
-using Assets.script.core.scene;
+﻿using script.core.asset;
+using script.core.operation;
+using script.core.scene;
 using UnityEngine;
 
 namespace script.trigger.artroom

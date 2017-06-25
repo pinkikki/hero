@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Text;
-using Assets.Plugins;
-using Assets.script.common.entity;
-using Assets.script.core.db;
+using Plugins;
+using script.common.entity;
+using script.core.db;
 
-namespace Assets.script.common.dao
+namespace script.common.dao
 {
     public static class MusicDao
     {

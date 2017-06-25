@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.script.core.camera
+namespace script.core.camera
 {
     public class ScaleCamera : MonoBehaviour
     {

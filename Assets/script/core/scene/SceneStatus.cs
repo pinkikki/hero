@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-namespace Assets.script.core.scene
+namespace script.core.scene
 {
     public class SceneStatus
     {
@@ -36,12 +36,18 @@ namespace Assets.script.core.scene
 
         public static bool HasBroom { get; set; }
 
-        private static readonly ArtObject lastSearchedArtObject = ArtObject.None;
-        public static ArtObject LastSearchedArtObject { get; set; }
+        private static ArtObject lastSearchedArtObject = ArtObject.None;
+
+        public static ArtObject LastSearchedArtObject
+        {
+            get { return lastSearchedArtObject; }
+            set { lastSearchedArtObject = value; }
+        }
 
         public enum ArtObject
         {
             Smartball,
+            // TODO Lionは仮、他にも色々追加していき、triggerもその分追加する
             Lion,
             None
         }

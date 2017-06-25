@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.script.core.ui
+namespace script.core.ui
 {
 	public class UiCloseMonoBehaviour : MonoBehaviour
 	{

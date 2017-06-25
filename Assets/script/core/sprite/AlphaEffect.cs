@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.script.core.sprite
+namespace script.core.sprite
 {
     public class AlphaEffect : MonoBehaviour
     {

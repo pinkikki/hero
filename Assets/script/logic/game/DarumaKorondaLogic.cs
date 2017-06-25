@@ -1,8 +1,8 @@
-﻿using Assets.script.core.character;
-using Assets.script.core.@event;
+﻿using script.core.character;
+using script.core.@event;
 using UnityEngine;
 
-namespace Assets.script.logic.game
+namespace script.logic.game
 {
 	public class DarumaKorondaLogic : AutoCharacterController
 	{
