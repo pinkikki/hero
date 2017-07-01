@@ -12,7 +12,7 @@ namespace script.logic.opening
 //            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
             SceneStatus.EntranceNo = 1;
             SceneStatus.Procedure = 1;
-            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "artroom", null);
+            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "schoolyard", null);
 //            SceneManager.LoadScene("classroom");
         }
 

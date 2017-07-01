@@ -2,9 +2,9 @@
 using script.core.scene;
 using UnityEngine;
 
-namespace script.trigger.classroom
+namespace script.trigger.schoolyard
 {
-	public class BroomTrigger : MonoBehaviour
+	public class GravelRoadTrigger : MonoBehaviour
 	{
 		void Start()
 		{
@@ -16,9 +16,10 @@ namespace script.trigger.classroom
 
 		void OnCollisionEnter2D(Collision2D other)
 		{
-			if (other.gameObject.name == "yusuke" && !SceneStatus.HasBroom && SceneStatus.Procedure == 3)
+			if (other.gameObject.name == "yusuke" && (!SceneStatus.HasGraveRoadA ||
+			    (SceneStatus.CanGetGraveRoadB && !SceneStatus.HasGraveRoadB)) && SceneStatus.Procedure == 1)
 			{
-				SearchButton.Instance.OnRegister(505);
+				SearchButton.Instance.OnRegister(801);
 			}
 		}
 

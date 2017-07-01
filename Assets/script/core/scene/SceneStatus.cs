@@ -35,6 +35,16 @@ namespace script.core.scene
         public static bool HasCicada { get; set; }
 
         public static bool HasBroom { get; set; }
+        
+        public static bool CanSearchMatomari { get; set; }
+        
+        public static bool HasGraveRoadA { get; set; }
+        
+        public static bool CanGetGraveRoadB { get; set; }
+        
+        public static bool HasGraveRoadB { get; set; }
+        
+        public static bool HasMatomari { get; set; }
 
         private static ArtObject lastSearchedArtObject = ArtObject.None;
 
