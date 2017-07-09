@@ -93,6 +93,7 @@ namespace script.logic.school
 		public void Action010()
 		{
 			changeObjName("classmateRC", "classmateRD");
+			SceneStatus.CanCreateNerikeshi = true;
 			EventManager.Instance.NextTask();
 		}
 		

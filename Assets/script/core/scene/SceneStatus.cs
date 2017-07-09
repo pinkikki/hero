@@ -45,6 +45,10 @@ namespace script.core.scene
         public static bool HasGraveRoadB { get; set; }
         
         public static bool HasMatomari { get; set; }
+        
+        public static bool CanCreateNerikeshi { get; set; }
+        
+        public static bool HasGlue { get; set; }
 
         private static ArtObject lastSearchedArtObject = ArtObject.None;
 
@@ -60,6 +64,12 @@ namespace script.core.scene
             // TODO Lionは仮、他にも色々追加していき、triggerもその分追加する
             Lion,
             None
+        }
+        
+        // TODO テスト用
+        public static void test(string sceneId, int pro)
+        {
+            procedure[sceneId] = pro;
         }
     }
 }
