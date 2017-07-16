@@ -55,6 +55,12 @@ namespace script.core.scene
         public static bool HasDuster { get; set; }
         
         public static bool HasNerikeshi { get; set; }
+        
+        public static bool CanGetMudDumplings { get; set; }
+        
+        public static bool HasMudDumplings { get; set; }
+        
+        public static bool HasMarble { get; set; }
 
         private static ArtObject lastSearchedArtObject = ArtObject.None;
 

@@ -119,6 +119,7 @@ namespace script.logic.school
 		public void Action013()
 		{
 			SceneStatus.HasNerikeshi = true;
+			SceneStatus.Procedure = 3;
 			EventManager.Instance.NextTask();
 		}
 		

@@ -7,7 +7,13 @@ namespace script.logic.school
 	public class SchoolYardLogic : MonoBehaviour {
 
 		void Start () {
-		
+			if (SceneStatus.Procedure == 2)
+			{
+				if (SceneStatus.HasNerikeshi)
+				{
+					changeObjName("classmateR", "classmateRA");
+				}
+			}
 		}
 	
 		void Update () {
@@ -94,6 +100,29 @@ namespace script.logic.school
 		{
 			changeObjName("classmateRC", "classmateRD");
 			SceneStatus.CanCreateNerikeshi = true;
+			SceneStatus.Procedure = 2;
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action011()
+		{
+			changeObjName("classmateRA", "classmateRB");
+			SceneStatus.CanGetMudDumplings = true;
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action012()
+		{
+			changeObjName("classmateS", "classmateSA");
+			SceneStatus.HasMudDumplings = true;
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action013()
+		{
+			changeObjName("classmateSA", "classmateSB");
+			SceneStatus.HasMarble = true;
+			SceneStatus.Procedure = 3;
 			EventManager.Instance.NextTask();
 		}
 		
