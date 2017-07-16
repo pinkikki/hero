@@ -122,7 +122,7 @@ namespace script.logic.school
 		public void Action009()
 		{
 			Destroy(GameObject.Find("desk_sets"));
-			Instantiate(AssetLoader.Instance.LoadPrefab("prefab/classroom/", "desk_sets_rib"),
+			Instantiate(AssetLoader.Instance.LoadPrefab("prefab/school/", "desk_sets_rib"),
 				new Vector2(0.0f, 0.0f), Quaternion.identity);
 			ako = GameObject.Find("ako");
 			var akoPos = ako.transform.position;

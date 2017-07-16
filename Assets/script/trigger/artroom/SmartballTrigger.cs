@@ -19,7 +19,7 @@ namespace script.trigger.artroom
 			if (other.gameObject.name == "yusuke" && SceneStatus.Procedure == 1) {
 				SearchButton.Instance.OnRegister(() =>
 				{
-					var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/artroom/", "Smartball"),
+					var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/school/", "Smartball"),
 						new Vector2(0.0f, 0.0f), Quaternion.identity);
 					obj.name = "Smartball";
 					SceneStatus.LastSearchedArtObject = SceneStatus.ArtObject.Smartball;

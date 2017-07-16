@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using script.core.asset;
 using script.core.character;
 using script.core.@event;
 using script.core.scene;
@@ -89,6 +90,38 @@ namespace script.logic.school
 			EventManager.Instance.NextTask();
 		}
 		
+		public void Action009()
+		{
+			StartCoroutine(Action009CoroutineForYusuke());
+			StartCoroutine(Action009CoroutineForAko());
+		}
+		
+		public void Action010()
+		{
+			var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/school/", "NerikeshiGame"),
+				new Vector2(0.0f, 0.0f), Quaternion.identity);
+			obj.name = "NerikeshiGame";
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action011()
+		{
+			SceneStatus.IsFinishedWashingHands = true;
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action012()
+		{
+			SceneStatus.HasDuster = true;
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action013()
+		{
+			SceneStatus.HasNerikeshi = true;
+			EventManager.Instance.NextTask();
+		}
+		
 		IEnumerator Action001Coroutine()
 		{
 			var doorCollider = GameObject.Find("entrance_door").GetComponent<BoxCollider2D>();
@@ -151,7 +184,7 @@ namespace script.logic.school
 		
 		IEnumerator Action007CoroutineForAko()
 		{
-			
+			ako.AddComponent<AkoTrigger>();	
 			niccAko.ConditionX = 5.6f;
 			niccAko.WalkLeft();
 			
@@ -202,6 +235,8 @@ namespace script.logic.school
 		
 		IEnumerator Action007CoroutineForMasaki()
 		{
+			masaki.AddComponent<NerikeshiGameTrigger>();
+			
 			niccMasaki.ConditionY = -4.4f;
 			niccMasaki.WalkBack();
 			while (true)
@@ -250,6 +285,92 @@ namespace script.logic.school
 			}
 			
 			niccMasaki.WalkFrontNoSpeed();
+		}
+		
+		IEnumerator Action009CoroutineForYusuke()
+		{
+			Destroy(yusuke.GetComponent<MainCharacterController>());
+			niccYusuke = yusuke.AddComponent<NoInputCharacterController>();
+			niccYusuke.Anim = yusuke.GetComponent<Animator>();
+			
+//			niccYusuke.ConditionY = 0.0f;
+//			niccYusuke.WalkBack();
+//			
+//			while (true)
+//			{
+//				if (!niccYusuke.WarlkingFlg)
+//				{
+//					break;
+//				}
+//				yield return null;
+//			}
+			
+			niccYusuke.ConditionX = -4.72f;
+			niccYusuke.WalkRight();
+			
+			while (true)
+			{
+				if (!niccYusuke.WarlkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
+
+			niccYusuke.ConditionY = -0.3f;
+			niccYusuke.WalkFront();
+			
+			while (true)
+			{
+				if (!niccYusuke.WarlkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
+		}
+		
+		IEnumerator Action009CoroutineForAko()
+		{
+			
+			niccAko.ConditionX = -2.32f;
+			niccAko.WalkLeft();
+			
+			while (true)
+			{
+				if (!niccAko.WarlkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
+
+			niccAko.ConditionY = -0.1f;
+			niccAko.WalkFront();
+
+			while (true)
+			{
+				if (!niccAko.WarlkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
+			
+			niccAko.ConditionX = -4.05f;
+			niccAko.WalkLeft();
+			
+			while (true)
+			{
+				if (!niccAko.WarlkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
+			
+			niccAko.WalkFrontNoSpeed();
+			EventManager.Instance.NextTask();
 		}
 
 		void AddNoInputController()

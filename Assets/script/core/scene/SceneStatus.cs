@@ -49,6 +49,12 @@ namespace script.core.scene
         public static bool CanCreateNerikeshi { get; set; }
         
         public static bool HasGlue { get; set; }
+        
+        public static bool IsFinishedWashingHands { get; set; }
+        
+        public static bool HasDuster { get; set; }
+        
+        public static bool HasNerikeshi { get; set; }
 
         private static ArtObject lastSearchedArtObject = ArtObject.None;
 

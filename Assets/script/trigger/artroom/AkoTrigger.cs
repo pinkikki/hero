@@ -17,21 +17,27 @@ namespace script.trigger.artroom
 
 		void OnCollisionEnter2D(Collision2D other)
 		{
-			if (other.gameObject.name == "yusuke" && SceneStatus.Procedure == 1)
+			if (other.gameObject.name == "yusuke")
 			{
-				if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.Smartball)
-				{
-					EventManager.Instance.Register(705);
+				if (SceneStatus.Procedure == 1) {
+					if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.Smartball)
+					{
+						EventManager.Instance.Register(705);
+					}
+					else if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.None)
+					{
+						EventManager.Instance.Register(702);
+					}
+					else
+					{
+						EventManager.Instance.Register(704);
+					}
+					gameObject.GetComponent<AutoCharacterController>().FreezeFlg = true;
 				}
-				else if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.None)
+				else if (SceneStatus.Procedure == 2 && SceneStatus.CanCreateNerikeshi)
 				{
-					EventManager.Instance.Register(702);
+					EventManager.Instance.Register(710);
 				}
-				else
-				{
-					EventManager.Instance.Register(704);
-				}
-				gameObject.GetComponent<AutoCharacterController>().FreezeFlg = true;
 			}
 		}
 	}
