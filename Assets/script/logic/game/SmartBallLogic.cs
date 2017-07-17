@@ -4,25 +4,34 @@ namespace script.logic.game
 {
     public class SmartBallLogic : MonoBehaviour
     {
-        [SerializeField] GameObject ball;
+        GameObject ball;
+        GameObject bar;
+        Vector3 ballPos;
+        Vector3 barPos;
+        
         void Start()
         {
+            ball = GameObject.Find("ball");
+            ballPos = ball.transform.position;
+            bar = GameObject.Find("bar");
+            barPos = bar.transform.position;
         }
 
         void Update()
         {
-            // 左クリックがおされたら
-            if (Input.GetMouseButtonDown(0))
-            {
-                Vector3 ball_vec = new Vector3(
-                    0.0f,
-                    15.0f,
-                    0.0f
-                );
+        }
 
-                // ボール生成時に速度を持たせる
-                ball.GetComponent<Rigidbody>().velocity = ball_vec;
-            }
+        public void Restart()
+        {
+            SetPosition(bar, barPos);
+            SetPosition(ball, ballPos);
+        }
+
+        void SetPosition(GameObject obj, Vector3 vec)
+        {
+            var pos = obj.transform.position;
+            pos = vec;
+            ball.transform.position = pos;
         }
     }
 }
