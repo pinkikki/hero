@@ -2,15 +2,8 @@
 
 namespace script.core.character
 {
-    public class VChaseCharacterController : CharacterBase
+    public class VChaseCharacterController : ChaseCharacterController
     {
-        [SerializeField] GameObject target;
-        public GameObject Target
-        {
-            get { return target; }
-            set { target = value; }
-        }
-
         [SerializeField] float defaultWalkSpeed = 0.065f;
         [SerializeField] float defaultCollisionWalkSpeed = 0.04f;
         [SerializeField] float defaultCatchUpWalkSpeed = 0.065f;
@@ -26,7 +19,6 @@ namespace script.core.character
         float destX;
         float destY;
         float walkSpeed;
-        MainCharacterController targetController;
         bool hFlg;
         bool vFlg;
 
@@ -46,7 +38,6 @@ namespace script.core.character
         void Start()
         {
             Anim = gameObject.GetComponent<Animator>();
-            targetController = target.GetComponent<MainCharacterController>();
             walkSpeed = defaultWalkSpeed;
         }
 
@@ -54,7 +45,7 @@ namespace script.core.character
         {
             SetDirectionInfo();
 
-            var targetPos = target.transform.position;
+            var targetPos = Target.transform.position;
             var selfPos = gameObject.transform.position;
 
             var targetX = targetPos.x;
@@ -125,8 +116,8 @@ namespace script.core.character
 
         void SetDirectionInfo()
         {
-            if (targetController.CurrentDirection == Direction.F ||
-                targetController.CurrentDirection == Direction.B)
+            if (TargetController.CurrentDirection == Direction.F ||
+                TargetController.CurrentDirection == Direction.B)
             {
                 destX = maxDestNum;
                 destY = minDestNum;

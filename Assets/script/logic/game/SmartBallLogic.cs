@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using script.core.operation;
+using UnityEngine;
 
 namespace script.logic.game
 {
@@ -8,6 +9,8 @@ namespace script.logic.game
         GameObject bar;
         Vector3 ballPos;
         Vector3 barPos;
+        Camera camera;
+        GameObject subButton;
         
         void Start()
         {
@@ -15,23 +18,46 @@ namespace script.logic.game
             ballPos = ball.transform.position;
             bar = GameObject.Find("bar");
             barPos = bar.transform.position;
+            camera = GameObject.Find("SubCamera").GetComponent<Camera>();
+            camera.enabled = false;
+            subButton = GameObject.Find("SubButton");
+            subButton.SetActive(false);
         }
 
         void Update()
         {
         }
 
+        public void Active()
+        {
+            camera.enabled = true;
+            subButton.SetActive(true);
+            Restart();
+            SearchButton.Instance.Hide();
+        }
+        
+        public void NonActive()
+        {
+            camera.enabled = false;
+            subButton.SetActive(false);
+            SearchButton.Instance.Show();
+        }
+        
         public void Restart()
         {
             SetPosition(bar, barPos);
             SetPosition(ball, ballPos);
         }
+        
+        public void Close()
+        {
+            NonActive();
+        }
 
         void SetPosition(GameObject obj, Vector3 vec)
         {
-            var pos = obj.transform.position;
-            pos = vec;
-            ball.transform.position = pos;
+            obj.transform.position = vec;
         }
+        
     }
 }

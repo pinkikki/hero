@@ -6,7 +6,7 @@ namespace script.logic.game
     {
         [SerializeField] float distance = 1f;
         [SerializeField] float speed = 2.0f;
-        [SerializeField] float power = 1500;
+        [SerializeField] float power = 1200;
         GameObject ball;
         bool ready;
         bool fire;
@@ -40,13 +40,12 @@ namespace script.logic.game
             {
                 if (fire && ready)
                 {
-                    ball.transform.TransformDirection(Vector3.forward * 10);
                     ball.GetComponent<Rigidbody>().AddForce(0, moveCount * power, 0);
                     fire = false;
                     ready = false;
                 }
-                transform.Translate(0, 10 * Time.deltaTime, 0);
-                moveCount -= 10 * Time.deltaTime;
+                transform.Translate(0, 8 * Time.deltaTime, 0);
+                moveCount -= 8 * Time.deltaTime;
             }
 
             if (!(moveCount <= 0)) return;

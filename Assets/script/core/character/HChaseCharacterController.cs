@@ -2,11 +2,8 @@
 
 namespace script.core.character
 {
-    public class HChaseCharacterController : CharacterBase
+    public class HChaseCharacterController : ChaseCharacterController
     {
-        public GameObject Target { get; set; }
-        public GameObject OtherChaseTarget { get; set; }
-        public MainCharacterController TargetController { get; set; }
         [SerializeField] float defaultWalkSpeed = 0.065f;
         [SerializeField] float defaultCollisionWalkSpeed = 0.04f;
         [SerializeField] float defaultCatchUpWalkSpeed = 0.12f;

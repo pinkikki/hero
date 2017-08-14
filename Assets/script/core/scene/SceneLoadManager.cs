@@ -147,15 +147,16 @@ namespace script.core.scene
 			SearchButton.Instance.Show();
 		}
 
-		IEnumerator FadeInScene(float fadeInInterval) {
+		public IEnumerator FadeInScene(float fadeInInterval) {
 			return Trans(fadeInInterval, 1f ,0f, true);
 		}
 
-		IEnumerator FadeOutScene(float fadeOutInterval) {
+		public IEnumerator FadeOutScene(float fadeOutInterval) {
 			return Trans(fadeOutInterval, 0f ,1f, false);
 		}
 
 		IEnumerator Trans(float interval, float startTransVal, float endTransVal, bool destructionFlg) {
+			Destroy();
 			var raw= CreateLayer();
 
 			var time = 0.0f;

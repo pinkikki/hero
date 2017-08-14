@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using script.core.@event;
+using UnityEngine;
 
 namespace script.core.ui
 {
@@ -15,6 +16,12 @@ namespace script.core.ui
 		public void Close()
 		{
 			Destroy(gameObject);
+		}
+		
+		public void CloseAndEventNext()
+		{
+			Destroy(gameObject);
+			EventManager.Instance.NextTask();
 		}
 	}
 }

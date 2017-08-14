@@ -3,8 +3,10 @@ using script.core.asset;
 using script.core.character;
 using script.core.@event;
 using script.core.scene;
+using script.logic.game;
 using script.trigger.artroom;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace script.logic.school
 {
@@ -17,6 +19,8 @@ namespace script.logic.school
 		NoInputCharacterController niccAko;
 		GameObject masaki;
 		NoInputCharacterController niccMasaki;
+		AsyncOperation ao;
+		SmartBallLogic smartBallLogic;
 		
 		void Start () {
 			if (SceneStatus.Procedure == 1)
@@ -26,6 +30,10 @@ namespace script.logic.school
 			if (SceneStatus.Procedure == 2 && SceneStatus.CanCreateNerikeshi)
 			{
 				EventManager.Instance.Register(706);
+			}
+			if (SceneStatus.Procedure == 3 && SceneStatus.HasMarble)
+			{
+				ao = SceneManager.LoadSceneAsync("smart_ball", LoadSceneMode.Additive);
 			}
 		}
 	
@@ -121,6 +129,23 @@ namespace script.logic.school
 			SceneStatus.HasNerikeshi = true;
 			SceneStatus.Procedure = 3;
 			EventManager.Instance.NextTask();
+		}
+		
+		public void Action014()
+		{
+			StartCoroutine(Action014Coroutine());
+		}
+		
+		public void Action015()
+		{
+			StartCoroutine(Action015Coroutine());
+		}
+		
+		public void Action016()
+		{
+			var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/common/", "QuizC"),
+				new Vector2(0.0f, 0.0f), Quaternion.identity);
+			obj.name = "QuizC";
 		}
 		
 		IEnumerator Action001Coroutine()
@@ -371,6 +396,30 @@ namespace script.logic.school
 			}
 			
 			niccAko.WalkFrontNoSpeed();
+			EventManager.Instance.NextTask();
+		}
+		
+		IEnumerator Action014Coroutine()
+		{
+			while (ao.progress < 0.9f) yield return null;
+
+			if (smartBallLogic == null)
+			{
+				smartBallLogic = FindObjectOfType<SmartBallLogic>();	
+			}
+			smartBallLogic.Active();
+			EventManager.Instance.NextTask();
+		}
+		
+		IEnumerator Action015Coroutine()
+		{
+			if (smartBallLogic == null)
+			{
+				smartBallLogic = FindObjectOfType<SmartBallLogic>();	
+			}
+			yield return SceneLoadManager.Instance.FadeOutScene(1.0f);
+			smartBallLogic.Close();
+			yield return SceneLoadManager.Instance.FadeInScene(1.0f);
 			EventManager.Instance.NextTask();
 		}
 
