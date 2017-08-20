@@ -1,4 +1,5 @@
-﻿using script.core.@event;
+﻿using script.core.asset;
+using script.core.@event;
 using script.core.scene;
 using UnityEngine;
 
@@ -124,6 +125,13 @@ namespace script.logic.school
 			SceneStatus.HasMarble = true;
 			SceneStatus.Procedure = 3;
 			EventManager.Instance.NextTask();
+		}
+		
+		public void Action014()
+		{
+			var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/common/", "QuizD"),
+				new Vector2(0.0f, 0.0f), Quaternion.identity);
+			obj.name = "QuizD";
 		}
 		
 		public void SelectAButton()

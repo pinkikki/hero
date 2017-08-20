@@ -200,6 +200,7 @@ namespace script.logic.school
 			vcccAko.enabled = true;
 			var vcccMasaki = masaki.GetComponent<VChaseCharacterController>();
 			vcccMasaki.enabled = true;
+			SceneStatus.HasQuizB = true;
 		}
 
 		IEnumerator Action001Coroutine()

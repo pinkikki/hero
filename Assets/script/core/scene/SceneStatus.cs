@@ -36,6 +36,8 @@ namespace script.core.scene
 
         public static bool HasBroom { get; set; }
         
+        public static bool HasQuizB { get; set; }
+        
         public static bool CanSearchMatomari { get; set; }
         
         public static bool HasGraveRoadA { get; set; }
@@ -61,6 +63,8 @@ namespace script.core.scene
         public static bool HasMudDumplings { get; set; }
         
         public static bool HasMarble { get; set; }
+        
+        public static bool HasQuizC { get; set; }
 
         private static ArtObject lastSearchedArtObject = ArtObject.None;
 

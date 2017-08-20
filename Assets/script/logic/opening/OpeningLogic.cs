@@ -12,9 +12,9 @@ namespace script.logic.opening
 //            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
             SceneStatus.EntranceNo = 1;
             SceneStatus.Procedure = 3;
-            SceneStatus.test("artroom", 3);
-            SceneStatus.HasMarble = true;
-            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "artroom", null);
+            SceneStatus.test("schoolyard", 3);
+            SceneStatus.HasQuizC = true;
+            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "schoolyard", null);
 //            SceneManager.LoadScene("classroom");
         }
 
