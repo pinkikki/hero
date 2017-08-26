@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using script.core.@event;
+using script.core.scene;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +10,8 @@ public class UnLockLogic : MonoBehaviour
     Dictionary<int, GameObject> leftObjDic;
     Dictionary<int, GameObject> rightObjDic;
     string actual;
-    static readonly string expected = "9999";
+    static readonly string firstExpected = "1234";
+    static readonly string secondExpected = "9876";
     List<int> selectList = new List<int>();
 
 
@@ -56,17 +59,39 @@ public class UnLockLogic : MonoBehaviour
 
     void Release()
     {
-        if (actual == expected)
+        if (!SceneStatus.IsFinishedFirstUnLocking)
         {
-            // TODO イベントが決まったら
-//            EventManager.Instance.Register();
+            if (actual == firstExpected)
+            {
+                EventManager.Instance.Register(806);
+                SceneStatus.IsFinishedFirstUnLocking = true;
+            }
+            else if (actual == secondExpected)
+            {
+                EventManager.Instance.Register(807);
+                SceneStatus.IsFinishedSecondUnLocking = true;
+                SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "chickenroom", null);
+                return;
+            }
+            else
+            {
+                EventManager.Instance.Register(808);
+            }
         }
         else
         {
-            // TODO イベントが決まったら
-//            EventManager.Instance.Register();
+            if (actual == secondExpected)
+            {
+                EventManager.Instance.Register(807);
+                SceneStatus.IsFinishedSecondUnLocking = true;
+                SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "chickenroom", null);
+                return;
+            }
+            else
+            {
+                EventManager.Instance.Register(809);
+            }
         }
-
         Destroy(gameObject);
     }
 }

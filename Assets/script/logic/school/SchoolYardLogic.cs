@@ -132,6 +132,25 @@ namespace script.logic.school
 			var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/common/", "QuizD"),
 				new Vector2(0.0f, 0.0f), Quaternion.identity);
 			obj.name = "QuizD";
+			SceneStatus.HasQuizD = true;
+		}
+		
+		public void Action015()
+		{
+			var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/yard/", "UnLockGame"),
+				new Vector2(0.0f, 0.0f), Quaternion.identity);
+			obj.name = "UnLockGame";
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action016()
+		{
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action017()
+		{
+			EventManager.Instance.NextTask();
 		}
 		
 		public void SelectAButton()

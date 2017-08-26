@@ -146,6 +146,7 @@ namespace script.logic.school
 			var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/common/", "QuizC"),
 				new Vector2(0.0f, 0.0f), Quaternion.identity);
 			obj.name = "QuizC";
+			SceneStatus.HasQuizC = true;
 		}
 		
 		IEnumerator Action001Coroutine()

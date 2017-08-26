@@ -65,6 +65,12 @@ namespace script.core.scene
         public static bool HasMarble { get; set; }
         
         public static bool HasQuizC { get; set; }
+        
+        public static bool HasQuizD { get; set; }
+        
+        public static bool IsFinishedFirstUnLocking { get; set; }
+        
+        public static bool IsFinishedSecondUnLocking { get; set; }
 
         private static ArtObject lastSearchedArtObject = ArtObject.None;
 
