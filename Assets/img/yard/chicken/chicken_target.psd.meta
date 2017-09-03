@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 75c4dc701db87da44b4483a0fe6159cd
-timeCreated: 1504412425
+guid: 02721869ecd5fa848bcb4e347c2874d6
+timeCreated: 1504414449
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ TextureImporter:
     21300002: chicken_target_front_wait
     21300004: chicken_target_front_left
     21300006: chicken_target_back_right
-    21300008: chicken_target_back_wait
+    21300008: chicken_back_wait
     21300010: chicken_target_back_left
     21300012: chicken_target_left_right
     21300014: chicken_target_left_wait
@@ -63,7 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -71,7 +71,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
-    maxTextureSize: 512
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -79,7 +79,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: iPhone
-    maxTextureSize: 512
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -87,7 +87,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Android
-    maxTextureSize: 512
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -150,7 +150,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: chicken_target_back_wait
+      name: chicken_back_wait
       rect:
         serializedVersion: 2
         x: 125
