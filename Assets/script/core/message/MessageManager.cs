@@ -22,9 +22,9 @@ namespace script.core.message
 
         void Start()
         {
-            titleText = transform.FindChild("Body/TitleBox/TitleText").GetComponent<Text>();
-            contentText = transform.FindChild("Body/ContentBox/ContentText").GetComponent<Text>();
-            nextButton = transform.FindChild("Body/NextButton").gameObject;
+            titleText = transform.Find("Body/TitleBox/TitleText").GetComponent<Text>();
+            contentText = transform.Find("Body/ContentBox/ContentText").GetComponent<Text>();
+            nextButton = transform.Find("Body/NextButton").gameObject;
             // 非アクティブ状態だとインスタンスを取得できなくなるので、ここで取得しておく
             var obj = Instance;
             gameObject.SetActive(false);
@@ -70,10 +70,10 @@ namespace script.core.message
                 AssetLoader.Instance.LoadPrefab("prefab/common/", "SelectMsgDialog"), new Vector2(0.0f, 0.0f),
                 Quaternion.identity);
             selectMsgDialog.name = "SelectMsgDialog";
-            var msgText = selectMsgDialog.transform.FindChild("Body/ContentBox/ContentText").GetComponent<Text>();
+            var msgText = selectMsgDialog.transform.Find("Body/ContentBox/ContentText").GetComponent<Text>();
             msgText.text = message;
             CreateSelectMessageButton(selectMsgDialog.GetComponent<MessageSelectButton>(),
-                selectMsgDialog.transform.FindChild("Body/SelectButtons").gameObject, selectNum);
+                selectMsgDialog.transform.Find("Body/SelectButtons").gameObject, selectNum);
         }
 
         void CreateSelectMessageButton(MessageSelectButton script, GameObject obj, int selectNum)
@@ -83,7 +83,7 @@ namespace script.core.message
                 var buttonBase = (GameObject) Instantiate(
                     AssetLoader.Instance.LoadPrefab("prefab/common/", "ButtonBase"), new Vector2(0.0f, 0.0f),
                     Quaternion.identity);
-                var text = buttonBase.transform.FindChild("ButtonText").GetComponent<Text>();
+                var text = buttonBase.transform.Find("ButtonText").GetComponent<Text>();
                 var button = buttonBase.GetComponent<Button>();
                 switch (i)
                 {

@@ -7,7 +7,7 @@ namespace script.core.character
         protected float hSpeed;
         protected float vSpeed;
 
-        public bool WarlkingFlg { get; protected set; }
+        public bool WalkingFlg { get; protected set; }
         public bool FreezeFlg { get; set; }
 
         protected bool collisionFlg;
@@ -118,7 +118,7 @@ namespace script.core.character
 
         public void WalkStop()
         {
-            WarlkingFlg = false;
+            WalkingFlg = false;
             if (vSpeed < 0.0f)
             {
                 Anim.SetBool("Fwait", true);
@@ -173,7 +173,7 @@ namespace script.core.character
             Anim.SetFloat("Vspeed", vSpeed);
             Anim.SetBool("Hstop", hsFlg);
             Anim.SetBool("Vstop", vsFlg);
-            WarlkingFlg = true;
+            WalkingFlg = true;
             collisionFlg = false;
         }
     }

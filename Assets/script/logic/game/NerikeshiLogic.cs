@@ -13,9 +13,9 @@ namespace script.logic.game
 
         void Start()
         {
-            matomariInputText = transform.FindChild("MatomariRow/Input").GetComponent<InputField>();
-            glueInputText = transform.FindChild("GlueRow/Input").GetComponent<InputField>();
-            waterInputText = transform.FindChild("WaterRow/Input").GetComponent<InputField>();
+            matomariInputText = transform.Find("MatomariRow/Input").GetComponent<InputField>();
+            glueInputText = transform.Find("GlueRow/Input").GetComponent<InputField>();
+            waterInputText = transform.Find("WaterRow/Input").GetComponent<InputField>();
             matomariInputText.ActivateInputField();
         }
 

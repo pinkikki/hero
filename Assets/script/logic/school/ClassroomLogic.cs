@@ -213,7 +213,7 @@ namespace script.logic.school
 			niccTeacher.WalkRight();
 			while (true)
 			{
-				if (!niccTeacher.WarlkingFlg)
+				if (!niccTeacher.WalkingFlg)
 				{
 					break;
 				}
@@ -230,7 +230,7 @@ namespace script.logic.school
 			niccAko.WalkLeft();
 			while (true)
 			{
-				if (!niccAko.WarlkingFlg)
+				if (!niccAko.WalkingFlg)
 				{
 					break;
 				}
@@ -240,7 +240,7 @@ namespace script.logic.school
 			niccAko.WalkFront();
 			while (true)
 			{
-				if (!niccAko.WarlkingFlg)
+				if (!niccAko.WalkingFlg)
 				{
 					break;
 				}
@@ -257,7 +257,7 @@ namespace script.logic.school
 			niccMasaki.WalkFront();
 			while (true)
 			{
-				if (!niccMasaki.WarlkingFlg)
+				if (!niccMasaki.WalkingFlg)
 				{
 					break;
 				}
@@ -267,7 +267,7 @@ namespace script.logic.school
 			niccMasaki.WalkLeft();
 			while (true)
 			{
-				if (!niccMasaki.WarlkingFlg)
+				if (!niccMasaki.WalkingFlg)
 				{
 					break;
 				}
@@ -282,7 +282,7 @@ namespace script.logic.school
 			niccMasaki.WalkLeft();
 			while (true)
 			{
-				if (!niccMasaki.WarlkingFlg)
+				if (!niccMasaki.WalkingFlg)
 				{
 					break;
 				}
@@ -293,7 +293,7 @@ namespace script.logic.school
 			niccAko.WalkLeft();
 			while (true)
 			{
-				if (!niccAko.WarlkingFlg)
+				if (!niccAko.WalkingFlg)
 				{
 					break;
 				}

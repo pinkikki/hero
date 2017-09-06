@@ -18,12 +18,12 @@ public class UnLockLogic : MonoBehaviour
     void Start()
     {
         leftObjDic = Enumerable.Range(1, 5).ToDictionary(i => i,
-            i => transform.FindChild("KeyButtons/LeftButtons/KeyButton" + i).gameObject);
+            i => transform.Find("KeyButtons/LeftButtons/KeyButton" + i).gameObject);
         rightObjDic = Enumerable.Range(6, 5).ToDictionary(i => i == 10 ? 0 : i,
             i =>
             {
                 var index = i == 10 ? 0 : i;
-                return transform.FindChild("KeyButtons/RightButtons/KeyButton" + index).gameObject;
+                return transform.Find("KeyButtons/RightButtons/KeyButton" + index).gameObject;
             });
     }
 

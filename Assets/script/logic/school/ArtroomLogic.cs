@@ -161,7 +161,7 @@ namespace script.logic.school
 			niccAko.WalkBack();
 			while (true)
 			{
-				if (!niccMasaki.WarlkingFlg)
+				if (!niccMasaki.WalkingFlg)
 				{
 					break;
 				}
@@ -175,7 +175,7 @@ namespace script.logic.school
 			
 			while (true)
 			{
-				if (!niccMasaki.WarlkingFlg)
+				if (!niccMasaki.WalkingFlg)
 				{
 					break;
 				}
@@ -217,7 +217,7 @@ namespace script.logic.school
 			
 			while (true)
 			{
-				if (!niccAko.WarlkingFlg)
+				if (!niccAko.WalkingFlg)
 				{
 					break;
 				}
@@ -238,7 +238,7 @@ namespace script.logic.school
 					yusuke.AddComponent<MainCharacterController>();
 					EventManager.Instance.NextTask();
 				}
-				if (!niccAko.WarlkingFlg)
+				if (!niccAko.WalkingFlg)
 				{
 					break;
 				}
@@ -250,7 +250,7 @@ namespace script.logic.school
 			
 			while (true)
 			{
-				if (!niccAko.WarlkingFlg)
+				if (!niccAko.WalkingFlg)
 				{
 					break;
 				}
@@ -268,7 +268,7 @@ namespace script.logic.school
 			niccMasaki.WalkBack();
 			while (true)
 			{
-				if (!niccMasaki.WarlkingFlg)
+				if (!niccMasaki.WalkingFlg)
 				{
 					break;
 				}
@@ -280,7 +280,7 @@ namespace script.logic.school
 			
 			while (true)
 			{
-				if (!niccMasaki.WarlkingFlg)
+				if (!niccMasaki.WalkingFlg)
 				{
 					break;
 				}
@@ -292,7 +292,7 @@ namespace script.logic.school
 			
 			while (true)
 			{
-				if (!niccMasaki.WarlkingFlg)
+				if (!niccMasaki.WalkingFlg)
 				{
 					break;
 				}
@@ -304,7 +304,7 @@ namespace script.logic.school
 			
 			while (true)
 			{
-				if (!niccMasaki.WarlkingFlg)
+				if (!niccMasaki.WalkingFlg)
 				{
 					break;
 				}
@@ -337,7 +337,7 @@ namespace script.logic.school
 			
 			while (true)
 			{
-				if (!niccYusuke.WarlkingFlg)
+				if (!niccYusuke.WalkingFlg)
 				{
 					break;
 				}
@@ -349,7 +349,7 @@ namespace script.logic.school
 			
 			while (true)
 			{
-				if (!niccYusuke.WarlkingFlg)
+				if (!niccYusuke.WalkingFlg)
 				{
 					break;
 				}
@@ -365,7 +365,7 @@ namespace script.logic.school
 			
 			while (true)
 			{
-				if (!niccAko.WarlkingFlg)
+				if (!niccAko.WalkingFlg)
 				{
 					break;
 				}
@@ -377,7 +377,7 @@ namespace script.logic.school
 
 			while (true)
 			{
-				if (!niccAko.WarlkingFlg)
+				if (!niccAko.WalkingFlg)
 				{
 					break;
 				}
@@ -389,7 +389,7 @@ namespace script.logic.school
 			
 			while (true)
 			{
-				if (!niccAko.WarlkingFlg)
+				if (!niccAko.WalkingFlg)
 				{
 					break;
 				}

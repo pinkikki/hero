@@ -5,16 +5,24 @@ namespace script.core.character
 {
     public class MainCharacterController : CharacterBase
     {
+        private float factorNum = 0.065f;
+
+        public float FactorNum
+        {
+            get { return factorNum; }
+            protected set { factorNum = value; }
+        }
+
         void Start()
         {
             Anim = gameObject.GetComponent<Animator>();
         }
 
-        void FixedUpdate()
+        protected void FixedUpdate()
         {
             if (!FreezeFlg && !EventManager.Instance.IsMessageing())
             {
-                if (!WarlkingFlg)
+                if (!WalkingFlg)
                 {
                     if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey(KeyCode.UpArrow))
                     {
@@ -36,7 +44,7 @@ namespace script.core.character
 
                 if (!collisionFlg)
                 {
-                    if (WarlkingFlg)
+                    if (WalkingFlg)
                     {
                         if (Input.GetKey(KeyCode.UpArrow) ||
                             Input.GetKey(KeyCode.DownArrow) ||
@@ -44,8 +52,8 @@ namespace script.core.character
                             Input.GetKey(KeyCode.RightArrow))
                         {
                             Vector3 pos = gameObject.transform.position;
-                            pos.x += hSpeed * 0.065f;
-                            pos.y += vSpeed * 0.065f;
+                            pos.x += hSpeed * factorNum;
+                            pos.y += vSpeed * factorNum;
                             gameObject.transform.position = pos;
                         }
                         else
@@ -67,8 +75,10 @@ namespace script.core.character
 
         void OnCollisionEnter2D(Collision2D other)
         {
-            // TODO にわとりのレイヤーはこのフラグはtrueにしないようにすること！！
-            collisionFlg = true;
+            if (other.gameObject.layer != 10)
+            {
+                collisionFlg = true;
+            }
         }
 
         void OnCollisionExit2D(Collision2D other)

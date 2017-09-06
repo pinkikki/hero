@@ -30,7 +30,7 @@ namespace script.core.character
             Anim = gameObject.GetComponent<Animator>();
         }
 
-        void FixedUpdate()
+        protected void FixedUpdate()
         {
             if (!FreezeFlg)
             {

@@ -71,6 +71,8 @@ namespace script.core.scene
         public static bool IsFinishedFirstUnLocking { get; set; }
         
         public static bool IsFinishedSecondUnLocking { get; set; }
+        
+        public static bool HasQuizE { get; set; }
 
         private static ArtObject lastSearchedArtObject = ArtObject.None;
 

@@ -28,7 +28,7 @@ namespace script.core.character
 
 		void FixedUpdate()
 		{
-			if (WarlkingFlg)
+			if (WalkingFlg)
 			{
 				Vector3 pos = gameObject.transform.position;
 				pos.x += hSpeed * 0.065f;
