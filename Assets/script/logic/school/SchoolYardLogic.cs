@@ -153,6 +153,12 @@ namespace script.logic.school
 			EventManager.Instance.NextTask();
 		}
 		
+		public void Action018()
+		{
+			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "grassy", null);
+			EventManager.Instance.NextTask();
+		}
+		
 		public void SelectAButton()
 		{
 			SceneStatus.HasCicada = true;
