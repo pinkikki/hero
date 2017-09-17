@@ -57,40 +57,6 @@ namespace script.core.character
             var absX = Mathf.Abs(targetX - selfX);
             var absY = Mathf.Abs(targetY - selfY);
 
-//            if (isWaitF && targetController.CurrentDirection == Direction.F)
-//            {
-//                WalkFront();
-//                if (targetY > selfY)
-//                {
-//                    return;
-//                }
-//            }
-//            else if (isWaitB && targetController.CurrentDirection == Direction.B)
-//            {
-//                WalkBack();
-//                if (targetY < selfY)
-//                {
-//                    return;
-//                }
-//            }
-//            else if (isWaitL && targetController.CurrentDirection == Direction.L)
-//            {
-//                WalkLeft();
-//                if (targetX > selfX)
-//                {
-//                    return;
-//                }
-//            }
-//            else if (isWaitR && targetController.CurrentDirection == Direction.R)
-//            {
-//                WalkRight();
-//                if (targetX < selfX)
-//                {
-//                    return;
-//                }
-//            }
-//            ClearWaitStatus();
-
             if (!Mathf.Approximately(absX, destX) && absX > destX)
             {
                 MoveX(absX, selfX, targetX, selfPos);
@@ -135,12 +101,7 @@ namespace script.core.character
             float inclementNumX;
 
             float differenceX = absX - destX;
-            Debug.Log("differenceX : " + differenceX);
-            Debug.Log("absX : " + absX);
-            Debug.Log("destX : " + destX);
-            Debug.Log("defaultCatchUpWalkSpeed : " + defaultCatchUpWalkSpeed);
             bool judge = differenceX < defaultCatchUpWalkSpeed;
-            Debug.Log("judge: " + judge);
             walkSpeed = differenceX < defaultCatchUpWalkSpeed ? differenceX : defaultCatchUpWalkSpeed;
             if (targetX < selfX)
             {
@@ -152,8 +113,6 @@ namespace script.core.character
                 inclementNumX = walkSpeed;
                 WalkRight();
             }
-            Debug.Log("walkSpeed : " + walkSpeed);
-            Debug.Log("inclementNumX : " + inclementNumX);
             selfPos.x += inclementNumX;
             walkSpeed = tmpWalkSpeed;
             gameObject.transform.position = selfPos;
@@ -165,10 +124,6 @@ namespace script.core.character
             float inclementNumY;
             float differenceY = absY - destY;
             walkSpeed = differenceY < defaultCatchUpWalkSpeed ? differenceY : defaultCatchUpWalkSpeed;
-            Debug.Log("differenceY : " + differenceY);
-            Debug.Log("absY : " + absY);
-            Debug.Log("destY : " + destY);
-            Debug.Log("defaultCatchUpWalkSpeed : " + defaultCatchUpWalkSpeed);
             if (targetY < selfY)
             {
                 inclementNumY = -walkSpeed;
