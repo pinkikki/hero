@@ -135,6 +135,12 @@ namespace script.core.character
             float inclementNumX;
 
             float differenceX = absX - destX;
+            Debug.Log("differenceX : " + differenceX);
+            Debug.Log("absX : " + absX);
+            Debug.Log("destX : " + destX);
+            Debug.Log("defaultCatchUpWalkSpeed : " + defaultCatchUpWalkSpeed);
+            bool judge = differenceX < defaultCatchUpWalkSpeed;
+            Debug.Log("judge: " + judge);
             walkSpeed = differenceX < defaultCatchUpWalkSpeed ? differenceX : defaultCatchUpWalkSpeed;
             if (targetX < selfX)
             {
@@ -146,6 +152,8 @@ namespace script.core.character
                 inclementNumX = walkSpeed;
                 WalkRight();
             }
+            Debug.Log("walkSpeed : " + walkSpeed);
+            Debug.Log("inclementNumX : " + inclementNumX);
             selfPos.x += inclementNumX;
             walkSpeed = tmpWalkSpeed;
             gameObject.transform.position = selfPos;
@@ -157,6 +165,10 @@ namespace script.core.character
             float inclementNumY;
             float differenceY = absY - destY;
             walkSpeed = differenceY < defaultCatchUpWalkSpeed ? differenceY : defaultCatchUpWalkSpeed;
+            Debug.Log("differenceY : " + differenceY);
+            Debug.Log("absY : " + absY);
+            Debug.Log("destY : " + destY);
+            Debug.Log("defaultCatchUpWalkSpeed : " + defaultCatchUpWalkSpeed);
             if (targetY < selfY)
             {
                 inclementNumY = -walkSpeed;
