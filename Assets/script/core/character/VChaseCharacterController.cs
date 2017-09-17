@@ -57,40 +57,6 @@ namespace script.core.character
             var absX = Mathf.Abs(targetX - selfX);
             var absY = Mathf.Abs(targetY - selfY);
 
-//            if (isWaitF && targetController.CurrentDirection == Direction.F)
-//            {
-//                WalkFront();
-//                if (targetY > selfY)
-//                {
-//                    return;
-//                }
-//            }
-//            else if (isWaitB && targetController.CurrentDirection == Direction.B)
-//            {
-//                WalkBack();
-//                if (targetY < selfY)
-//                {
-//                    return;
-//                }
-//            }
-//            else if (isWaitL && targetController.CurrentDirection == Direction.L)
-//            {
-//                WalkLeft();
-//                if (targetX > selfX)
-//                {
-//                    return;
-//                }
-//            }
-//            else if (isWaitR && targetController.CurrentDirection == Direction.R)
-//            {
-//                WalkRight();
-//                if (targetX < selfX)
-//                {
-//                    return;
-//                }
-//            }
-//            ClearWaitStatus();
-
             if (!Mathf.Approximately(absX, destX) && absX > destX)
             {
                 MoveX(absX, selfX, targetX, selfPos);
