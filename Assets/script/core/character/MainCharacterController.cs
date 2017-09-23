@@ -1,4 +1,6 @@
-﻿using script.core.@event;
+﻿using System;
+using System.Linq;
+using script.core.@event;
 using UnityEngine;
 
 namespace script.core.character
@@ -6,13 +8,15 @@ namespace script.core.character
     public class MainCharacterController : CharacterBase
     {
         private float factorNum = 0.065f;
-
         public float FactorNum
         {
             get { return factorNum; }
             protected set { factorNum = value; }
         }
-
+        private Vector2 beginPos;
+        private Vector2 endPos;
+        private static readonly float startUp = 30.0f; 
+        
         void Start()
         {
             Anim = gameObject.GetComponent<Animator>();
@@ -40,6 +44,55 @@ namespace script.core.character
                     {
                         WalkRight();
                     }
+
+                    if (0 < Input.touchCount)
+                    {
+                        var t = Input.touches[0];
+                        switch (t.phase)
+                        {
+                            case TouchPhase.Began:
+                                beginPos = t.position;
+                                break;
+                            case TouchPhase.Canceled:
+                                break;
+                            case TouchPhase.Ended:
+                                break;
+                            case TouchPhase.Moved:
+                                endPos = t.position;
+                                var absX = Mathf.Abs(endPos.x - beginPos.x);
+                                var absY = Mathf.Abs(endPos.y - beginPos.y);
+
+                                if (startUp < absX || startUp < absY)
+                                {
+                                
+                                    if (absX > absY)
+                                    {
+                                        if (endPos.x > beginPos.x)
+                                        {
+                                            WalkRight();
+                                        }
+                                        else
+                                        {
+                                            WalkLeft();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (endPos.y > beginPos.y)
+                                        {
+                                            WalkBack();
+                                        }
+                                        else
+                                        {
+                                            WalkFront();
+                                        }
+                                    }
+                                }
+                                break;
+                            case TouchPhase.Stationary:
+                                break;
+                        }
+                    }
                 }
 
                 if (!collisionFlg)
@@ -51,10 +104,25 @@ namespace script.core.character
                             Input.GetKey(KeyCode.LeftArrow) ||
                             Input.GetKey(KeyCode.RightArrow))
                         {
-                            Vector3 pos = gameObject.transform.position;
+                            var pos = gameObject.transform.position;
                             pos.x += hSpeed * factorNum;
                             pos.y += vSpeed * factorNum;
                             gameObject.transform.position = pos;
+                        } else if (0 < Input.touchCount)
+                        {
+                            var touch = Input.touches[0];
+                            if (touch.phase == TouchPhase.Moved ||
+                                touch.phase == TouchPhase.Stationary)
+                            {
+                                var pos = gameObject.transform.position;
+                                pos.x += hSpeed * factorNum;
+                                pos.y += vSpeed * factorNum;
+                                gameObject.transform.position = pos;
+                            }
+                            else
+                            {
+                                WalkStop();    
+                            }
                         }
                         else
                         {
