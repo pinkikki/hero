@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using script.core.@event;
+﻿using script.core.@event;
 using UnityEngine;
 
 namespace script.core.character
@@ -8,15 +6,18 @@ namespace script.core.character
     public class MainCharacterController : CharacterBase
     {
         private float factorNum = 0.065f;
+
         public float FactorNum
         {
             get { return factorNum; }
             protected set { factorNum = value; }
         }
-        private Vector2 beginPos;
-        private Vector2 endPos;
-        private static readonly float startUp = 30.0f; 
+
+        private Vector2 beginPos = Vector2.zero;
+        private Vector2 endPos = Vector2.zero;
+        private static readonly float startUp = 30.0f;
         
+
         void Start()
         {
             Anim = gameObject.GetComponent<Animator>();
@@ -64,7 +65,6 @@ namespace script.core.character
 
                                 if (startUp < absX || startUp < absY)
                                 {
-                                
                                     if (absX > absY)
                                     {
                                         if (endPos.x > beginPos.x)
@@ -108,12 +108,22 @@ namespace script.core.character
                             pos.x += hSpeed * factorNum;
                             pos.y += vSpeed * factorNum;
                             gameObject.transform.position = pos;
-                        } else if (0 < Input.touchCount)
+                        }
+                        else if (0 < Input.touchCount)
                         {
                             var touch = Input.touches[0];
                             if (touch.phase == TouchPhase.Moved ||
                                 touch.phase == TouchPhase.Stationary)
                             {
+                                var currentEndPos = touch.position;
+                                var absX = Mathf.Abs(currentEndPos.x - endPos.x);
+                                var absY = Mathf.Abs(currentEndPos.y - endPos.y);
+                                if (startUp < absX || startUp < absY)
+                                {
+                                    endPos = currentEndPos;
+                                    WalkingFlg = false;
+                                }
+                                
                                 var pos = gameObject.transform.position;
                                 pos.x += hSpeed * factorNum;
                                 pos.y += vSpeed * factorNum;
@@ -121,7 +131,7 @@ namespace script.core.character
                             }
                             else
                             {
-                                WalkStop();    
+                                WalkStop();
                             }
                         }
                         else
