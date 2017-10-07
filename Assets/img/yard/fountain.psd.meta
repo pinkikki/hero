@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4e1d39ba68abe994c8deda5c6b6db19d
-timeCreated: 1507130189
+guid: 0f7185d5179284f4b91bca8bb9842834
+timeCreated: 1506767062
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: stain
+    21300000: fountain
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -37,7 +37,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
@@ -87,20 +87,20 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stain
+      name: fountain
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 256
-        height: 256
+        y: 13
+        width: 128
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 3, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     outline: []
-  spritePackingTag: common_comp
+  spritePackingTag: yard
   userData: 
   assetBundleName: 
   assetBundleVariant: 

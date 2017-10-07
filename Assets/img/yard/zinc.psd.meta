@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4e1d39ba68abe994c8deda5c6b6db19d
-timeCreated: 1507130189
+guid: f599a327404e3584284d663b84b58bac
+timeCreated: 1506768748
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: stain
+    21300000: zinc
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -52,7 +52,7 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -60,7 +60,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
-    maxTextureSize: 256
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -68,7 +68,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: iPhone
-    maxTextureSize: 256
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -76,7 +76,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Android
-    maxTextureSize: 256
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -87,20 +87,20 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stain
+      name: zinc
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 256
-        height: 256
+        x: 1
+        y: 14
+        width: 19
+        height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 3, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 8, z: 1, w: 11}
       outline: []
       tessellationDetail: 0
     outline: []
-  spritePackingTag: common_comp
+  spritePackingTag: yard
   userData: 
   assetBundleName: 
   assetBundleVariant: 

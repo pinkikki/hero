@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4e1d39ba68abe994c8deda5c6b6db19d
-timeCreated: 1507130189
+guid: c1611b4a7eb915a4d9e32c9009597183
+timeCreated: 1506949841
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: stain
+    21300000: vinyl_house
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -56,7 +56,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
@@ -64,7 +64,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: iPhone
@@ -72,7 +72,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Android
@@ -80,27 +80,27 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stain
+      name: vinyl_house
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 256
-        height: 256
+        y: 3
+        width: 72
+        height: 253
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 3, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 161, z: 0, w: 47}
       outline: []
       tessellationDetail: 0
     outline: []
-  spritePackingTag: common_comp
+  spritePackingTag: yard
   userData: 
   assetBundleName: 
   assetBundleVariant: 
