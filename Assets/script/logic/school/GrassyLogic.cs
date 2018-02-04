@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using script.core.asset;
+using script.core.audio;
 using script.core.camera;
 using script.core.character;
 using script.core.@event;
@@ -117,6 +118,11 @@ namespace script.logic.school
 		public void Action015()
 		{
 			StartCoroutine(Action015Coroutine());
+		}
+		
+		public void Action016()
+		{
+			StartCoroutine(Action016Coroutine());
 		}
 		
 		public void SelectAButton()
@@ -331,7 +337,12 @@ namespace script.logic.school
 			}
 			
 			SceneLoadManager.Instance.FadeOut(2.0f);
-			
+
+			if (AudioManager.Instance != null)
+			{
+				AudioManager.Instance.DownBgmVolume(3.0f, 0.0f);
+			}
+
 			yield return new WaitForSeconds(3.0f);
 
 			var childLayer = GameObject.Find("BaseLayer/ChildLayer");
@@ -345,9 +356,30 @@ namespace script.logic.school
 			rectPos.y = 0.0f;
 			rect.anchoredPosition = rectPos;
 			
+			yield return new WaitForSeconds(8.0f);
+			
+			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "artroom", null);
+			
 			EventManager.Instance.NextTask();
 		}
-		
+
+		IEnumerator Action016Coroutine()
+		{
+			niccYusuke.ConditionY = 5.8f;
+			niccYusuke.WalkFront();
+
+			while (true)
+			{
+				if (niccYusuke.WalkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
+			
+			EventManager.Instance.NextTask();
+		}
+
 		IEnumerator SelectAButtonCoroutine()
 		{
 			SceneLoadManager.Instance.FadeOut(0.3f);
