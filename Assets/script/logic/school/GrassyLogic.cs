@@ -358,7 +358,7 @@ namespace script.logic.school
 			
 			yield return new WaitForSeconds(8.0f);
 			
-			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "artroom", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "ending_classroom_a", null);
 			
 			EventManager.Instance.NextTask();
 		}

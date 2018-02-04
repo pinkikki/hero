@@ -13,8 +13,8 @@ namespace script.logic.opening
             SceneStatus.EntranceNo = 1;
             SceneStatus.Procedure = 1;
             SceneStatus.HasQuizE = true;
-            SceneStatus.test("grassy", 1);
-            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "grassy", null);
+            SceneStatus.test("ending_classroom_a", 1);
+            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "ending_classroom_a", null);
 //            SceneManager.LoadScene("classroom");
         }
 
