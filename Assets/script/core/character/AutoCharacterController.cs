@@ -15,6 +15,7 @@ namespace script.core.character
         public int RepeatNum
         {
             set { repeatNum = value; }
+            get { return repeatNum;}
         }
 
         public float SpeedFactor

@@ -21,6 +21,13 @@ namespace script.core.character
 
 		float conditionY;
 
+		private float speedFactor = 0.065f;
+		public float SpeedFactor
+		{
+			get { return speedFactor; }
+			set { speedFactor = value; }
+		}
+
 		void Start()
 		{
 			Anim = gameObject.GetComponent<Animator>();
@@ -31,8 +38,8 @@ namespace script.core.character
 			if (WalkingFlg)
 			{
 				Vector3 pos = gameObject.transform.position;
-				pos.x += hSpeed * 0.065f;
-				pos.y += vSpeed * 0.065f;
+				pos.x += hSpeed * speedFactor;
+				pos.y += vSpeed * speedFactor;
 				gameObject.transform.position = pos;
 
 				if ((CurrentDirection == Direction.R && conditionX < pos.x) ||
