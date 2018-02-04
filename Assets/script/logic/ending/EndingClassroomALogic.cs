@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using script.core.character;
 using script.core.@event;
 using script.core.message;
+using script.core.operation;
+using script.core.scene;
 using UnityEngine;
 
 public class EndingClassroomALogic : MonoBehaviour {
@@ -12,6 +14,7 @@ public class EndingClassroomALogic : MonoBehaviour {
 	
 	void Start () {
 		EventManager.Instance.Register(1101);
+		SearchButton.Instance.Hide();
 	}
 	
 	void Update () {
@@ -42,7 +45,17 @@ public class EndingClassroomALogic : MonoBehaviour {
 	
 	public void Action005()
 	{
-		StartCoroutine(Action004Coroutine());
+		StartCoroutine(Action005Coroutine());
+	}
+	
+	public void Action006()
+	{
+		StartCoroutine(Action006Coroutine());
+	}
+	
+	public void Action007()
+	{
+		StartCoroutine(Action007Coroutine());
 	}
 
 	IEnumerator Action001Coroutine()
@@ -64,8 +77,22 @@ public class EndingClassroomALogic : MonoBehaviour {
 	
 	IEnumerator Action002Coroutine()
 	{
+		yield return new WaitForSeconds(4.5f);
+				
+		EventManager.Instance.NextTask();
+	}
+	
+	IEnumerator Action003Coroutine()
+	{
+		yield return new WaitForSeconds(4.5f);
+				
+		EventManager.Instance.NextTask();
+	}
+	
+	IEnumerator Action004Coroutine()
+	{
 		
-		yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(4.5f);
 		
 		MessageManager.Instance.Hide();
 		
@@ -82,16 +109,16 @@ public class EndingClassroomALogic : MonoBehaviour {
 		EventManager.Instance.NextTask();
 	}
 	
-	IEnumerator Action003Coroutine()
+	IEnumerator Action005Coroutine()
 	{
-		yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(4.5f);
 				
 		EventManager.Instance.NextTask();
 	}
 	
-	IEnumerator Action004Coroutine()
+	IEnumerator Action006Coroutine()
 	{
-		yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(4.5f);
 		
 		MessageManager.Instance.Hide();
 		
@@ -122,8 +149,17 @@ public class EndingClassroomALogic : MonoBehaviour {
 		var niccShinobu = shinobu.GetComponent<NoInputCharacterController>();
 		niccShinobu.WalkRightNoSpeed();
 		
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(2.0f);
 		
+		EventManager.Instance.NextTask();
+	}
+	
+	IEnumerator Action007Coroutine()
+	{
+		yield return new WaitForSeconds(4.5f);
+		MessageManager.Instance.Hide();
+				
+		SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "schoolyard_a", null);
 		EventManager.Instance.NextTask();
 	}
 

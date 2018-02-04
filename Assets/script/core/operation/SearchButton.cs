@@ -1,6 +1,7 @@
 ﻿using System;
 using script.core.@event;
 using script.core.monoBehaviour;
+using script.core.scene;
 using UnityEngine.UI;
 
 namespace script.core.operation
@@ -28,7 +29,10 @@ namespace script.core.operation
 
 		public void Show()
 		{
-			gameObject.SetActive(true);
+			if (!SceneStatus.CanFlowEndRoll)
+			{
+				gameObject.SetActive(true);	
+			}
 		}
 
 		public void Hide()
