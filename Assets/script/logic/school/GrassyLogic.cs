@@ -370,7 +370,7 @@ namespace script.logic.school
 
 			while (true)
 			{
-				if (niccYusuke.WalkingFlg)
+				if (!niccYusuke.WalkingFlg)
 				{
 					break;
 				}

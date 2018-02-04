@@ -56,9 +56,12 @@ namespace script.core.initialization
                 {
                     chaseObjs[obj.name] = obj;
                 }
-                if (cameraTargetList[SceneStatus.Procedure - 1] == location.ObjectName)
+                if (0 < cameraTargetList.Count)
                 {
-                    FindObjectOfType<ScaleCamera>().Target = obj;
+                    if (cameraTargetList[SceneStatus.Procedure - 1] == location.ObjectName)
+                    {
+                        FindObjectOfType<ScaleCamera>().Target = obj;
+                    }    
                 }
 
                 var directionNum = location.Direction;

@@ -14,7 +14,7 @@ namespace script.logic.opening
             SceneStatus.Procedure = 1;
             SceneStatus.HasQuizE = true;
             SceneStatus.test("ending_classroom_a", 1);
-            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "ending_classroom_a", null);
+            SceneLoadManager.Instance.LoadLevelInLoading(10.0f, "ending_classroom_a", null);
 //            SceneManager.LoadScene("classroom");
         }
 
