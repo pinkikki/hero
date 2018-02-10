@@ -1,12 +1,12 @@
 fileFormatVersion: 2
 guid: d561682980227164ba8b06cbe16364d0
-timeCreated: 1518279922
-licenseType: Free
+timeCreated: 1518282043
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: shinobu_ending_a
-    21300002: shinobu_ending_b
-    21300004: shinobu_ending_c
+    21300000: shinobu_sit
+    21300002: shinobu_write_down
+    21300004: shinobu_write_up
     21300006: book_a
     21300008: book_b
   serializedVersion: 4
@@ -91,7 +91,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: shinobu_ending_a
+      name: shinobu_sit
       rect:
         serializedVersion: 2
         x: 0
@@ -104,7 +104,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shinobu_ending_b
+      name: shinobu_write_down
       rect:
         serializedVersion: 2
         x: 78
@@ -117,7 +117,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shinobu_ending_c
+      name: shinobu_write_up
       rect:
         serializedVersion: 2
         x: 155

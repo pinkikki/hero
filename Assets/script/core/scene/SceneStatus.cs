@@ -75,6 +75,8 @@ namespace script.core.scene
         public static bool HasQuizE { get; set; }
         
         public static bool CanFlowEndRoll { get; set; }
+        
+        public static bool IsCompletedShinobuRoomA { get; set; }
 
         private static ArtObject lastSearchedArtObject = ArtObject.None;
 
