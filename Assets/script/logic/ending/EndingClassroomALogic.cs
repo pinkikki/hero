@@ -63,12 +63,12 @@ public class EndingClassroomALogic : MonoBehaviour {
 		niccYusuke.ConditionX = 1.1f;
 		niccYusuke.WalkLeft();
 
-		yield return checkWalking(niccYusuke);
+		yield return CheckWalking(niccYusuke);
 
 		niccYusuke.ConditionY = 5.2f;
 		niccYusuke.WalkBack();
 
-		yield return checkWalking(niccYusuke);
+		yield return CheckWalking(niccYusuke);
 		
 		yield return new WaitForSeconds(0.5f);
 		
@@ -99,7 +99,7 @@ public class EndingClassroomALogic : MonoBehaviour {
 		niccYusuke.ConditionX = -0.1f;
 		niccYusuke.WalkLeft();
 
-		yield return checkWalking(niccYusuke);
+		yield return CheckWalking(niccYusuke);
 		
 		yield return new WaitForSeconds(0.1f);
 		niccYusuke.WalkBackNoSpeed();
@@ -163,11 +163,11 @@ public class EndingClassroomALogic : MonoBehaviour {
 		EventManager.Instance.NextTask();
 	}
 
-	IEnumerator checkWalking(NoInputCharacterController nicc)
+	IEnumerator CheckWalking(CharacterBase nicc)
 	{
 		while (true)
 		{
-			if (!niccYusuke.WalkingFlg)
+			if (!nicc.WalkingFlg)
 			{
 				break;
 			}
