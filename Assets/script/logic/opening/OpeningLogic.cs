@@ -14,10 +14,10 @@ namespace script.logic.opening
             SceneStatus.Procedure = 1;
 //            SceneStatus.HasQuizE = true;
             SceneStatus.CanFlowEndRoll = true;
-//            SceneStatus.test("classroom_a", 1);
-//            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom_a", null);
-            SceneStatus.test("chickenroom_a", 1);
-            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "chickenroom_a", null);
+            SceneStatus.test("classroom_a", 1);
+            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom_a", null);
+//            SceneStatus.test("classroom_c", 1);
+//            SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom_c", null);
 //            SceneManager.LoadScene("classroom");
         }
 
