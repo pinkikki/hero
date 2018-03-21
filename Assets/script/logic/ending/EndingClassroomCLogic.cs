@@ -23,7 +23,7 @@ namespace script.logic.ending
 		
 		IEnumerator Action001Coroutine()
 		{
-			yield return new WaitForSeconds(3.0f);
+			yield return new WaitForSeconds(4.0f);
 			var shinobu = GameObject.Find("shinobu");
 			var niccShinobu = shinobu.GetComponent<NoInputCharacterController>();
 
@@ -58,7 +58,9 @@ namespace script.logic.ending
 
 			CheckWalking(niccShinobu);
 			
-			SceneLoadManager.Instance.FadeOut(10.0f);
+			yield return new WaitForSeconds(2.0f);
+			
+			SceneLoadManager.Instance.LoadLevelInLoading(10.0f, "credit", null);
 			
 			EventManager.Instance.NextTask();
 		}
