@@ -14,7 +14,6 @@ public class EndingClassroomALogic : MonoBehaviour {
 	
 	void Start () {
 		EventManager.Instance.Register(1101);
-		SearchButton.Instance.Hide();
 	}
 	
 	void Update () {

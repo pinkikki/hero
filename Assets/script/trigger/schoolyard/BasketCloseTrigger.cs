@@ -12,15 +12,6 @@ namespace script.trigger.schoolyard
 		void Update () {
 		
 		}
-		
-		void OnCollisionEnter2D(Collision2D other)
-		{
-			if (other.gameObject.name == "chicken_target")
-			{
-				Debug.Log("test");
-//				SearchButton.Instance.OnRegister(801);
-			}
-		}
 
 		void OnCollisionExit2D(Collision2D other)
 		{

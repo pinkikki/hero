@@ -28,6 +28,8 @@ namespace script.core.scene
 
         public static int EntranceNo { get; set; }
 
+        public static bool Starting { get; set; }
+        
         public static bool IsCompletedQuizA { get; set; }
 
         public static bool HasQuizA { get; set; }
