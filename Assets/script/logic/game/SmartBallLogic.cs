@@ -1,4 +1,7 @@
-﻿using script.core.operation;
+﻿using script.common.dao;
+using script.common.entity;
+using script.core.audio;
+using script.core.operation;
 using UnityEngine;
 
 namespace script.logic.game
@@ -34,6 +37,8 @@ namespace script.logic.game
             subButton.SetActive(true);
             Restart();
             SearchButton.Instance.Hide();
+            MusicEntity entity = MusicDao.SelectByPrimaryKey(6);
+            AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
         }
         
         public void NonActive()
@@ -52,6 +57,8 @@ namespace script.logic.game
         public void Close()
         {
             NonActive();
+            MusicEntity entity = MusicDao.SelectByPrimaryKey(1);
+            AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
         }
 
         void SetPosition(GameObject obj, Vector3 vec)
