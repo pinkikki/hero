@@ -14,6 +14,7 @@ namespace script.logic.game
         Vector3 barPos;
         Camera camera;
         GameObject subButton;
+        MusicEntity entity;
         
         void Start()
         {
@@ -35,7 +36,8 @@ namespace script.logic.game
         {
             camera.enabled = true;
             subButton.SetActive(true);
-            Restart();
+            SetPosition(bar, barPos);
+            SetPosition(ball, ballPos);
             SearchButton.Instance.Hide();
             MusicEntity entity = MusicDao.SelectByPrimaryKey(6);
             AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
@@ -50,12 +52,14 @@ namespace script.logic.game
         
         public void Restart()
         {
+            PlaySe();
             SetPosition(bar, barPos);
             SetPosition(ball, ballPos);
         }
         
         public void Close()
         {
+            PlaySe();
             NonActive();
             MusicEntity entity = MusicDao.SelectByPrimaryKey(1);
             AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
@@ -64,6 +68,15 @@ namespace script.logic.game
         void SetPosition(GameObject obj, Vector3 vec)
         {
             obj.transform.position = vec;
+        }
+        
+        void PlaySe()
+        {
+            if (entity == null)
+            {
+                entity = MusicDao.SelectByPrimaryKey(7);
+            }
+            AudioManager.Instance.PlaySe(entity.MusicName);
         }
         
     }

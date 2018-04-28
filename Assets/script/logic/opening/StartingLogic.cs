@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using script.common.dao;
+using script.core.audio;
 using script.core.@event;
 using script.core.scene;
 using UnityEngine;
@@ -18,10 +20,11 @@ namespace script.logic.opening
 		
 		public void Click()
 		{
+			AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
 			SceneStatus.Starting = true;
 			SceneStatus.Procedure = 1;
 			SceneStatus.EntranceNo = 1;
-			SceneLoadManager.Instance.LoadLevelInLoading(5.0f, "chickenroom", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(5.0f, "classroom", null);
 		}
 		
 		public void Action001()
