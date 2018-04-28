@@ -34,13 +34,14 @@ namespace script.core.@event
                 }
                 var task = eventDetailList[i];
                 CurrentTaskTypeId = task.TypeId;
+                MusicEntity entity;
                 switch (task.TypeId)
                 {
                     // bgmの場合
                     case 1:
                         if (task.Attr1 == "start")
                         {
-                            MusicEntity entity = MusicDao.SelectByPrimaryKey(int.Parse(task.Attr2));
+                            entity = MusicDao.SelectByPrimaryKey(int.Parse(task.Attr2));
                             AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
                         }
                         else
@@ -50,7 +51,8 @@ namespace script.core.@event
                         break;
                     // seの場合
                     case 2:
-                        AudioManager.Instance.PlaySe(task.Attr1);
+                        entity = MusicDao.SelectByPrimaryKey(int.Parse(task.Attr1));
+                        AudioManager.Instance.PlaySe(entity.MusicName, bool.Parse(task.Attr2));
                         break;
                     // msgの場合
                     case 3:

@@ -114,13 +114,14 @@ namespace script.core.audio
             Destroy(this);
         }
 
-        public void PlaySe(string seName)
+        public void PlaySe(string seName, bool repeatable = false)
         {
             var playSource = seSourceList.FirstOrDefault(seSource => !seSource.isPlaying);
 
             if (playSource == null)
             {
                 playSource = gameObject.AddComponent<AudioSource>();
+                playSource.loop = repeatable;
                 seSourceList.Add(playSource);
             }
 

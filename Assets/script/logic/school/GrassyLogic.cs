@@ -20,13 +20,14 @@ namespace script.logic.school
 		NoInputCharacterController niccMasaki;
 	
 		void Start () {
-		
+			EventManager.Instance.Register(1000);
+			AudioManager.Instance.DownBgmVolume(0.1f, 0.1f);
 		}
 	
 		void Update () {
 		
 		}
-	
+
 		public void Action001()
 		{
 			yusuke = GameObject.Find("yusuke");

@@ -1,4 +1,5 @@
 ﻿using script.core.asset;
+using script.core.audio;
 using script.core.@event;
 using script.core.scene;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace script.logic.school
 					changeObjName("classmateR", "classmateRA");
 				}
 			}
+			AudioManager.Instance.DownBgmVolume(0.1f, 1.0f);
 		}
 	
 		void Update () {
