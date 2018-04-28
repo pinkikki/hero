@@ -63,15 +63,20 @@ namespace script.logic.game
         
         public void Action006()
         {
+            StartCoroutine(Action006Coroutine());
+        }
+        
+        public void Action007()
+        {
             var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/common/", "QuizE"),
                 new Vector2(0.0f, 0.0f), Quaternion.identity);
             obj.name = "QuizE";
             SceneStatus.HasQuizE = true;
         }
         
-        public void Action007()
+        public void Action008()
         {
-            StartCoroutine(Action007Coroutine());
+            StartCoroutine(Action008Coroutine());
         }
 
         IEnumerator Action001Coroutine()
@@ -193,13 +198,19 @@ namespace script.logic.game
             
                         
             Destroy(niccYusuke);
-            yusuke.AddComponent<ChickenMainCharacterController>();
-            yusuke.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
             EventManager.Instance.NextTask();
         }
-        
+
         IEnumerator Action005Coroutine()
+        {
+            yield return new WaitForSeconds(1.0f);
+            yusuke.AddComponent<ChickenMainCharacterController>();
+            yusuke.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            EventManager.Instance.NextTask();
+        }
+
+        IEnumerator Action006Coroutine()
         {
             Destroy(yusuke.GetComponent<ChickenMainCharacterController>());
             niccYusuke = yusuke.AddComponent<NoInputCharacterController>();
@@ -219,7 +230,7 @@ namespace script.logic.game
             EventManager.Instance.NextTask();
         }
         
-        IEnumerator Action007Coroutine()
+        IEnumerator Action008Coroutine()
         {
             var doorCollider = GameObject.Find("entrance_door").GetComponent<BoxCollider2D>();
             doorCollider.enabled = false;

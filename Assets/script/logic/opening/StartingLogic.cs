@@ -21,7 +21,7 @@ namespace script.logic.opening
 			SceneStatus.Starting = true;
 			SceneStatus.Procedure = 1;
 			SceneStatus.EntranceNo = 1;
-			SceneLoadManager.Instance.LoadLevelInLoading(5.0f, "schoolyard", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(5.0f, "chickenroom", null);
 		}
 		
 		public void Action001()
