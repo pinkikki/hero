@@ -154,6 +154,9 @@ namespace script.logic.school
 		public void Action012()
 		{
 			yusuke = GameObject.Find("yusuke");
+			Destroy(niccAko);
+			Destroy(niccMasaki);
+			
 			var vcccAko = ako.AddComponent<VChaseCharacterController>();
 			var vcccMasaki = masaki.AddComponent<VChaseCharacterController>();
 			vcccAko.Target = yusuke;

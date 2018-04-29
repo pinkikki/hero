@@ -25,7 +25,7 @@ namespace script.logic.opening
 			SceneStatus.Procedure = 1;
 			SceneStatus.EntranceNo = 1;
 			SceneStatus.ProcedureWithSceneId("classroom", 3);
-			SceneLoadManager.Instance.LoadLevelInLoading(5.0f, "classroom", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(5.0f, "corridor", null);
 		}
 		
 		public void Action001()
