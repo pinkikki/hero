@@ -6,10 +6,16 @@ namespace script.core.character
     {
         [SerializeField] float defaultWalkSpeed = 0.065f;
         [SerializeField] float defaultCollisionWalkSpeed = 0.04f;
-        [SerializeField] float defaultCatchUpWalkSpeed = 0.065f;
+        [SerializeField] float defaultCatchUpWalkSpeed = 0.12f;
         [SerializeField] float maxDestNum;
         [SerializeField] float minDestNum;
 
+        public float MaxDestNum
+        {
+            get { return maxDestNum; }
+            set { maxDestNum = value; }
+        }
+        
         public float MinDestNum
         {
             get { return minDestNum; }
@@ -39,6 +45,7 @@ namespace script.core.character
         {
             Anim = gameObject.GetComponent<Animator>();
             walkSpeed = defaultWalkSpeed;
+            Debug.Log("start");
         }
 
         void FixedUpdate()

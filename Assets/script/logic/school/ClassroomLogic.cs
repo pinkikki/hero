@@ -159,11 +159,15 @@ namespace script.logic.school
 			vcccAko.Target = yusuke;
 			vcccAko.OtherChaseTarget = masaki;
 			vcccAko.TargetController = yusuke.GetComponent<MainCharacterController>();
+			vcccAko.MaxDestNum = 0.1f;
 			vcccAko.MinDestNum = 1.6f;
+			ako.layer = 9;
 			vcccMasaki.Target = yusuke;
 			vcccMasaki.OtherChaseTarget = ako;
 			vcccMasaki.TargetController = vcccAko.TargetController;
-			vcccMasaki.MinDestNum = 0.8f;
+			vcccMasaki.MaxDestNum = 0.1f;
+			vcccMasaki.MinDestNum = 0.771f;
+			masaki.layer = 9;
 			SceneStatus.HasQuizA = true;
 			EventManager.Instance.NextTask();
 		}
