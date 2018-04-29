@@ -292,7 +292,8 @@ namespace script.logic.game
             niccAko.ConditionY = -6.6f;
             niccAko.WalkFront();
             EventManager.Instance.NextTask();
-            
+
+            SceneStatus.EntranceNo = 5;
             SceneLoadManager.Instance.LoadLevelInLoading(2.0f, "schoolyard", null);
         }
 

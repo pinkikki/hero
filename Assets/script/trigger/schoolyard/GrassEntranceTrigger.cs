@@ -26,6 +26,7 @@ namespace script.trigger.schoolyard
 		{
 			if (other.gameObject.name == "yusuke")
 			{
+				SceneStatus.EntranceNo = 1;
 				SearchButton.Instance.OnDialog();
 			}
 		}

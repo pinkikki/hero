@@ -70,6 +70,7 @@ public class UnLockLogic : MonoBehaviour
             {
                 EventManager.Instance.Register(807);
                 SceneStatus.IsFinishedSecondUnLocking = true;
+                SceneStatus.EntranceNo = 1;
                 SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "chickenroom", null);
                 return;
             }
@@ -84,6 +85,7 @@ public class UnLockLogic : MonoBehaviour
             {
                 EventManager.Instance.Register(807);
                 SceneStatus.IsFinishedSecondUnLocking = true;
+                SceneStatus.EntranceNo = 1;
                 SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "chickenroom", null);
                 return;
             }
