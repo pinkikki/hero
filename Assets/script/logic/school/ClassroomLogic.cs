@@ -73,7 +73,7 @@ namespace script.logic.school
 		{
 			SceneStatus.Procedure = 5;
 			SceneStatus.HasQuizC = true;
-			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "schoolyard", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "corridor", null);
 		}
 
 		public void Action003()
