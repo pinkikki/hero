@@ -45,7 +45,6 @@ namespace script.core.character
         {
             Anim = gameObject.GetComponent<Animator>();
             walkSpeed = defaultWalkSpeed;
-            Debug.Log("start");
         }
 
         void FixedUpdate()

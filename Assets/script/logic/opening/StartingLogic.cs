@@ -24,8 +24,9 @@ namespace script.logic.opening
 			SceneStatus.Starting = true;
 			SceneStatus.Procedure = 1;
 			SceneStatus.EntranceNo = 1;
-			SceneStatus.ProcedureWithSceneId("classroom", 3);
-			SceneLoadManager.Instance.LoadLevelInLoading(5.0f, "corridor", null);
+			SceneStatus.ProcedureWithSceneId("classroom", 4);
+			SceneStatus.IsCompletedQuizA = true;
+			SceneLoadManager.Instance.LoadLevelInLoading(0.1f, "corridor", null);
 		}
 		
 		public void Action001()
