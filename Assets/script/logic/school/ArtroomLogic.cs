@@ -320,18 +320,6 @@ namespace script.logic.school
 			niccYusuke = yusuke.AddComponent<NoInputCharacterController>();
 			niccYusuke.Anim = yusuke.GetComponent<Animator>();
 			
-//			niccYusuke.ConditionY = 0.0f;
-//			niccYusuke.WalkBack();
-//			
-//			while (true)
-//			{
-//				if (!niccYusuke.WarlkingFlg)
-//				{
-//					break;
-//				}
-//				yield return null;
-//			}
-			
 			niccYusuke.ConditionX = -4.72f;
 			niccYusuke.WalkRight();
 			

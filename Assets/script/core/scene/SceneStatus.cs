@@ -96,8 +96,7 @@ namespace script.core.scene
             None
         }
         
-        // TODO テスト用
-        public static void test(string sceneId, int pro)
+        public static void ProcedureWithSceneId(string sceneId, int pro)
         {
             procedure[sceneId] = pro;
         }

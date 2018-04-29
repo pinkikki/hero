@@ -1,4 +1,7 @@
 ﻿using System;
+using script.common.dao;
+using script.common.entity;
+using script.core.audio;
 using script.core.@event;
 using script.core.monoBehaviour;
 using script.core.scene;
@@ -10,7 +13,8 @@ namespace script.core.operation
 	public class SearchButton : SingletonMonoBehaviour<SearchButton>
 	{
 		Button button;
-
+		MusicEntity entity;
+		
 		void Awake()
 		{
 			DontDestroyOnLoad(gameObject);
@@ -54,6 +58,7 @@ namespace script.core.operation
 
 		public void Dialog()
 		{
+			PlaySe();
 			EventManager.Instance.Register(99999);
 		}
 
@@ -68,11 +73,13 @@ namespace script.core.operation
 		{
 			if (button == null) return;
 			button.onClick.RemoveAllListeners();
+			PlaySe();
 			button.onClick.AddListener(() => action());
 		}
 		
 		public void Register(int eventId)
 		{
+			PlaySe();
 			EventManager.Instance.Register(eventId);
 		}
 
@@ -85,7 +92,16 @@ namespace script.core.operation
 
 		public void Nop()
 		{
-
+			PlaySe();
+		}
+		
+		void PlaySe()
+		{
+			if (entity == null)
+			{
+				entity = MusicDao.SelectByPrimaryKey(7);
+			}
+			AudioManager.Instance.PlaySe(entity.MusicName);
 		}
 	}
 }
