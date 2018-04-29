@@ -39,6 +39,18 @@ namespace script.core.scene
         public static bool HasBroom { get; set; }
         
         public static bool HasQuizB { get; set; }
+            
+        public static bool IsCompletedGhostStories1 { get; set; }
+        
+        public static bool IsCompletedGhostStories2 { get; set; }
+        
+        public static bool IsCompletedGhostStories3 { get; set; }
+        
+        public static bool IsCompletedGhostStories4 { get; set; }
+        
+        public static bool IsCompletedGhostStories5 { get; set; }
+        
+        public static bool IsCompletedGhostStories6 { get; set; }
         
         public static bool CanSearchMatomari { get; set; }
         

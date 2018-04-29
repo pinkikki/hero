@@ -51,8 +51,8 @@ namespace script.logic.school
 
 		void Update()
 		{
-			if (isRegistered || 17 > EventManager.Instance.CompleteEventSet.Count) return;
-			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 17) return;
+			if (isRegistered || 1 > EventManager.Instance.CompleteEventSet.Count) return;
+			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 1) return;
 			isRegistered = true;
 			EventManager.Instance.Register(501);
 		}
@@ -71,8 +71,9 @@ namespace script.logic.school
 
 		public void Action002()
 		{
-			SceneStatus.Procedure = 2;
-			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "classroom", null);
+			SceneStatus.Procedure = 5;
+			SceneStatus.HasQuizC = true;
+			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "schoolyard", null);
 		}
 
 		public void Action003()

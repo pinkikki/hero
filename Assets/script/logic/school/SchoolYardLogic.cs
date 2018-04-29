@@ -15,6 +15,10 @@ namespace script.logic.school
 				{
 					changeObjName("classmateR", "classmateRA");
 				}
+				if (SceneStatus.HasNerikeshi)
+				{
+					changeObjName("girl_c", "girl_ca");
+				}
 			}
 			AudioManager.Instance.DownBgmVolume(0.1f, 1.0f);
 		}
@@ -124,6 +128,7 @@ namespace script.logic.school
 		public void Action013()
 		{
 			changeObjName("classmateSA", "classmateSB");
+			changeObjName("girl_c", "girl_ca");
 			SceneStatus.HasMarble = true;
 			SceneStatus.Procedure = 3;
 			EventManager.Instance.NextTask();
@@ -158,6 +163,84 @@ namespace script.logic.school
 		public void Action018()
 		{
 			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "grassy", null);
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action019()
+		{
+			SceneStatus.IsCompletedGhostStories1 = true;
+			if (SceneStatus.IsCompletedGhostStories2)
+			{
+				changeObjName("boy_b", "boy_ba");
+			}
+			if (SceneStatus.IsCompletedGhostStories3)
+			{
+				changeObjName("girl_b", "girl_ba");
+			}
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action020()
+		{
+			SceneStatus.IsCompletedGhostStories4 = true;
+			if (SceneStatus.IsCompletedGhostStories5 && SceneStatus.IsCompletedGhostStories6)
+			{
+				changeObjName("girl_a", "girl_ab");
+			}
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action021()
+		{
+			SceneStatus.IsCompletedGhostStories2 = true;
+			if (SceneStatus.IsCompletedGhostStories1)
+			{
+				changeObjName("boy_b", "boy_ba");
+			}
+			if (SceneStatus.IsCompletedGhostStories3)
+			{
+				changeObjName("girl_a", "girl_aa");
+			}
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action022()
+		{
+			SceneStatus.IsCompletedGhostStories5 = true;
+			if (SceneStatus.IsCompletedGhostStories4 && SceneStatus.IsCompletedGhostStories6)
+			{
+				changeObjName("girl_b", "girl_bb");
+			}
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action023()
+		{
+			SceneStatus.IsCompletedGhostStories3 = true;
+			if (SceneStatus.IsCompletedGhostStories1)
+			{
+				changeObjName("girl_b", "girl_ba");
+			}
+			if (SceneStatus.IsCompletedGhostStories2)
+			{
+				changeObjName("girl_a", "girl_aa");
+			}
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action024()
+		{
+			SceneStatus.IsCompletedGhostStories6 = true;
+			if (SceneStatus.IsCompletedGhostStories4 && SceneStatus.IsCompletedGhostStories5)
+			{
+				changeObjName("boy_b", "boy_bb");
+			}
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action025()
+		{
+			changeObjName("boy_d", "boy_da");
 			EventManager.Instance.NextTask();
 		}
 		
