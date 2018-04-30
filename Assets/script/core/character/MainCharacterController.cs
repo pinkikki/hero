@@ -155,7 +155,8 @@ namespace script.core.character
         {
             if (other.gameObject.layer != 10)
             {
-                collisionFlg = true;
+                // 物を押す時に弊害が出るためコメントアウト
+//                collisionFlg = true;
             }
         }
 

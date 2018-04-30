@@ -205,8 +205,10 @@ namespace script.logic.school
 			var box = yusuke.GetComponent<BoxCollider2D>();
 			box.enabled = true;
 			yusuke.GetComponent<SpriteRenderer>().sortingOrder = 0;
+			Destroy(ako.GetComponent<NoInputCharacterController>());
 			var vcccAko = ako.GetComponent<VChaseCharacterController>();
 			vcccAko.enabled = true;
+			Destroy(masaki.GetComponent<NoInputCharacterController>());
 			var vcccMasaki = masaki.GetComponent<VChaseCharacterController>();
 			vcccMasaki.enabled = true;
 			SceneStatus.HasQuizB = true;
@@ -288,6 +290,21 @@ namespace script.logic.school
 
 		IEnumerator Action014Coroutine()
 		{
+			niccMasaki = masaki.AddComponent<NoInputCharacterController>();
+			niccAko = ako.AddComponent<NoInputCharacterController>();
+			MainCharacterController yusukeMcc = null;
+			var mccArr = FindObjectsOfType<MainCharacterController>();
+			foreach (var mcc in mccArr)
+			{
+				mcc.FreezeFlg = true;
+				if (mcc.gameObject.name == "yusuke")
+				{
+					yusukeMcc = mcc;
+				}
+			}
+
+			yield return null;
+
 			niccMasaki.ConditionX = 3.0f;
 			niccMasaki.WalkLeft();
 			while (true)
@@ -298,6 +315,7 @@ namespace script.logic.school
 				}
 				yield return null;
 			}
+
 			niccMasaki.WalkRightNoSpeed();
 			niccAko.ConditionX = 4.0f;
 			niccAko.WalkLeft();
@@ -309,23 +327,13 @@ namespace script.logic.school
 				}
 				yield return null;
 			}
+
 			niccAko.WalkRightNoSpeed();
 			yield return new WaitForSeconds(0.5f);
 
 			yield return StartCoroutine(niccYusuke.MoveUpOrDown(5.6f, 0.2f));
 
 			yield return new WaitForSeconds(1.0f);
-
-			MainCharacterController yusukeMcc = null;
-			var mccArr = FindObjectsOfType<MainCharacterController>();
-			foreach (var mcc in mccArr)
-			{
-				mcc.FreezeFlg = true;
-				if (mcc.gameObject.name == "yusuke")
-				{
-					yusukeMcc = mcc;
-				}
-			}
 
 			if (SceneStatus.HasBroom)
 			{
