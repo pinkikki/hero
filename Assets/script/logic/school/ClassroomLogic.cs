@@ -51,8 +51,8 @@ namespace script.logic.school
 
 		void Update()
 		{
-			if (isRegistered || 1 > EventManager.Instance.CompleteEventSet.Count) return;
-			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 1) return;
+			if (isRegistered || 17 > EventManager.Instance.CompleteEventSet.Count) return;
+			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 17) return;
 			isRegistered = true;
 			EventManager.Instance.Register(501);
 		}
@@ -196,9 +196,9 @@ namespace script.logic.school
 			StartCoroutine(Action014Coroutine());
 		}
 
-		public void Action015()
+		public IEnumerator Action015()
 		{
-			StartCoroutine(Action015Coroutine());
+			yield return StartCoroutine(Action015Coroutine());
 			Destroy(niccYusuke);
 			var rig = yusuke.GetComponent<Rigidbody2D>();
 			rig.isKinematic = false;
@@ -211,16 +211,14 @@ namespace script.logic.school
 			Destroy(masaki.GetComponent<NoInputCharacterController>());
 			var vcccMasaki = masaki.GetComponent<VChaseCharacterController>();
 			vcccMasaki.enabled = true;
-			SceneStatus.HasQuizB = true;
-			SceneStatus.Procedure = 4;
 		}
 
-		public void Action16()
+		public void Action016()
 		{
 			StartCoroutine(Action016Coroutine());
 		}
 
-		public void Action17()
+		public void Action017()
 		{
 			var mccArr = FindObjectsOfType<MainCharacterController>();
 			foreach (var mcc in mccArr)
