@@ -20,6 +20,10 @@ namespace script.core.audio
             get { return destructionFlg; }
         }
 
+        [SerializeField] bool bgmLoop = true;
+        public bool BgmLoop { get; set; }
+        
+
         AudioSource bgmSource;
         AudioSource bgmCrossFadingSource;
         readonly List<AudioSource> seSourceList = new List<AudioSource>();
@@ -97,15 +101,18 @@ namespace script.core.audio
 //                bgmCrossFadingSource.time = delayTime;
 //            }
 //        }
-            if (!bgmSource.isPlaying && bgmCrossFadingSource.isPlaying)
+            if (bgmLoop)
             {
-                bgmSource.PlayDelayed(crossTime - bgmCrossFadingSource.time);
-                bgmSource.time = startTime + delayTime;
-            }
-            else if (bgmSource.isPlaying && !bgmCrossFadingSource.isPlaying)
-            {
-                bgmCrossFadingSource.PlayDelayed(crossTime - bgmSource.time);
-                bgmCrossFadingSource.time = startTime + delayTime;
+                if (!bgmSource.isPlaying && bgmCrossFadingSource.isPlaying)
+                {
+                    bgmSource.PlayDelayed(crossTime - bgmCrossFadingSource.time);
+                    bgmSource.time = startTime + delayTime;
+                }
+                else if (bgmSource.isPlaying && !bgmCrossFadingSource.isPlaying)
+                {
+                    bgmCrossFadingSource.PlayDelayed(crossTime - bgmSource.time);
+                    bgmCrossFadingSource.time = startTime + delayTime;
+                }
             }
         }
 
@@ -160,15 +167,18 @@ namespace script.core.audio
             bgmSource.clip = bgm;
             bgmSource.time = 0.0f;
             delayTime = bgm.length / bgm.samples * 1152;
-            // TODO delayTimeがいるのかどうか不明なので一旦コメントアウト
+            // delayTimeがいるのかどうか不明なので一旦コメントアウト
 //	crossTime = tmpCrossTime + delayTime;
 //	startTime = tmpStartTime + delayTime;
             crossTime = tmpCrossTime;
             startTime = tmpStartTime;
             bgmSource.Play();
-            bgmCrossFadingSource.clip = bgm;
-            bgmCrossFadingSource.PlayDelayed(crossTime);
-            bgmCrossFadingSource.time = startTime;
+            if (bgmLoop)
+            {
+                bgmCrossFadingSource.clip = bgm;
+                bgmCrossFadingSource.PlayDelayed(crossTime);
+                bgmCrossFadingSource.time = startTime;
+            }
         }
 
         public void StopBgm()
@@ -184,9 +194,9 @@ namespace script.core.audio
             StartCoroutine(StopBgmAtFadeOutCoroutine(interval));
         }
 
-        public void DownBgmVolume(float interval, float downVolumn)
+        public IEnumerator DownBgmVolume(float interval, float downVolumn)
         {
-            StartCoroutine(DownBgmVolumeCoroutine(interval, downVolumn));
+            yield return DownBgmVolumeCoroutine(interval, downVolumn);
         }
 
         IEnumerator StopBgmAtFadeOutCoroutine(float interval)
