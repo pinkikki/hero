@@ -17,11 +17,9 @@ namespace script.trigger.corridor
         {
             if (other.gameObject.name == "yusuke")
             {
-                Debug.Log(gameObject.name);
                 switch (gameObject.name)
                 {
                     case "paper_a":
-                        Debug.Log("papera start");
                         SearchButton.Instance.OnRegister(602);
                         break;
                     case "paper_b":

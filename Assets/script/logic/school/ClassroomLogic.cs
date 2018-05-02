@@ -72,7 +72,7 @@ namespace script.logic.school
 		public void Action002()
 		{
 			SceneStatus.Procedure = 2;
-			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "corridor", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "schoolyard", null);
 		}
 
 		public void Action003()

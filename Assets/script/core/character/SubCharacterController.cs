@@ -15,7 +15,10 @@ namespace script.core.character
 
 		void OnCollisionEnter2D(Collision2D other)
 		{
-			EventManager.Instance.Register(gameObject.name);
+			if (other.gameObject.name == "yusuke")
+			{
+				EventManager.Instance.Register(gameObject.name);
+			}
 		}
 	}
 }
