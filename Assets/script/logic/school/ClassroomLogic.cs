@@ -72,7 +72,7 @@ namespace script.logic.school
 		public void Action002()
 		{
 			SceneStatus.Procedure = 2;
-			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "classroom_a", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "classroom", null);
 		}
 
 		public void Action003()
@@ -196,9 +196,38 @@ namespace script.logic.school
 			StartCoroutine(Action014Coroutine());
 		}
 
-		public IEnumerator Action015()
+		public void Action015()
 		{
-			yield return StartCoroutine(Action015Coroutine());
+			StartCoroutine(Action015Coroutine());
+			Destroy(niccYusuke);
+			var rig = yusuke.GetComponent<Rigidbody2D>();
+			rig.isKinematic = false;
+			var box = yusuke.GetComponent<BoxCollider2D>();
+			box.enabled = true;
+			yusuke.GetComponent<SpriteRenderer>().sortingOrder = 0;
+			Destroy(ako.GetComponent<NoInputCharacterController>());
+			var vcccAko = ako.GetComponent<VChaseCharacterController>();
+			vcccAko.enabled = true;
+			Destroy(masaki.GetComponent<NoInputCharacterController>());
+			var vcccMasaki = masaki.GetComponent<VChaseCharacterController>();
+			vcccMasaki.enabled = true;
+			SceneStatus.HasQuizB = true;
+			SceneStatus.Procedure = 4;
+		}
+
+		public void Action16()
+		{
+			StartCoroutine(Action016Coroutine());
+		}
+
+		public void Action17()
+		{
+			var mccArr = FindObjectsOfType<MainCharacterController>();
+			foreach (var mcc in mccArr)
+			{
+				mcc.FreezeFlg = false;
+			}
+			EventManager.Instance.NextTask();
 			Destroy(niccYusuke);
 			var rig = yusuke.GetComponent<Rigidbody2D>();
 			rig.isKinematic = false;
@@ -383,6 +412,17 @@ namespace script.logic.school
 			}
 
 			EventManager.Instance.NextTask();
+		}
+		
+		IEnumerator Action016Coroutine()
+		{
+			yield return StartCoroutine(niccYusuke.MoveUpOrDown(4.4f, 0.2f));
+
+			yield return new WaitForSeconds(1.0f);
+			
+			var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/common/", "QuizB"),
+				new Vector2(0.0f, 0.0f), Quaternion.identity);
+			obj.name = "QuizB";
 		}
 
 		public void SelectAButton()
