@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using script.core.@event;
+using UnityEngine;
 
 namespace script.logic.school
 {
@@ -14,7 +15,7 @@ namespace script.logic.school
 		
 		public void Action001()
 		{
-			// TODO 校庭完成後に実装
+			EventManager.Instance.NextTask();
 		}
 	}
 }
