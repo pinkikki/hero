@@ -77,6 +77,8 @@ namespace script.logic.school
 		public void Action005()
 		{
 			// TODO スマートボール以外の終了actionを実装予定
+			AddAutoController();
+			AddTrigger();
 			EventManager.Instance.NextTask();
 		}
 		
@@ -196,16 +198,58 @@ namespace script.logic.school
 			RemoveAutoController();
 			AddNoInputController();
 			yield return null;
-			SetPosition(yusuke, -8.8f, 2.0f);
+			switch (SceneStatus.LastSearchedArtObject)
+			{
+				case SceneStatus.ArtObject.Smartball:
+					SetPosition(yusuke, -8.8f, 2.0f);
+					SetPosition(ako, -8.8f, 3.3f);
+					SetPosition(masaki, -7.6f, 2.8f);
+					SceneStatus.Procedure = 2;
+					break;
+				case SceneStatus.ArtObject.ArtworkA:
+					SetPosition(yusuke, -8.8f, 4.0f);
+					SetPosition(ako, -8.8f, 5.3f);
+					SetPosition(masaki, -7.6f, 4.8f);
+					break;
+				case SceneStatus.ArtObject.ArtworkB:
+					SetPosition(yusuke, -8.8f, 0.5f);
+					SetPosition(ako, -8.8f, 1.8f);
+					SetPosition(masaki, -7.6f, 1.3f);
+					break;
+				case SceneStatus.ArtObject.ArtworkC:
+					SetPosition(yusuke, -8.8f, -1.0f);
+					SetPosition(ako, -8.8f, 0.3f);
+					SetPosition(masaki, -7.6f, -0.2f);
+					break;
+				case SceneStatus.ArtObject.ArtworkD:
+					SetPosition(yusuke, -8.8f, -2.5f);
+					SetPosition(ako, -8.8f, -1.2f);
+					SetPosition(masaki, -7.6f, -1.7f);
+					break;
+				case SceneStatus.ArtObject.ArtworkE:
+					SetPosition(yusuke, -8.8f, -4.0f);
+					SetPosition(ako, -8.8f, -2.7f);
+					SetPosition(masaki, -7.6f, -3.2f);
+					break;
+				case SceneStatus.ArtObject.ArtworkF:
+					SetPosition(yusuke, -8.8f, -5.5f);
+					SetPosition(ako, -8.8f, -4.2f);
+					SetPosition(masaki, -7.6f, -4.7f);
+					break;
+				case SceneStatus.ArtObject.ArtworkG:
+					SetPosition(yusuke, -8.8f, -7.0f);
+					SetPosition(ako, -8.8f, -5.7f);
+					SetPosition(masaki, -7.6f, -6.2f);
+					break;
+			}
+
 			niccYusuke.WalkBackNoSpeed();
-			SetPosition(ako, -8.8f, 3.3f);
 			niccAko.WalkFrontNoSpeed();
-			SetPosition(masaki, -7.6f, 2.8f);
 			niccMasaki.WalkLeftNoSpeed();
+			yield return null;
 			RemoveNoInputController();
 			RremoveTrigger();
 			yield return new WaitForSeconds(1.5f);
-			SceneStatus.Procedure = 2;
 			EventManager.Instance.NextTask();
 		}
 		

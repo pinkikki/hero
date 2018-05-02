@@ -103,8 +103,13 @@ namespace script.core.scene
         public enum ArtObject
         {
             Smartball,
-            // TODO Lionは仮、他にも色々追加していき、triggerもその分追加する
-            Lion,
+            ArtworkA,
+            ArtworkB,
+            ArtworkC,
+            ArtworkD,
+            ArtworkE,
+            ArtworkF,
+            ArtworkG,
             None
         }
         

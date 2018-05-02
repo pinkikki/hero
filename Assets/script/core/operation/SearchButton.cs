@@ -73,8 +73,11 @@ namespace script.core.operation
 		{
 			if (button == null) return;
 			button.onClick.RemoveAllListeners();
-			PlaySe();
-			button.onClick.AddListener(() => action());
+			button.onClick.AddListener(() =>
+			{
+				PlaySe();
+				action();
+			});
 		}
 		
 		public void Register(int eventId)
