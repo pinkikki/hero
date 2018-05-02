@@ -35,8 +35,11 @@ namespace script.common.dao
             sb.Append("SELECT * FROM EVENT e1 where SCENE_ID = '")
                 .Append(sceneId)
                 .Append("'")
-                .Append(" and PROCEDURE = ")
+                .Append(" and PROCEDURE in (")
                 .Append(procedure)
+                .Append(", ")
+                .Append(99999)
+                .Append(")")
                 .Append(";");
             DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
             dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
