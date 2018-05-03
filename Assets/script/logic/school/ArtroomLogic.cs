@@ -76,7 +76,6 @@ namespace script.logic.school
 		
 		public void Action005()
 		{
-			// TODO スマートボール以外の終了actionを実装予定
 			AddAutoController();
 			AddTrigger();
 			EventManager.Instance.NextTask();
@@ -303,7 +302,7 @@ namespace script.logic.school
 				yield return null;
 			}
 
-			niccAko.ConditionY = 5.87f;
+			niccAko.ConditionY = 5.75f;
 			niccAko.WalkBack();
 
 			bool isFinishedNextTask = false;
@@ -337,6 +336,9 @@ namespace script.logic.school
 			}
 			
 			niccAko.WalkBackNoSpeed();
+			var rigidbody = ako.GetComponent<Rigidbody2D>();
+			rigidbody.velocity = Vector2.zero;
+			rigidbody.isKinematic = true;
 		}
 		
 		IEnumerator Action007CoroutineForMasaki()
@@ -391,6 +393,9 @@ namespace script.logic.school
 			}
 			
 			niccMasaki.WalkFrontNoSpeed();
+			var rigidbody = masaki.GetComponent<Rigidbody2D>();
+			rigidbody.velocity = Vector2.zero;
+			rigidbody.isKinematic = true;
 		}
 		
 		IEnumerator Action009CoroutineForYusuke()
@@ -543,10 +548,16 @@ namespace script.logic.school
 			var vcccAko = ako.AddComponent<VChaseCharacterController>();
 			var vcccMasaki = masaki.AddComponent<VChaseCharacterController>();
 			vcccAko.Target = yusuke;
+			vcccAko.OtherChaseTarget = masaki;
+			vcccAko.TargetController = yusuke.GetComponent<MainCharacterController>();
+			vcccAko.MaxDestNum = 0.1f;
 			vcccAko.MinDestNum = 1.6f;
-			vcccMasaki.Target = yusuke;
-			vcccMasaki.MinDestNum = 0.8f;
 			ako.layer = 9;
+			vcccMasaki.Target = yusuke;
+			vcccMasaki.OtherChaseTarget = ako;
+			vcccMasaki.TargetController = vcccAko.TargetController;
+			vcccMasaki.MaxDestNum = 0.1f;
+			vcccMasaki.MinDestNum = 0.771f;
 			masaki.layer = 9;
 		}
 		

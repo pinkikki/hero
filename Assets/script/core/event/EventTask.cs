@@ -107,7 +107,17 @@ namespace script.core.@event
             TaskEndFlg = false;
             SleepTime = 0.0f;
             CurrentIndex = 0;
-            SearchButton.Instance.OnDialog();
+            if (0 < eventDetailList.Count && clearOmittedEventId.Contains(eventDetailList[0].EventId))
+            {
+                SearchButton.Instance.OnRegister(eventDetailList[0].EventId);
+            } else {
+                SearchButton.Instance.OnDialog();
+            }
         }
+
+        private readonly List<int> clearOmittedEventId = new List<int>
+        {
+            602, 603, 604, 605, 606, 607, 721, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820
+        };
     }
 }

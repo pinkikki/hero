@@ -9,6 +9,12 @@ namespace script.logic.school
 	public class SchoolYardLogic : MonoBehaviour {
 
 		void Start () {
+			if (SceneStatus.Procedure == 1)
+			{
+				changeObjName("classmateO", SchoolYardOrsStatus.ClassmateOName);
+				changeObjName("classmateR", SchoolYardOrsStatus.ClassmateRName);
+				changeObjName("classmateS", SchoolYardOrsStatus.ClassmateSName);	
+			}
 			if (SceneStatus.Procedure == 2)
 			{
 				if (SceneStatus.HasNerikeshi)
@@ -20,6 +26,8 @@ namespace script.logic.school
 					changeObjName("girl_c", "girl_ca");
 				}
 			}
+			
+			
 			AudioManager.Instance.DownBgmVolume(0.1f, 1.0f);
 		}
 	
@@ -31,6 +39,8 @@ namespace script.logic.school
 		{
 			changeObjName("classmateS", "classmateSA");
 			changeObjName("classmateR", "classmateRA");
+			SchoolYardOrsStatus.ClassmateRName = "classmateRA";
+			SchoolYardOrsStatus.ClassmateSName = "classmateSA";
 			EventManager.Instance.NextTask();
 		}
 		
@@ -38,9 +48,11 @@ namespace script.logic.school
 		{
 			SceneStatus.CanSearchMatomari = true;
 			changeObjName("classmateRA", "classmateRB");
+			SchoolYardOrsStatus.ClassmateRName = "classmateRB";
 			if (SceneStatus.HasGraveRoadA)
 			{
 				changeObjName("classmateO", "classmateOA");
+				SchoolYardOrsStatus.ClassmateOName = "classmateOA";
 			}
 			EventManager.Instance.NextTask();
 		}
@@ -53,12 +65,15 @@ namespace script.logic.school
 				if (SceneStatus.CanSearchMatomari)
 				{
 					changeObjName("classmateO", "classmateOA");
+					SchoolYardOrsStatus.ClassmateOName = "classmateOA";
 				}
 			}
 			else
 			{
 				SceneStatus.HasGraveRoadB = true;
 				changeObjName("classmateOD", "classmateOE");
+				SchoolYardOrsStatus.ClassmateOName = "classmateOE";
+
 			}
 			EventManager.Instance.NextTask();
 		}
@@ -73,13 +88,17 @@ namespace script.logic.school
 		{
 			SceneStatus.HasMatomari = true;
 			changeObjName("classmateOB", "classmateOF");
+			SchoolYardOrsStatus.ClassmateOName = "classmateOF";
 			changeObjName("classmateRB", "classmateRC");
+			SchoolYardOrsStatus.ClassmateRName = "classmateRC";
 			EventManager.Instance.NextTask();
 		}
 		
 		public void Action006()
 		{
 			changeObjName("classmateOC", "classmateOD");
+			SchoolYardOrsStatus.ClassmateOName = "classmateOD";
+
 			EventManager.Instance.NextTask();
 		}
 		
@@ -99,7 +118,9 @@ namespace script.logic.school
 		{
 			SceneStatus.HasMatomari = true;
 			changeObjName("classmateOE", "classmateOF");
+			SchoolYardOrsStatus.ClassmateOName = "classmateOF";
 			changeObjName("classmateRB", "classmateRC");
+			SchoolYardOrsStatus.ClassmateRName = "classmateRC";
 			EventManager.Instance.NextTask();
 		}
 		
@@ -252,6 +273,7 @@ namespace script.logic.school
 			SceneStatus.HasCicada = true;
 			EventManager.Instance.NextTask();
 			changeObjName("classmateOA", "classmateOB");
+			SchoolYardOrsStatus.ClassmateOName = "classmateOB";
 			EventManager.Instance.RegisterByForce("classmateOB");
 		}
 
@@ -259,6 +281,7 @@ namespace script.logic.school
 		{
 			EventManager.Instance.NextTask();
 			changeObjName("classmateOA", "classmateOC");
+			SchoolYardOrsStatus.ClassmateOName = "classmateOC";
 			EventManager.Instance.RegisterByForce("classmateOC");
 		}
 

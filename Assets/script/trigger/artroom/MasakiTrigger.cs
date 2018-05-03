@@ -22,16 +22,24 @@ namespace script.trigger.artroom
 				if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.Smartball)
 				{
 					SceneStatus.ProcedureWithSceneId("classroom", 5);
-					EventManager.Instance.Register(705);
+					Register(other, 705);
 				}
 				else if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.None)
 				{
-					EventManager.Instance.Register(703);
+					Register(other, 703);
 				}
 				else
 				{
-					EventManager.Instance.Register(704);
+					Register(other, 704);
 				}
+			}
+		}
+		
+		void Register(Collision2D other, int eventId)
+		{
+			if (!other.gameObject.GetComponent<MainCharacterController>().FreezeFlg)
+			{
+				EventManager.Instance.Register(eventId);
 				gameObject.GetComponent<AutoCharacterController>().FreezeFlg = true;
 			}
 		}

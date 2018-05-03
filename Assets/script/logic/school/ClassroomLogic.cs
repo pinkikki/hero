@@ -72,13 +72,13 @@ namespace script.logic.school
 		public void Action002()
 		{
 			SceneStatus.Procedure = 2;
-			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "artroom", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
 		}
 
 		public void Action003()
 		{
 			SceneStatus.Procedure = 3;
-			SceneLoadManager.Instance.LoadLevelInLoading(3.0f, "classroom", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
 		}
 
 		public void Action004()

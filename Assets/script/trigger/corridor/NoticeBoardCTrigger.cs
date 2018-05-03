@@ -13,7 +13,7 @@ namespace script.trigger.corridor
         {
         }
 
-        void OnCollisionEnter2D(Collision2D other)
+        void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.name == "yusuke")
             {
@@ -32,7 +32,7 @@ namespace script.trigger.corridor
             }
         }
 
-        void OnCollisionExit2D(Collision2D other)
+        void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.name == "yusuke")
             {
