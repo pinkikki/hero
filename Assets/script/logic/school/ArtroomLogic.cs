@@ -27,11 +27,11 @@ namespace script.logic.school
 			{
 				EventManager.Instance.Register(701);
 			}
-			if (SceneStatus.Procedure == 2 && SceneStatus.CanCreateNerikeshi)
+			if (SceneStatus.Procedure == 3)
 			{
 				EventManager.Instance.Register(706);
 			}
-			if (SceneStatus.Procedure == 3 && SceneStatus.HasMarble)
+			if (SceneStatus.Procedure == 5)
 			{
 				ao = SceneManager.LoadSceneAsync("smart_ball", LoadSceneMode.Additive);
 			}
@@ -131,7 +131,7 @@ namespace script.logic.school
 		public void Action013()
 		{
 			SceneStatus.HasNerikeshi = true;
-			SceneStatus.Procedure = 3;
+			SceneStatus.Procedure = 4;
 			EventManager.Instance.NextTask();
 		}
 		

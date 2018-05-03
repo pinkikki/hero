@@ -107,6 +107,7 @@ namespace script.logic.school
 		{
 			changeObjName("classmateRC", "classmateRD");
 			SceneStatus.CanCreateNerikeshi = true;
+			SceneStatus.ProcedureWithSceneId("artroom", 3);
 			SceneStatus.Procedure = 2;
 			EventManager.Instance.NextTask();
 		}
@@ -131,6 +132,7 @@ namespace script.logic.school
 			changeObjName("girl_c", "girl_ca");
 			SceneStatus.HasMarble = true;
 			SceneStatus.Procedure = 3;
+			SceneStatus.ProcedureWithSceneId("artroom", 5);
 			EventManager.Instance.NextTask();
 		}
 		

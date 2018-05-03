@@ -18,7 +18,7 @@ namespace script.trigger.artroom
 		
 		void OnCollisionEnter2D(Collision2D other)
 		{
-			if (other.gameObject.name == "yusuke" && SceneStatus.CanCreateNerikeshi && !SceneStatus.HasGlue && SceneStatus.Procedure == 2)
+			if (other.gameObject.name == "yusuke" && SceneStatus.CanCreateNerikeshi && !SceneStatus.HasGlue && SceneStatus.Procedure == 3)
 			{
 				SearchButton.Instance.OnRegister(707);
 			}

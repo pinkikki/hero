@@ -17,7 +17,7 @@ namespace script.trigger.artroom
 		
 		void OnCollisionEnter2D(Collision2D other)
 		{
-			if (other.gameObject.name == "yusuke" && SceneStatus.Procedure == 2)
+			if (other.gameObject.name == "yusuke" && SceneStatus.Procedure == 3)
 			{
 				if (SceneStatus.HasGlue)
 				{

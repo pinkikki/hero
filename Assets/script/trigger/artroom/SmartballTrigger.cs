@@ -19,7 +19,7 @@ namespace script.trigger.artroom
 		
 		void OnCollisionEnter2D(Collision2D other) {
 			if (other.gameObject.name == "yusuke") {
-				if (SceneStatus.Procedure == 1 || SceneStatus.Procedure == 2)
+				if (SceneStatus.Procedure == 1 || SceneStatus.Procedure == 2 || SceneStatus.Procedure == 3 || SceneStatus.Procedure == 5)
 				{
 					SearchButton.Instance.OnRegister(() =>
 					{
@@ -29,7 +29,7 @@ namespace script.trigger.artroom
 						SceneStatus.LastSearchedArtObject = SceneStatus.ArtObject.Smartball;
 					});
 				}
-				else if (SceneStatus.Procedure == 3 && SceneStatus.HasMarble)
+				else if (SceneStatus.Procedure == 4 && SceneStatus.HasMarble)
 				{
 					SearchButton.Instance.OnRegister(719);
 				}
