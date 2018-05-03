@@ -111,6 +111,8 @@ namespace script.logic.school
 			var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/school/", "NerikeshiGame"),
 				new Vector2(0.0f, 0.0f), Quaternion.identity);
 			obj.name = "NerikeshiGame";
+			// Action009で、ゆうすけの移動が終わら場合の対応
+			masaki.layer = 11;
 			EventManager.Instance.NextTask();
 		}
 		
@@ -149,6 +151,39 @@ namespace script.logic.school
 				new Vector2(0.0f, 0.0f), Quaternion.identity);
 			obj.name = "QuizC";
 			SceneStatus.HasQuizC = true;
+		}
+		
+		public void Action017()
+		{
+			yusuke.AddComponent<MainCharacterController>();
+			Destroy(niccYusuke);
+			EventManager.Instance.NextTask();
+		}
+		
+		public void Action018()
+		{
+			yusuke.AddComponent<MainCharacterController>();
+			Destroy(niccYusuke);
+			
+			Destroy(niccAko);
+			Destroy(niccMasaki);
+			
+			var vcccAko = ako.AddComponent<VChaseCharacterController>();
+			var vcccMasaki = masaki.AddComponent<VChaseCharacterController>();
+			vcccAko.Target = yusuke;
+			vcccAko.OtherChaseTarget = masaki;
+			vcccAko.TargetController = yusuke.GetComponent<MainCharacterController>();
+			vcccAko.MaxDestNum = 0.1f;
+			vcccAko.MinDestNum = 1.6f;
+			ako.layer = 9;
+			vcccMasaki.Target = yusuke;
+			vcccMasaki.OtherChaseTarget = ako;
+			vcccMasaki.TargetController = vcccAko.TargetController;
+			vcccMasaki.MaxDestNum = 0.1f;
+			vcccMasaki.MinDestNum = 0.771f;
+			masaki.layer = 9;
+			
+			EventManager.Instance.NextTask();
 		}
 		
 		IEnumerator Action001Coroutine()
@@ -360,9 +395,11 @@ namespace script.logic.school
 		
 		IEnumerator Action009CoroutineForYusuke()
 		{
+			masaki.layer = 9;
 			Destroy(yusuke.GetComponent<MainCharacterController>());
 			niccYusuke = yusuke.AddComponent<NoInputCharacterController>();
 			niccYusuke.Anim = yusuke.GetComponent<Animator>();
+			yield return null;
 			
 			niccYusuke.ConditionX = -4.72f;
 			niccYusuke.WalkRight();
@@ -387,6 +424,7 @@ namespace script.logic.school
 				}
 				yield return null;
 			}
+			masaki.layer = 11;
 		}
 		
 		IEnumerator Action009CoroutineForAko()
@@ -415,19 +453,23 @@ namespace script.logic.school
 				}
 				yield return null;
 			}
-			
-			niccAko.ConditionX = -4.05f;
-			niccAko.WalkLeft();
-			
-			while (true)
+
+			if (-3.6f < niccAko.ConditionX)
 			{
-				if (!niccAko.WalkingFlg)
+				niccAko.ConditionX = -3.7f;
+				niccAko.WalkLeft();
+
+				while (true)
 				{
-					break;
+					if (!niccAko.WalkingFlg)
+					{
+						break;
+					}
+
+					yield return null;
 				}
-				yield return null;
 			}
-			
+
 			niccAko.WalkFrontNoSpeed();
 			EventManager.Instance.NextTask();
 		}

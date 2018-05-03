@@ -19,7 +19,7 @@ namespace script.trigger.artroom
 		
 		void OnCollisionEnter2D(Collision2D other) {
 			if (other.gameObject.name == "yusuke") {
-				if (SceneStatus.Procedure == 1)
+				if (SceneStatus.Procedure == 1 || SceneStatus.Procedure == 2)
 				{
 					SearchButton.Instance.OnRegister(() =>
 					{
