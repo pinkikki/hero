@@ -189,8 +189,6 @@ namespace script.core.scene
 
 		RawImage CreateLayer()
 		{
-//			Destroy();
-			
 			baseLayer = new GameObject
 			{
 				name = "BaseLayer",

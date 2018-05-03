@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using script.core.asset;
+using script.core.character;
 using script.core.operation;
 using script.core.scene;
 using UnityEngine;
@@ -36,6 +37,7 @@ namespace script.trigger.artroom
 						new Vector2(0.0f, 0.0f), Quaternion.identity);
 					obj.name = gameObject.name + "Preview";
 					SceneStatus.LastSearchedArtObject = mapping[gameObject.name];
+					other.gameObject.GetComponent<MainCharacterController>().FreezeFlg = true;
 				});
 			}
 		}

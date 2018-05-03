@@ -18,7 +18,7 @@ namespace script.core.ui
 		{
 		}
 
-		public void Close()
+		public virtual void Close()
 		{
 			PlaySe();
 			Destroy(gameObject);

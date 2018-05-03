@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using script.core.asset;
+using script.core.character;
 using script.core.operation;
 using script.core.scene;
 using script.logic.game;
@@ -27,6 +28,7 @@ namespace script.trigger.artroom
 							new Vector2(0.0f, 0.0f), Quaternion.identity);
 						obj.name = "Smartball";
 						SceneStatus.LastSearchedArtObject = SceneStatus.ArtObject.Smartball;
+						other.gameObject.GetComponent<MainCharacterController>().FreezeFlg = true;
 					});
 				}
 				else if (SceneStatus.Procedure == 5 && SceneStatus.HasMarble)
