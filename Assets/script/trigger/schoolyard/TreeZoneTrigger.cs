@@ -17,7 +17,6 @@ namespace script.trigger.schoolyard
 		{
 			if (other.gameObject.name == "yusuke")
 			{
-				Debug.Log(gameObject.name);
 				switch (gameObject.name)
 				{
 					case "azalea":

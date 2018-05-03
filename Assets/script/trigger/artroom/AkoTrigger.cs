@@ -35,7 +35,7 @@ namespace script.trigger.artroom
 					}
 					gameObject.GetComponent<AutoCharacterController>().FreezeFlg = true;
 				}
-				else if (SceneStatus.Procedure == 2 && SceneStatus.CanCreateNerikeshi)
+				else if (SceneStatus.Procedure == 3 && SceneStatus.CanCreateNerikeshi)
 				{
 					EventManager.Instance.Register(710);
 				}

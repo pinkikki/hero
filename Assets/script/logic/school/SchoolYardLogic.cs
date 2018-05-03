@@ -15,7 +15,7 @@ namespace script.logic.school
 				{
 					changeObjName("classmateR", "classmateRA");
 				}
-				if (SceneStatus.HasNerikeshi)
+				if (SceneStatus.HasMarble)
 				{
 					changeObjName("girl_c", "girl_ca");
 				}

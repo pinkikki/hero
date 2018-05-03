@@ -11,7 +11,7 @@ public class UnLockLogic : MonoBehaviour
     Dictionary<int, GameObject> rightObjDic;
     string actual;
     static readonly string firstExpected = "1235";
-    static readonly string secondExpected = "9876";
+    static readonly string secondExpected = "4829";
     List<int> selectList = new List<int>();
 
 
