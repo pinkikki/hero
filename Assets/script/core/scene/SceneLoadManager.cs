@@ -15,6 +15,7 @@ namespace script.core.scene
 	{
 		GameObject baseLayer;
 		readonly float defaultInterval = 1.0f;
+		private bool isDuring;
 
 		enum TransType
 		{
@@ -32,7 +33,7 @@ namespace script.core.scene
 		{
 			if (baseLayer != null)
 			{
-				Object.Destroy(baseLayer);
+				Destroy(baseLayer);
 			}
 		}
 
@@ -82,69 +83,84 @@ namespace script.core.scene
 			TransType transType, string nextLevelName,
 			Dictionary<string, int> assetBundleInfoDic)
 		{
-			SearchButton.Instance.Hide();
-			var raw = CreateLayer();
 
-			var time = 0.0f;
-			while (time <= fadeOutInterval)
+			while (isDuring)
 			{
-				raw.color = new Color(0, 0, 0, Mathf.Lerp(0f, 1f, time / fadeOutInterval));
-				time += Time.deltaTime;
 				yield return null;
 			}
-
-			if (transType == TransType.Default || transType == TransType.Loading)
+			try
 			{
-				if (transType == TransType.Loading)
+				isDuring = true;
+				SearchButton.Instance.Hide();
+				var raw = CreateLayer();
+
+				var time = 0.0f;
+				while (time <= fadeOutInterval)
 				{
-					SceneManager.LoadScene("loading");
-					while (SceneManager.GetActiveScene().name != "loading") yield return null;
+					raw.color = new Color(0, 0, 0, Mathf.Lerp(0f, 1f, time / fadeOutInterval));
+					time += Time.deltaTime;
+					yield return null;
 				}
 
-				if (AudioManager.Exist() && !AudioManager.Instance.DestructionFlg)
+				if (transType == TransType.Default || transType == TransType.Loading)
 				{
-					AssetLoader.Instance.UnloadExcludingAudios();
+					if (transType == TransType.Loading)
+					{
+						SceneManager.LoadScene("loading");
+						while (SceneManager.GetActiveScene().name != "loading") yield return null;
+					}
+
+					if (AudioManager.Exist() && !AudioManager.Instance.DestructionFlg)
+					{
+						AssetLoader.Instance.UnloadExcludingAudios();
+					}
+					else
+					{
+						AssetLoader.Instance.Unload();
+					}
+
+					AssetLoader.Instance.AssetBundleInfoDic = assetBundleInfoDic;
+					var ao = SceneManager.LoadSceneAsync(nextLevelName);
+					ao.allowSceneActivation = false;
+					AssetLoader.Instance.Load();
+					while (ao.progress < 0.9f) yield return null;
+					while (AssetLoader.Instance.CurrentLoadStatus != AssetLoader.LoadStatus.LoadComplete) yield return null;
+					ao.allowSceneActivation = true;
+					while (SceneManager.GetActiveScene().name != nextLevelName) yield return null;
 				}
 				else
 				{
-					AssetLoader.Instance.Unload();
+					Destroy();
 				}
-				AssetLoader.Instance.AssetBundleInfoDic = assetBundleInfoDic;
-				var ao = SceneManager.LoadSceneAsync(nextLevelName);
-				ao.allowSceneActivation = false;
-				AssetLoader.Instance.Load();
-				while (ao.progress < 0.9f) yield return null;
-				while (AssetLoader.Instance.CurrentLoadStatus != AssetLoader.LoadStatus.LoadComplete) yield return null;
-				ao.allowSceneActivation = true;
-				while (SceneManager.GetActiveScene().name != nextLevelName) yield return null;
-			}
-			else
-			{
+
+				time = 0;
+				raw = CreateLayer();
+				raw.color = new Color(0, 0, 0, 1);
+
+				if (AudioManager.Exist())
+				{
+					while (!AudioManager.Instance.IsLoadComplete()) yield return null;
+				}
+
+				if (CharacterInitializer.Exist())
+				{
+					while (!CharacterInitializer.Instance.IsLoadComplete()) yield return null;
+				}
+
+				while (time <= fadeInInterval)
+				{
+					raw.color = new Color(0, 0, 0, Mathf.Lerp(1f, 0f, time / fadeInInterval));
+					time += Time.deltaTime;
+					yield return null;
+				}
+
 				Destroy();
+				SearchButton.Instance.Show();
 			}
-
-			time = 0;
-			raw = CreateLayer();
-			raw.color = new Color(0, 0, 0, 1);
-
-			if (AudioManager.Exist())
+			finally
 			{
-				while (!AudioManager.Instance.IsLoadComplete()) yield return null;
+				isDuring = false;
 			}
-			if (CharacterInitializer.Exist())
-			{
-				while (!CharacterInitializer.Instance.IsLoadComplete()) yield return null;
-			}
-
-			while (time <= fadeInInterval)
-			{
-				raw.color = new Color(0, 0, 0, Mathf.Lerp(1f, 0f, time / fadeInInterval));
-				time += Time.deltaTime;
-				yield return null;
-			}
-
-			Destroy();
-			SearchButton.Instance.Show();
 		}
 
 		public IEnumerator FadeInScene(float fadeInInterval) {
@@ -173,6 +189,8 @@ namespace script.core.scene
 
 		RawImage CreateLayer()
 		{
+//			Destroy();
+			
 			baseLayer = new GameObject
 			{
 				name = "BaseLayer",

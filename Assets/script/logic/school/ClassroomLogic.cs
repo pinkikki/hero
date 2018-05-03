@@ -114,7 +114,6 @@ namespace script.logic.school
 			var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/common/", "QuizA"),
 				new Vector2(0.0f, 0.0f), Quaternion.identity);
 			obj.name = "QuizA";
-			EventManager.Instance.NextTask();
 		}
 
 		public void Action009()
@@ -275,7 +274,7 @@ namespace script.logic.school
 				}
 				yield return null;
 			}
-			niccAko.ConditionY = 1.7f;
+			niccAko.ConditionY = 2.0f;
 			niccAko.WalkFront();
 			while (true)
 			{
@@ -332,6 +331,20 @@ namespace script.logic.school
 
 			yield return null;
 
+			
+			if (niccYusuke.Anim.GetBool("Lwait"))
+			{
+				niccMasaki.ConditionY = 4.56f;
+				niccMasaki.WalkFront();
+				while (true)
+				{
+					if (!niccMasaki.WalkingFlg)
+					{
+						break;
+					}
+					yield return null;
+				}
+			}
 			niccMasaki.ConditionX = 3.0f;
 			niccMasaki.WalkLeft();
 			while (true)
@@ -344,6 +357,21 @@ namespace script.logic.school
 			}
 
 			niccMasaki.WalkRightNoSpeed();
+			
+			
+			if (niccYusuke.Anim.GetBool("Lwait"))
+			{
+				niccAko.ConditionY = 4.56f;
+				niccAko.WalkFront();
+				while (true)
+				{
+					if (!niccAko.WalkingFlg)
+					{
+						break;
+					}
+					yield return null;
+				}
+			}
 			niccAko.ConditionX = 4.0f;
 			niccAko.WalkLeft();
 			while (true)
@@ -358,6 +386,43 @@ namespace script.logic.school
 			niccAko.WalkRightNoSpeed();
 			yield return new WaitForSeconds(0.5f);
 
+			if (niccYusuke.Anim.GetBool("Rwait") || niccYusuke.Anim.GetBool("Lwait"))
+			{
+				var rwait = niccYusuke.Anim.GetBool("Rwait");
+				
+				niccYusuke.ConditionY = 4.56f;
+				niccYusuke.WalkFront();
+				while (true)
+				{
+					if (!niccYusuke.WalkingFlg)
+					{
+						break;
+					}
+					yield return null;
+				}
+				
+				if (rwait) {
+					niccYusuke.ConditionX = yusuke.transform.position.x + 0.7f;
+					niccYusuke.WalkRight();
+				}
+				else
+				{
+					niccYusuke.ConditionX = yusuke.transform.position.x - 0.7f;
+					niccYusuke.WalkLeft();
+				}
+				
+				while (true)
+				{
+					if (!niccYusuke.WalkingFlg)
+					{
+						break;
+					}
+					yield return null;
+				}
+				
+				niccYusuke.WalkBackNoSpeed();
+			}
+			
 			yield return StartCoroutine(niccYusuke.MoveUpOrDown(5.6f, 0.2f));
 
 			yield return new WaitForSeconds(1.0f);
