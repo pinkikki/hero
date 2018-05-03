@@ -164,6 +164,7 @@ namespace script.logic.school
 		
 		public void Action018()
 		{
+			SceneStatus.EntranceNo = 1;
 			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "grassy", null);
 			EventManager.Instance.NextTask();
 		}
