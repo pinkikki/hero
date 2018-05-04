@@ -72,13 +72,13 @@ namespace script.logic.school
 
 		public void Action002()
 		{
-			SceneStatus.Procedure = 2;
-			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
+			StartCoroutine(Action002Coroutine());
 		}
 
 		public void Action003()
 		{
-			StartCoroutine(Action003Coroutine());
+			SceneStatus.Procedure = 3;
+			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
 		}
 
 		public void Action004()
@@ -261,12 +261,11 @@ namespace script.logic.school
 			yield return null;
 			EventManager.Instance.NextTask();
 		}
-
-		IEnumerator Action003Coroutine()
+		
+		IEnumerator Action002Coroutine()
 		{
-			SceneStatus.Procedure = 3;
-			
 			SceneLoadManager.Instance.FadeOut(1.0f);
+			yield return new WaitForSeconds(1.5f);
 			var childLayer = GameObject.Find("BaseLayer/ChildLayer");
 			var lastText = (GameObject) Instantiate(
 				AssetLoader.Instance.LoadPrefab("prefab/common/", "OneWeekText"), new Vector2(0.0f, 0.0f),
@@ -277,12 +276,13 @@ namespace script.logic.school
 			rectPos.x = 0.0f;
 			rectPos.y = 0.0f;
 			rect.anchoredPosition = rectPos;
-			
+				
 			var canvasScaler = GameObject.Find("BaseLayer").AddComponent<CanvasScaler>();
 			canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-			
+				
 			yield return new WaitForSeconds(5.0f);
 			
+			SceneStatus.Procedure = 2;
 			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
 		}
 
