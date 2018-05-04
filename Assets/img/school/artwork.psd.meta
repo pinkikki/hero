@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3077f18d9a07acf4490548e5d2fa515c
-timeCreated: 1525180211
+timeCreated: 1525404073
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -47,7 +47,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 50
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -58,7 +58,7 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -66,7 +66,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -74,7 +74,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: iPhone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -82,7 +82,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -96,10 +96,10 @@ TextureImporter:
       name: artwork_a
       rect:
         serializedVersion: 2
-        x: 21
-        y: 301
-        width: 113
-        height: 188
+        x: 41
+        y: 599
+        width: 228
+        height: 378
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,23 +109,10 @@ TextureImporter:
       name: artwork_b
       rect:
         serializedVersion: 2
-        x: 179
-        y: 266
-        width: 124
-        height: 233
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: artwork_c
-      rect:
-        serializedVersion: 2
-        x: 350
-        y: 369
-        width: 145
-        height: 124
+        x: 358
+        y: 529
+        width: 248
+        height: 469
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,12 +122,12 @@ TextureImporter:
       name: artwork_d
       rect:
         serializedVersion: 2
-        x: 13
-        y: 30
-        width: 154
-        height: 194
+        x: 27
+        y: 56
+        width: 308
+        height: 392
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -148,12 +135,12 @@ TextureImporter:
       name: artwork_e
       rect:
         serializedVersion: 2
-        x: 189
-        y: 9
-        width: 140
-        height: 234
+        x: 378
+        y: 17
+        width: 280
+        height: 468
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -161,12 +148,12 @@ TextureImporter:
       name: artwork_f
       rect:
         serializedVersion: 2
-        x: 375
-        y: 229
-        width: 120
-        height: 118
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 748
+        y: 454
+        width: 246
+        height: 241
+      alignment: 9
+      pivot: {x: 0.5702329, y: 0.55101734}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -174,10 +161,23 @@ TextureImporter:
       name: artwork_g
       rect:
         serializedVersion: 2
-        x: 359
-        y: 24
-        width: 144
-        height: 186
+        x: 717
+        y: 44
+        width: 287
+        height: 380
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: artwork_c
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 737
+        width: 292
+        height: 251
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
