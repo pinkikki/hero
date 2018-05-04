@@ -14,7 +14,7 @@ namespace script.trigger.schoolyard
 		{
 		}
 
-		void OnCollisionEnter2D(Collision2D other)
+		void OnTriggerEnter2D(Collider2D other)
 		{
 			if (other.gameObject.name == "yusuke" && (!SceneStatus.HasGraveRoadA ||
 			    (SceneStatus.CanGetGraveRoadB && !SceneStatus.HasGraveRoadB)) && SceneStatus.Procedure == 1)
@@ -23,7 +23,7 @@ namespace script.trigger.schoolyard
 			}
 		}
 
-		void OnCollisionExit2D(Collision2D other)
+		void OnTriggerExit2D(Collider2D other)
 		{
 			if (other.gameObject.name == "yusuke")
 			{
