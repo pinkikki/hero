@@ -128,10 +128,10 @@ namespace script.core.audio
             if (playSource == null)
             {
                 playSource = gameObject.AddComponent<AudioSource>();
-                playSource.loop = repeatable;
                 seSourceList.Add(playSource);
             }
-
+            
+            playSource.loop = repeatable;
             playSource.clip = seDict[seName];
             playSource.Play();
         }
@@ -194,9 +194,20 @@ namespace script.core.audio
             StartCoroutine(StopBgmAtFadeOutCoroutine(interval));
         }
 
+        public void SetDownBgmVolume(float volume)
+        {
+            bgmSource.volume = volume;
+            bgmCrossFadingSource.volume = volume;
+        }
+        
         public IEnumerator DownBgmVolume(float interval, float downVolumn)
         {
             yield return DownBgmVolumeCoroutine(interval, downVolumn);
+        }
+        
+        public IEnumerator DownSeVolume(string seName, float interval, float downVolumn)
+        {
+            yield return DownSeVolumeCoroutine(seName, interval, downVolumn);
         }
 
         IEnumerator StopBgmAtFadeOutCoroutine(float interval)
@@ -214,6 +225,26 @@ namespace script.core.audio
             {
                 bgmSource.volume = Mathf.Lerp(bgmMaxVolume, downVolumn, time / interval);
                 bgmCrossFadingSource.volume = Mathf.Lerp(bgmMaxVolume, downVolumn, time / interval);
+                time += Time.deltaTime;
+                yield return null;
+            }
+        }
+        
+        IEnumerator DownSeVolumeCoroutine(string seName, float interval, float downVolumn)
+        {
+            AudioSource target = null;
+            foreach (var seSource in seSourceList)
+            {
+                if (seSource.clip.name != seName) continue;
+                target = seSource;
+                break;
+            }
+            if (target == null) yield break;
+            var time = 0.0f;
+            var seMaxVolume = target.volume;
+            while (time < interval)
+            {
+                target.volume = Mathf.Lerp(seMaxVolume, downVolumn, time / interval);
                 time += Time.deltaTime;
                 yield return null;
             }

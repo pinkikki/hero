@@ -28,7 +28,7 @@ namespace script.logic.school
 			}
 			
 			
-			AudioManager.Instance.DownBgmVolume(0.1f, 1.0f);
+			AudioManager.Instance.SetDownBgmVolume(1.0f);
 		}
 	
 		void Update () {

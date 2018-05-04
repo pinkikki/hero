@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using script.common.dao;
 using script.core.asset;
 using script.core.audio;
 using script.core.camera;
@@ -21,11 +22,15 @@ namespace script.logic.school
 	
 		void Start () {
 			EventManager.Instance.Register(1000);
-			AudioManager.Instance.DownBgmVolume(0.1f, 0.1f);
 		}
 	
 		void Update () {
 		
+		}
+
+		public void ActionBgmVolumeDown()
+		{
+			StartCoroutine(ActionBgmVolumeDownCoroutine());
 		}
 
 		public void Action001()
@@ -137,7 +142,12 @@ namespace script.logic.school
 			EventManager.Instance.NextTask();
 			EventManager.Instance.RegisterByForce(1004);
 		}
-	
+
+		IEnumerator ActionBgmVolumeDownCoroutine()
+		{
+			yield return AudioManager.Instance.DownBgmVolume(0.5f, 0.2f);
+			EventManager.Instance.NextTask();
+		}
 		IEnumerator Action001Coroutine()
 		{
 			SceneLoadManager.Instance.FadeOut(0.3f);
@@ -341,10 +351,9 @@ namespace script.logic.school
 
 			if (AudioManager.Instance != null)
 			{
-				AudioManager.Instance.DownBgmVolume(3.0f, 0.0f);
+				yield return AudioManager.Instance.DownBgmVolume(3.0f, 0.0f);
+				yield return AudioManager.Instance.DownSeVolume(MusicDao.SelectByPrimaryKey(5).MusicName ,3.0f, 0.0f);
 			}
-
-			yield return new WaitForSeconds(3.0f);
 
 			var childLayer = GameObject.Find("BaseLayer/ChildLayer");
 			var lastText = (GameObject) Instantiate(
@@ -359,6 +368,7 @@ namespace script.logic.school
 			
 			yield return new WaitForSeconds(8.0f);
 			
+			AudioManager.Instance.Destroy();
 			SceneLoadManager.Instance.LoadLevelInLoading(10.0f, "classroom_a", null);
 			
 			EventManager.Instance.NextTask();
@@ -366,7 +376,10 @@ namespace script.logic.school
 
 		IEnumerator Action016Coroutine()
 		{
-			niccYusuke.ConditionY = 5.8f;
+			Destroy(yusuke.GetComponent<MainCharacterController>());
+			niccYusuke = yusuke.AddComponent<NoInputCharacterController>();
+			yield return null;
+			niccYusuke.ConditionY = 6.7f;
 			niccYusuke.WalkFront();
 
 			while (true)
@@ -377,6 +390,9 @@ namespace script.logic.school
 				}
 				yield return null;
 			}
+			
+			Destroy(niccYusuke);
+			yusuke.AddComponent<MainCharacterController>();
 			
 			EventManager.Instance.NextTask();
 		}
@@ -406,9 +422,8 @@ namespace script.logic.school
 			yield return new WaitForSeconds(1.0f);
 
 			EventManager.Instance.NextTask();
-		
 		}
-
+		
 		void SetPosition(GameObject obj, float x, float y)
 		{
 			var pos = obj.transform.position;

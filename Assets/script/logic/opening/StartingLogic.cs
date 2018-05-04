@@ -17,14 +17,19 @@ namespace script.logic.opening
 		void Update () {
 		
 		}
-		
+
+		private bool starting;
 		public void Click()
 		{
-			AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
-			SceneStatus.Starting = true;
-			SceneStatus.Procedure = 1;
-			SceneStatus.EntranceNo = 1;
-			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 5.0f, "classroom", null);
+			if (!starting)
+			{
+				starting = true;
+				AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
+				SceneStatus.Starting = true;
+				SceneStatus.Procedure = 1;
+				SceneStatus.EntranceNo = 1;
+				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 5.0f, "classroom", null);
+			}
 		}
 		
 		public void Action001()
