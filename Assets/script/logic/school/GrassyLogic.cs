@@ -366,6 +366,9 @@ namespace script.logic.school
 			rectPos.y = 0.0f;
 			rect.anchoredPosition = rectPos;
 			
+			var canvasScaler = GameObject.Find("BaseLayer").AddComponent<CanvasScaler>();
+			canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+			
 			yield return new WaitForSeconds(8.0f);
 			
 			AudioManager.Instance.Destroy();
