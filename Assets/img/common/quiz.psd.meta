@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1dbb468a5eb5406468d5afebd566fcc1
-timeCreated: 1525095345
+timeCreated: 1525451517
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -45,7 +45,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -56,7 +56,7 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -64,7 +64,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -72,7 +72,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: iPhone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -80,7 +80,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -94,10 +94,10 @@ TextureImporter:
       name: quiz_a
       rect:
         serializedVersion: 2
-        x: 30
-        y: 603
-        width: 266
-        height: 346
+        x: 51
+        y: 1203
+        width: 537
+        height: 697
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -107,10 +107,10 @@ TextureImporter:
       name: quiz_b
       rect:
         serializedVersion: 2
-        x: 367
-        y: 623
-        width: 233
-        height: 320
+        x: 733
+        y: 1242
+        width: 468
+        height: 644
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,10 +120,10 @@ TextureImporter:
       name: quiz_d
       rect:
         serializedVersion: 2
-        x: 727
-        y: 592
-        width: 266
-        height: 333
+        x: 1458
+        y: 1176
+        width: 538
+        height: 675
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,12 +133,12 @@ TextureImporter:
       name: quiz_e
       rect:
         serializedVersion: 2
-        x: 44
-        y: 78
-        width: 272
-        height: 345
+        x: 80
+        y: 145
+        width: 550
+        height: 692
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -146,12 +146,12 @@ TextureImporter:
       name: quiz_c
       rect:
         serializedVersion: 2
-        x: 386
-        y: 87
-        width: 284
-        height: 374
+        x: 773
+        y: 162
+        width: 570
+        height: 753
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

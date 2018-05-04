@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 00fb25046d2d6384ebbb491ed18d55d4
-timeCreated: 1488695212
-licenseType: Pro
+timeCreated: 1525452447
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: ako_front_left
@@ -245,7 +245,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 477
-        y: 236
+        y: 241
         width: 149
         height: 256
       alignment: 0
