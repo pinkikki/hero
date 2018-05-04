@@ -36,7 +36,15 @@ namespace script.trigger.artroom
 				}
 				else if (SceneStatus.Procedure == 3 && SceneStatus.CanCreateNerikeshi)
 				{
-					EventManager.Instance.Register(710);
+					var trigger = FindObjectOfType<NerikeshiGameTrigger>();
+					if (trigger != null && !trigger.IsFirst)
+					{
+						EventManager.Instance.Register(723);
+					}
+					else
+					{
+						EventManager.Instance.Register(710);
+					}
 				}
 			}
 		}

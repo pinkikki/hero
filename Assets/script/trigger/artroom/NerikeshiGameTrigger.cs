@@ -5,7 +5,15 @@ using UnityEngine;
 
 namespace script.trigger.artroom
 {
-	public class NerikeshiGameTrigger : MonoBehaviour {
+	public class NerikeshiGameTrigger : MonoBehaviour
+	{
+		private bool isFirst = true;
+
+		public bool IsFirst
+		{
+			get { return isFirst; }
+			set { isFirst = value; }
+		}
 
 		void Start () {
 		
@@ -21,7 +29,15 @@ namespace script.trigger.artroom
 			{
 				if (SceneStatus.HasGlue)
 				{
-					EventManager.Instance.Register(708);
+					if (isFirst)
+					{
+						isFirst = false;
+						EventManager.Instance.Register(708);
+					}
+					else
+					{
+						EventManager.Instance.Register(722);
+					}
 				}
 				else
 				{

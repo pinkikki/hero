@@ -1,6 +1,7 @@
 ﻿using script.common.dao;
 using script.common.entity;
 using script.core.audio;
+using script.core.character;
 using script.core.operation;
 using UnityEngine;
 
@@ -63,6 +64,7 @@ namespace script.logic.game
             NonActive();
             MusicEntity entity = MusicDao.SelectByPrimaryKey(1);
             AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
+            GameObject.Find("yusuke").GetComponent<MainCharacterController>().FreezeFlg = false;
         }
 
         void SetPosition(GameObject obj, Vector3 vec)

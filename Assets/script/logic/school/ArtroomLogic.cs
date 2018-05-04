@@ -78,11 +78,13 @@ namespace script.logic.school
 		{
 			AddAutoController();
 			AddTrigger();
+			yusuke.AddComponent<MainCharacterController>();
 			EventManager.Instance.NextTask();
 		}
 		
 		public void Action006()
 		{
+			yusuke.AddComponent<MainCharacterController>();
 			AddVChaseCharacterController();
 			EventManager.Instance.NextTask();
 		}
@@ -184,6 +186,11 @@ namespace script.logic.school
 			
 			EventManager.Instance.NextTask();
 		}
+
+		public void Action019()
+		{
+			StartCoroutine(Action019CoroutineForYusuke());
+		}
 		
 		IEnumerator Action001Coroutine()
 		{
@@ -231,49 +238,51 @@ namespace script.logic.school
 			yield return new WaitForSeconds(1.0f);
 			RemoveAutoController();
 			AddNoInputController();
+			Destroy(yusuke.GetComponent<MainCharacterController>());
+			niccYusuke = yusuke.AddComponent<NoInputCharacterController>();
 			yield return null;
 			switch (SceneStatus.LastSearchedArtObject)
 			{
 				case SceneStatus.ArtObject.Smartball:
 					SetPosition(yusuke, -8.8f, 2.0f);
 					SetPosition(ako, -8.8f, 3.3f);
-					SetPosition(masaki, -7.6f, 2.8f);
+					SetPosition(masaki, -7.8f, 2.8f);
 					SceneStatus.Procedure = 2;
 					break;
 				case SceneStatus.ArtObject.ArtworkA:
 					SetPosition(yusuke, -8.8f, 4.0f);
 					SetPosition(ako, -8.8f, 5.3f);
-					SetPosition(masaki, -7.6f, 4.8f);
+					SetPosition(masaki, -7.8f, 4.8f);
 					break;
 				case SceneStatus.ArtObject.ArtworkB:
 					SetPosition(yusuke, -8.8f, 0.5f);
 					SetPosition(ako, -8.8f, 1.8f);
-					SetPosition(masaki, -7.6f, 1.3f);
+					SetPosition(masaki, -7.8f, 1.3f);
 					break;
 				case SceneStatus.ArtObject.ArtworkC:
 					SetPosition(yusuke, -8.8f, -1.0f);
 					SetPosition(ako, -8.8f, 0.3f);
-					SetPosition(masaki, -7.6f, -0.2f);
+					SetPosition(masaki, -7.8f, -0.2f);
 					break;
 				case SceneStatus.ArtObject.ArtworkD:
 					SetPosition(yusuke, -8.8f, -2.5f);
 					SetPosition(ako, -8.8f, -1.2f);
-					SetPosition(masaki, -7.6f, -1.7f);
+					SetPosition(masaki, -7.8f, -1.7f);
 					break;
 				case SceneStatus.ArtObject.ArtworkE:
 					SetPosition(yusuke, -8.8f, -4.0f);
 					SetPosition(ako, -8.8f, -2.7f);
-					SetPosition(masaki, -7.6f, -3.2f);
+					SetPosition(masaki, -7.8f, -3.2f);
 					break;
 				case SceneStatus.ArtObject.ArtworkF:
 					SetPosition(yusuke, -8.8f, -5.5f);
 					SetPosition(ako, -8.8f, -4.2f);
-					SetPosition(masaki, -7.6f, -4.7f);
+					SetPosition(masaki, -7.8f, -4.7f);
 					break;
 				case SceneStatus.ArtObject.ArtworkG:
 					SetPosition(yusuke, -8.8f, -7.0f);
 					SetPosition(ako, -8.8f, -5.7f);
-					SetPosition(masaki, -7.6f, -6.2f);
+					SetPosition(masaki, -7.8f, -6.2f);
 					break;
 			}
 
@@ -283,6 +292,7 @@ namespace script.logic.school
 			yield return null;
 			RemoveNoInputController();
 			RremoveTrigger();
+			Destroy(niccYusuke);
 			yield return new WaitForSeconds(1.5f);
 			EventManager.Instance.NextTask();
 		}
@@ -418,7 +428,7 @@ namespace script.logic.school
 				yield return null;
 			}
 
-			niccYusuke.ConditionY = -0.3f;
+			niccYusuke.ConditionY = 0.0f;
 			niccYusuke.WalkFront();
 			
 			while (true)
@@ -481,6 +491,7 @@ namespace script.logic.school
 		
 		IEnumerator Action014Coroutine()
 		{
+			GameObject.Find("yusuke").GetComponent<MainCharacterController>().FreezeFlg = true;
 			while (ao.progress < 0.9f) yield return null;
 
 			if (smartBallLogic == null)
@@ -500,6 +511,12 @@ namespace script.logic.school
 			yield return SceneLoadManager.Instance.FadeOutScene(1.0f);
 			smartBallLogic.Close();
 			yield return SceneLoadManager.Instance.FadeInScene(1.0f);
+			EventManager.Instance.NextTask();
+		}
+
+		IEnumerator Action019CoroutineForYusuke()
+		{
+			yield return Action009CoroutineForYusuke();
 			EventManager.Instance.NextTask();
 		}
 

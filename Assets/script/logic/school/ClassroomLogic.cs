@@ -9,6 +9,7 @@ using script.core.operation;
 using script.core.scene;
 using script.trigger.classroom;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace script.logic.school
 {
@@ -51,8 +52,8 @@ namespace script.logic.school
 
 		void Update()
 		{
-			if (isRegistered || 1 > EventManager.Instance.CompleteEventSet.Count) return;
-			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 1) return;
+			if (isRegistered || 17 > EventManager.Instance.CompleteEventSet.Count) return;
+			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 17) return;
 			isRegistered = true;
 			EventManager.Instance.Register(501);
 		}
@@ -77,8 +78,7 @@ namespace script.logic.school
 
 		public void Action003()
 		{
-			SceneStatus.Procedure = 3;
-			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
+			StartCoroutine(Action003Coroutine());
 		}
 
 		public void Action004()
@@ -260,6 +260,30 @@ namespace script.logic.school
 			niccTeacher.WalkBackNoSpeed();
 			yield return null;
 			EventManager.Instance.NextTask();
+		}
+
+		IEnumerator Action003Coroutine()
+		{
+			SceneStatus.Procedure = 3;
+			
+			SceneLoadManager.Instance.FadeOut(1.0f);
+			var childLayer = GameObject.Find("BaseLayer/ChildLayer");
+			var lastText = (GameObject) Instantiate(
+				AssetLoader.Instance.LoadPrefab("prefab/common/", "OneWeekText"), new Vector2(0.0f, 0.0f),
+				Quaternion.identity);
+			lastText.transform.SetParent(childLayer.transform);
+			var rect = lastText.GetComponent<RectTransform>();
+			var rectPos = rect.anchoredPosition;
+			rectPos.x = 0.0f;
+			rectPos.y = 0.0f;
+			rect.anchoredPosition = rectPos;
+			
+			var canvasScaler = GameObject.Find("BaseLayer").AddComponent<CanvasScaler>();
+			canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+			
+			yield return new WaitForSeconds(5.0f);
+			
+			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
 		}
 
 		IEnumerator Action010Coroutine()

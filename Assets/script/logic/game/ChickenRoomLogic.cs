@@ -144,7 +144,6 @@ namespace script.logic.game
             }
 
             yield return new WaitForSeconds(0.5f);
-            scaleCamera.LeapBaseValue = 50.0f;
 
             EventManager.Instance.NextTask();
         }
@@ -204,6 +203,7 @@ namespace script.logic.game
 
         IEnumerator Action005Coroutine()
         {
+            scaleCamera.LeapBaseValue = 50.0f;
             yield return new WaitForSeconds(1.0f);
             yusuke.AddComponent<ChickenMainCharacterController>();
             yusuke.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
