@@ -35,6 +35,19 @@ namespace script.logic.school
 		
 		}
 
+		public void Action000()
+		{
+			if (SceneStatus.CanSearchMarble)
+			{
+				EventManager.Instance.RegisterByForce(821);
+			}
+			else
+			{
+				EventManager.Instance.RegisterByForce(822);
+			}
+			EventManager.Instance.NextTask();
+		}
+
 		public void Action001()
 		{
 			changeObjName("classmateS", "classmateSA");

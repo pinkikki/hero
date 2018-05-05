@@ -81,7 +81,7 @@ namespace script.logic.ending
             
 			yield return new WaitForSeconds(1.5f);
 
-			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "shinobu_room", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(2.0f, "shinobu_room", null);
 			EventManager.Instance.NextTask();
 		}
         

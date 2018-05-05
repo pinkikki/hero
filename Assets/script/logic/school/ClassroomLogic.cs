@@ -52,8 +52,8 @@ namespace script.logic.school
 
 		void Update()
 		{
-			if (isRegistered || 1 > EventManager.Instance.CompleteEventSet.Count) return;
-			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 1) return;
+			if (isRegistered || 17 > EventManager.Instance.CompleteEventSet.Count) return;
+			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 17) return;
 			isRegistered = true;
 			EventManager.Instance.Register(501);
 		}
@@ -280,12 +280,14 @@ namespace script.logic.school
 				
 			var canvasScaler = GameObject.Find("BaseLayer").AddComponent<CanvasScaler>();
 			canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-				
+			lastText.SetActive(false);
+			yield return null;
+			lastText.SetActive(true);
+
 			yield return new WaitForSeconds(5.0f);
 			
 			SceneStatus.Procedure = 2;
-			SceneStatus.HasQuizE = true;
-			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "grassy", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
 		}
 
 		IEnumerator Action010Coroutine()

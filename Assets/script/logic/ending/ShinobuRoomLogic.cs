@@ -55,7 +55,7 @@ namespace script.logic.ending
 		{
 			niccShinobu.Anim.SetBool("sit", true);
 			
-			yield return new WaitForSeconds(7.0f);
+			yield return new WaitForSeconds(5.0f);
 			
 			bookA.gameObject.SetActive(false);
 			bookB.gameObject.SetActive(true);
