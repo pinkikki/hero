@@ -28,7 +28,7 @@ namespace script.logic.opening
 				SceneStatus.Starting = true;
 				SceneStatus.Procedure = 1;
 				SceneStatus.EntranceNo = 1;
-				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 5.0f, "classroom", null);
+				SceneLoadManager.Instance.LoadLevelInLoading(0.0f, 0.0f, "classroom", null);
 			}
 		}
 		
@@ -39,9 +39,9 @@ namespace script.logic.opening
 
 		IEnumerator Action001Coroutine()
 		{
-			yield return new WaitForSeconds(3.0f);
+			yield return new WaitForSeconds(0.1f);
 			yield return SpriteIn(GameObject.Find("opening_illust").GetComponent<SpriteRenderer>());
-			yield return new WaitForSeconds(2.0f);
+			yield return new WaitForSeconds(0.1f);
 			yield return SpriteIn(GameObject.Find("opening_title").GetComponent<SpriteRenderer>());
 			yield return TextIn(GameObject.Find("Text").GetComponent<Text>());
 		}
@@ -49,7 +49,7 @@ namespace script.logic.opening
 		IEnumerator SpriteIn(SpriteRenderer sprite)
 		{
 			var time = 0.0f;
-			var fadeOutInterval = 6.0f;
+			var fadeOutInterval = 0.1f;
 			while (time <= fadeOutInterval)
 			{
 				sprite.color = new Color(255, 255, 255, Mathf.Lerp(0f, 1f, time / fadeOutInterval));
@@ -61,7 +61,7 @@ namespace script.logic.opening
 		IEnumerator TextIn(Text text)
 		{
 			var time = 0.0f;
-			var fadeOutInterval = 2.0f;
+			var fadeOutInterval = 0.1f;
 			while (time <= fadeOutInterval)
 			{
 				text.color = new Color(255, 255, 255, Mathf.Lerp(0f, 1f, time / fadeOutInterval));

@@ -114,7 +114,10 @@ namespace script.core.@event
 
         public bool IsMessageing()
         {
-            return currentEvent != 0 && eventDct[currentEvent].CurrentTaskTypeId == 3;
+            return currentEvent != 0 &&
+                   (eventDct[currentEvent].CurrentTaskTypeId == 3 || 
+                    eventDct[currentEvent].CurrentTaskTypeId == 4 ||
+                    eventDct[currentEvent].CurrentTaskTypeId == 5);
         }
 
         protected void Load()

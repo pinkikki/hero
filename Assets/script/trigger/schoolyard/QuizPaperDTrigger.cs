@@ -1,4 +1,5 @@
-﻿using script.core.@event;
+﻿using script.core.character;
+using script.core.@event;
 using script.core.operation;
 using script.core.scene;
 using UnityEngine;
@@ -17,8 +18,9 @@ namespace script.trigger.schoolyard
 
 		void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.gameObject.name == "yusuke" && SceneStatus.HasQuizC && SceneStatus.Procedure == 3)
+			if (other.gameObject.name == "yusuke" && SceneStatus.HasQuizC && SceneStatus.Procedure == 3 && !SceneStatus.HasQuizD)
 			{
+				other.gameObject.GetComponent<MainCharacterController>().FreezeFlg = true;
 				SearchButton.Instance.OnRegister(803);
 			}
 		}

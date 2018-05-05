@@ -23,6 +23,7 @@ namespace script.core.character
             Anim = gameObject.GetComponent<Animator>();
         }
 
+        bool provisioning;
         protected void FixedUpdate()
         {
             if (!FreezeFlg && !EventManager.Instance.IsMessageing())
@@ -52,6 +53,7 @@ namespace script.core.character
                         switch (t.phase)
                         {
                             case TouchPhase.Began:
+                                provisioning = true;
                                 beginPos = t.position;
                                 break;
                             case TouchPhase.Canceled:
@@ -59,6 +61,11 @@ namespace script.core.character
                             case TouchPhase.Ended:
                                 break;
                             case TouchPhase.Moved:
+                                if (!provisioning)
+                                {
+                                    provisioning = true;
+                                    beginPos = t.position;
+                                }
                                 endPos = t.position;
                                 var absX = Mathf.Abs(endPos.x - beginPos.x);
                                 var absY = Mathf.Abs(endPos.y - beginPos.y);

@@ -20,7 +20,7 @@ namespace script.trigger.artroom
 		
 		void OnCollisionEnter2D(Collision2D other) {
 			if (other.gameObject.name == "yusuke") {
-				if (SceneStatus.Procedure == 1 || SceneStatus.Procedure == 2 || SceneStatus.Procedure == 3 || SceneStatus.Procedure == 4)
+				if (SceneStatus.Procedure == 1 || SceneStatus.Procedure == 2 || SceneStatus.Procedure == 3 || SceneStatus.Procedure == 4 || SceneStatus.HasQuizC)
 				{
 					SearchButton.Instance.OnRegister(() =>
 					{

@@ -25,7 +25,7 @@ namespace script.trigger.classroom
 			if (!registrationFlg && other.gameObject.name == "yusuke" && !SceneStatus.IsCompletedQuizA && SceneStatus.Procedure == 3)
 			{
 				var pos = transform.localPosition;
-				if ((0.7f < pos.x && pos.x < 1.4f) && 1.4f < pos.y)
+				if ((0.6f < pos.x && pos.x < 1.4f) && 1.4f < pos.y)
 				{
 					registrationFlg = true;
 					SearchButton.Instance.OnRegister(504);

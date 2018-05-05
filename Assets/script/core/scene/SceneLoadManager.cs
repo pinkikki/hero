@@ -92,12 +92,6 @@ namespace script.core.scene
 			try
 			{
 				isDuring = true;
-				var mainCharacterController = FindObjectOfType<MainCharacterController>();
-
-				if (mainCharacterController != null)
-				{
-					mainCharacterController.FreezeFlg = true;
-				}
 				
 				SearchButton.Instance.Hide();
 				var raw = CreateLayer();
@@ -154,21 +148,11 @@ namespace script.core.scene
 				{
 					while (!CharacterInitializer.Instance.IsLoadComplete()) yield return null;
 				}
-
-				mainCharacterController = FindObjectOfType<MainCharacterController>();
-				if (mainCharacterController != null)
-				{
-					mainCharacterController.FreezeFlg = true;
-				}
 				while (time <= fadeInInterval)
 				{
 					raw.color = new Color(0, 0, 0, Mathf.Lerp(1f, 0f, time / fadeInInterval));
 					time += Time.deltaTime;
 					yield return null;
-				}
-				if (mainCharacterController != null)
-				{
-					mainCharacterController.FreezeFlg = false;
 				}
 
 				Destroy();

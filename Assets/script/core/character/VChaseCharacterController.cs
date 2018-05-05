@@ -47,6 +47,29 @@ namespace script.core.character
             walkSpeed = defaultWalkSpeed;
         }
 
+        private int specialCount;
+        int currentRepeatNum;
+        int repeatNum = 20;
+        int type;
+        float speedFactor = 0.05f;
+        void Walk()
+        {
+            switch (type)
+            {
+                case 0:
+                    WalkBack();
+                    break;
+                case 1:
+                    WalkFront();
+                    break;
+                case 2:
+                    WalkLeft();
+                    break;
+                case 3:
+                    WalkRight();
+                    break;
+            }
+        }
         void FixedUpdate()
         {
             SetDirectionInfo();
@@ -62,6 +85,34 @@ namespace script.core.character
 
             var absX = Mathf.Abs(targetX - selfX);
             var absY = Mathf.Abs(targetY - selfY);
+
+            if (0 < specialCount)
+            {
+                specialCount -= 1;
+                if (!FreezeFlg)
+                {
+                    currentRepeatNum++;
+                    if (collisionFlg || currentRepeatNum > repeatNum)
+                    {
+                        type = Random.Range(0, 4);
+                        currentRepeatNum = 0;
+                    }
+
+                    Walk();
+
+                    Vector3 pos = gameObject.transform.position;
+                    pos.x += hSpeed * speedFactor;
+                    pos.y += vSpeed * speedFactor;
+                    gameObject.transform.position = pos;
+                }
+                return;
+            }
+            var ran = Random.Range(0, 3000);
+            if (5 == ran)
+            {
+                specialCount = 200;
+                return;
+            }
 
             if (!Mathf.Approximately(absX, destX) && absX > destX)
             {
@@ -106,7 +157,7 @@ namespace script.core.character
             float tmpWalkSpeed = walkSpeed;
             float inclementNumX;
 
-            float differenceX = absX - destX;
+            float differenceX = Mathf.Clamp(absX - destX, 0.01f, defaultCatchUpWalkSpeed);
             bool judge = differenceX < defaultCatchUpWalkSpeed;
             walkSpeed = differenceX < defaultCatchUpWalkSpeed ? differenceX : defaultCatchUpWalkSpeed;
             if (targetX < selfX)
@@ -128,7 +179,7 @@ namespace script.core.character
         {
             var tmpWalkSpeed = walkSpeed;
             float inclementNumY;
-            float differenceY = absY - destY;
+            float differenceY = Mathf.Clamp(absY - destY, 0.01f, defaultCatchUpWalkSpeed);
             walkSpeed = differenceY < defaultCatchUpWalkSpeed ? differenceY : defaultCatchUpWalkSpeed;
             if (targetY < selfY)
             {

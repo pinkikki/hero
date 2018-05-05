@@ -16,6 +16,7 @@ namespace script.trigger.artroom
 		void OnCollisionEnter2D(Collision2D other) {
 			if (other.gameObject.name == "yusuke")
 			{
+				SceneStatus.LastSearchedArtObject = SceneStatus.ArtObject.None;
 				SceneStatus.EntranceNo = 3;
 				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "corridor", null);
 			}

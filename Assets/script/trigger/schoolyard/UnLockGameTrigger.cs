@@ -1,4 +1,5 @@
-﻿using script.core.@event;
+﻿using script.core.character;
+using script.core.@event;
 using script.core.scene;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace script.trigger.schoolyard
 		
 		void OnCollisionEnter2D(Collision2D other)
 		{
-			if (other.gameObject.name == "yusuke" && SceneStatus.Procedure == 3 && SceneStatus.HasQuizD)
+			if (other.gameObject.name == "yusuke" && SceneStatus.Procedure == 3 && SceneStatus.HasQuizD && !SceneStatus.HasQuizE)
 			{
 				if (SceneStatus.IsFinishedFirstUnLocking)
 				{
@@ -26,6 +27,7 @@ namespace script.trigger.schoolyard
 				{
 					EventManager.Instance.Register(804);
 				}
+				other.gameObject.GetComponent<MainCharacterController>().FreezeFlg = true;
 			}
 		}
 	}

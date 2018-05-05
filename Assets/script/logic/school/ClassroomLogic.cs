@@ -52,8 +52,8 @@ namespace script.logic.school
 
 		void Update()
 		{
-			if (isRegistered || 17 > EventManager.Instance.CompleteEventSet.Count) return;
-			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 17) return;
+			if (isRegistered || 1 > EventManager.Instance.CompleteEventSet.Count) return;
+			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 1) return;
 			isRegistered = true;
 			EventManager.Instance.Register(501);
 		}
@@ -79,6 +79,7 @@ namespace script.logic.school
 		{
 			SceneStatus.Procedure = 3;
 			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
+			EventManager.Instance.NextTask();
 		}
 
 		public void Action004()
@@ -283,7 +284,8 @@ namespace script.logic.school
 			yield return new WaitForSeconds(5.0f);
 			
 			SceneStatus.Procedure = 2;
-			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
+			SceneStatus.HasQuizE = true;
+			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "grassy", null);
 		}
 
 		IEnumerator Action010Coroutine()
