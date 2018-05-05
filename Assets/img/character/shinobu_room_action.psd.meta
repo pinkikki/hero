@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: d561682980227164ba8b06cbe16364d0
-timeCreated: 1518282043
-licenseType: Pro
+timeCreated: 1525531456
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: shinobu_sit
@@ -45,7 +45,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -72,13 +72,13 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: iPhone
-    maxTextureSize: 256
-    textureFormat: -1
+    maxTextureSize: 512
+    textureFormat: 33
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
   - buildTarget: Android
     maxTextureSize: 256
     textureFormat: -1
@@ -95,9 +95,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 155
-        width: 65
-        height: 101
+        y: 314
+        width: 130
+        height: 198
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -107,10 +107,10 @@ TextureImporter:
       name: shinobu_write_down
       rect:
         serializedVersion: 2
-        x: 78
-        y: 155
-        width: 65
-        height: 101
+        x: 146
+        y: 311
+        width: 129
+        height: 201
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,10 +120,10 @@ TextureImporter:
       name: shinobu_write_up
       rect:
         serializedVersion: 2
-        x: 155
-        y: 155
-        width: 65
-        height: 101
+        x: 294
+        y: 314
+        width: 130
+        height: 198
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

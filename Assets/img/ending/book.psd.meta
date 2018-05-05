@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c9bbbb7d53b86e14d99d039c9b27c25e
-timeCreated: 1518280095
+timeCreated: 1525531545
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -42,7 +42,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -69,13 +69,13 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: iPhone
-    maxTextureSize: 128
-    textureFormat: -1
+    maxTextureSize: 256
+    textureFormat: 33
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
   - buildTarget: Android
     maxTextureSize: 128
     textureFormat: -1
@@ -92,11 +92,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 77
-        width: 52
-        height: 51
+        y: 150
+        width: 104
+        height: 104
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -104,12 +104,12 @@ TextureImporter:
       name: book_b
       rect:
         serializedVersion: 2
-        x: 68
-        y: 84
-        width: 31
-        height: 44
+        x: 134
+        y: 160
+        width: 70
+        height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

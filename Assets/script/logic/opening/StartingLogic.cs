@@ -28,7 +28,7 @@ namespace script.logic.opening
 				SceneStatus.Starting = true;
 				SceneStatus.Procedure = 1;
 				SceneStatus.EntranceNo = 1;
-				SceneLoadManager.Instance.LoadLevelInLoading(0.0f, 0.0f, "classroom", null);
+				SceneLoadManager.Instance.LoadLevelInLoading(0.0f, 0.0f, "classroom_a", null);
 			}
 		}
 		
