@@ -23,6 +23,7 @@ namespace script.trigger.artroom
 					if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.Smartball)
 					{
 						SceneStatus.ProcedureWithSceneId("classroom", 5);
+						SceneStatus.CanSearchMarble = true;
 						Register(other, 705);
 					}
 					else if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.None)
