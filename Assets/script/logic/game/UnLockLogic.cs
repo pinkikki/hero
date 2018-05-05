@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using script.core.character;
 using script.core.@event;
 using script.core.scene;
 using UnityEngine;
@@ -94,6 +95,7 @@ public class UnLockLogic : MonoBehaviour
                 EventManager.Instance.Register(809);
             }
         }
+        GameObject.Find("yusuke").GetComponent<MainCharacterController>().FreezeFlg = false;
         Destroy(gameObject);
     }
 }

@@ -39,6 +39,8 @@ namespace script.core.scene
         public static bool HasBroom { get; set; }
         
         public static bool HasQuizB { get; set; }
+        
+        public static bool CanSearchMarble { get; set; }
             
         public static bool IsCompletedGhostStories1 { get; set; }
         
