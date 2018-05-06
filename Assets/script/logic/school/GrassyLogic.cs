@@ -368,6 +368,9 @@ namespace script.logic.school
 			
 			var canvasScaler = GameObject.Find("BaseLayer").AddComponent<CanvasScaler>();
 			canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+			lastText.SetActive(false);
+			yield return null;
+			lastText.SetActive(true);
 			
 			yield return new WaitForSeconds(8.0f);
 			
