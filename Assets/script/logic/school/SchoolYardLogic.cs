@@ -1,5 +1,6 @@
 ﻿using script.core.asset;
 using script.core.audio;
+using script.core.character;
 using script.core.@event;
 using script.core.scene;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace script.logic.school
 				}
 			}
 			
+			ClearCompletedGhostStories();
 			
 			AudioManager.Instance.SetDownBgmVolume(1.0f);
 		}
@@ -176,6 +178,7 @@ namespace script.logic.school
 				new Vector2(0.0f, 0.0f), Quaternion.identity);
 			obj.name = "QuizD";
 			SceneStatus.HasQuizD = true;
+			GameObject.Find("yusuke").GetComponent<MainCharacterController>().FreezeFlg = true;
 		}
 		
 		public void Action015()
@@ -302,6 +305,16 @@ namespace script.logic.school
 		{
 			var classmate = GameObject.Find(getName);
 			classmate.name = setName;
+		}
+
+		void ClearCompletedGhostStories()
+		{
+			SceneStatus.IsCompletedGhostStories1 = false;
+			SceneStatus.IsCompletedGhostStories2 = false;
+			SceneStatus.IsCompletedGhostStories3 = false;
+			SceneStatus.IsCompletedGhostStories4 = false;
+			SceneStatus.IsCompletedGhostStories5 = false;
+			SceneStatus.IsCompletedGhostStories6 = false;
 		}
 	}
 }

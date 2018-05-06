@@ -16,7 +16,6 @@ namespace script.trigger.classroom
 
 		void OnCollisionEnter2D(Collision2D other) {
 			if (other.gameObject.name == "yusuke" && !SceneStatus.HasQuizA && SceneStatus.Procedure == 3) {
-				other.gameObject.GetComponent<MainCharacterController>().FreezeFlg = true;
 				SearchButton.Instance.OnRegister(503);
 			}
 		}

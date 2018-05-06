@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using script.common.dao;
+using script.common.entity;
 using script.core.audio;
 using script.core.@event;
 using UnityEngine;
@@ -34,14 +35,15 @@ namespace script.logic.ending
             var text1 = GameObject.Find("Text1").GetComponent<Text>();
             var text2 = GameObject.Find("Text2").GetComponent<Text>();
             var text3 = GameObject.Find("Text3").GetComponent<Text>();
+            var logo = GameObject.Find("Logo").GetComponent<Image>();
 
-            text2.text = "ヒーロー";
+            text2.text = "夏休みのヒーロー";
             yield return TextIn(text2);
             yield return new WaitForSeconds(5.0f);
             yield return TextOut(text2);
             Clear(text1, text2, text3);
 
-            text2.text = "スペシャルサンクス";
+            text2.text = "special thanks";
             yield return TextIn(text2);
             yield return new WaitForSeconds(3.0f);
             yield return TextOut(text2);
@@ -61,15 +63,17 @@ namespace script.logic.ending
             yield return AllTextOut(text1, text2, text3);
             Clear(text1, text2, text3);
 
-            text2.text = "おわり";
-            yield return TextIn(text2);
+            text1.text = "presented by torokkorio";
+            
+            yield return TextAndImageIn(text1, logo);
             yield return new WaitForSeconds(5.0f);
-            yield return TextOut(text2);
+            yield return TextAndImageOut(text1, logo);
             Clear(text1, text2, text3);
 
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(5.0f);
 
-            AudioManager.Instance.PlayBgm(MusicDao.SelectByPrimaryKey(8).MusicName);
+            MusicEntity entity = MusicDao.SelectByPrimaryKey(8);
+            AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
 
             yield return new WaitForSeconds(5.0f);
 
@@ -78,7 +82,11 @@ namespace script.logic.ending
 
         IEnumerator Action002Coroutine()
         {
-            yield return AudioManager.Instance.DownBgmVolume(10.0f, 0.0f);
+            var text2 = GameObject.Find("Text2").GetComponent<Text>();
+            text2.text = "おわり";
+            yield return TextIn(text2);
+            yield return new WaitForSeconds(5.0f);
+            yield return TextOut(text2);
             EventManager.Instance.NextTask();
         }
 
@@ -93,6 +101,19 @@ namespace script.logic.ending
                 yield return null;
             }
         }
+        
+        IEnumerator TextAndImageIn(Text text, Image image)
+        {
+            var time = 0.0f;
+            var fadeOutInterval = 2.0f;
+            while (time <= fadeOutInterval)
+            {
+                text.color = new Color(255, 255, 255, Mathf.Lerp(0f, 1f, time / fadeOutInterval));
+                image.color = new Color(255, 255, 255, Mathf.Lerp(0f, 1f, time / fadeOutInterval));
+                time += Time.deltaTime;
+                yield return null;
+            }
+        }
 
         IEnumerator TextOut(Text text)
         {
@@ -101,6 +122,19 @@ namespace script.logic.ending
             while (time <= fadeOutInterval)
             {
                 text.color = new Color(255, 255, 255, Mathf.Lerp(1f, 0f, time / fadeOutInterval));
+                time += Time.deltaTime;
+                yield return null;
+            }
+        }
+        
+        IEnumerator TextAndImageOut(Text text, Image image)
+        {
+            var time = 0.0f;
+            var fadeOutInterval = 2.0f;
+            while (time <= fadeOutInterval)
+            {
+                text.color = new Color(255, 255, 255, Mathf.Lerp(1f, 0f, time / fadeOutInterval));
+                image.color = new Color(255, 255, 255, Mathf.Lerp(1f, 0f, time / fadeOutInterval));
                 time += Time.deltaTime;
                 yield return null;
             }

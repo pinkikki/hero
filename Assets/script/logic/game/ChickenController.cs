@@ -16,8 +16,7 @@ namespace script.logic.game
         {
             if (gameObject.name == "chicken_target")
             {
-                // TODO 一旦ゆうすけにタッチするだけでゴールできるように変更
-                if (other.transform.name == "cover" || other.gameObject.name == "yusuke")
+                if (other.transform.name == "cover")
                 {
                     Destroy(this);
                     EventManager.Instance.Register(902);

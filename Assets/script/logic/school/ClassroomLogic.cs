@@ -115,6 +115,7 @@ namespace script.logic.school
 			var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/common/", "QuizA"),
 				new Vector2(0.0f, 0.0f), Quaternion.identity);
 			obj.name = "QuizA";
+			yusuke.gameObject.GetComponent<MainCharacterController>().FreezeFlg = true;
 		}
 
 		public void Action009()

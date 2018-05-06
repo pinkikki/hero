@@ -20,7 +20,6 @@ namespace script.trigger.schoolyard
 		{
 			if (other.gameObject.name == "yusuke" && SceneStatus.HasQuizC && SceneStatus.Procedure == 3 && !SceneStatus.HasQuizD)
 			{
-				other.gameObject.GetComponent<MainCharacterController>().FreezeFlg = true;
 				SearchButton.Instance.OnRegister(803);
 			}
 		}
