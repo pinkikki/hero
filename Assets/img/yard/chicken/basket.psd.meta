@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 344d53d0fa30c2e4ba44d90bebaf4f6e
-timeCreated: 1504422428
+timeCreated: 1525708262
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -70,12 +70,12 @@ TextureImporter:
     overridden: 0
   - buildTarget: iPhone
     maxTextureSize: 256
-    textureFormat: -1
+    textureFormat: 33
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
   - buildTarget: Android
     maxTextureSize: 256
     textureFormat: -1
@@ -92,11 +92,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 134
-        height: 192
+        y: 313
+        width: 210
+        height: 199
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -104,13 +104,13 @@ TextureImporter:
       name: basket_cover
       rect:
         serializedVersion: 2
-        x: 146
-        y: 141
-        width: 110
-        height: 115
+        x: 228
+        y: 395
+        width: 185
+        height: 117
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 2, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     outline: []
