@@ -117,7 +117,7 @@ namespace script.core.@event
 
         private readonly List<int> clearOmittedEventId = new List<int>
         {
-            602, 603, 604, 605, 606, 607, 721, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820
+            602, 603, 604, 605, 606, 607, 608, 609, 721, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820
         };
     }
 }
