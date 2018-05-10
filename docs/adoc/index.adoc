@@ -1,0 +1,10 @@
+:lang: ja
+
+:doctype: book
+:toc: left
+:toclevels: 2
+:docname: = 夏休みのヒーロー
+
+= 夏休みのヒーロー
+
+image::opening.png[]
