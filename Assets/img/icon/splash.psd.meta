@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 93ef069170df3bc4faf5d560afb9f509
-timeCreated: 1525455576
+timeCreated: 1526179601
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -91,10 +91,10 @@ TextureImporter:
       name: splash
       rect:
         serializedVersion: 2
-        x: 150
-        y: 350
-        width: 719
-        height: 322
+        x: 103
+        y: 349
+        width: 800
+        height: 332
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
