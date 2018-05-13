@@ -189,7 +189,6 @@ namespace script.logic.school
 			Destroy(niccMasaki);
 			Destroy(niccAko);
 	
-			masaki.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
 			masaki.layer = 11;
 			ako.layer = 11;
 			masaki.AddComponent<SecretBaseAutoCharacterController>();
