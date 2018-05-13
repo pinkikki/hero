@@ -154,9 +154,17 @@ namespace script.logic.game
             controller.RepeatNum = 50;
             controller.SpeedFactor = 0.075f;
             
-            niccMasaki.ConditionX = -6.55f;
+            var masakiRigidbody = masaki.GetComponent<Rigidbody2D>();
+            masakiRigidbody.velocity = Vector2.zero;
+            masakiRigidbody.isKinematic = true;
+            
+            var akoRigidbody = ako.GetComponent<Rigidbody2D>();
+            akoRigidbody.velocity = Vector2.zero;
+            akoRigidbody.isKinematic = true;
+
+            niccMasaki.ConditionX = -7.15f;
             niccMasaki.WalkLeft();
-            niccAko.ConditionX = -4.3f;
+            niccAko.ConditionX = -3.8f;
             niccAko.WalkLeft();
             while (true)
             {
