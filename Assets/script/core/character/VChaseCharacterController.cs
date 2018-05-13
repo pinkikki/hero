@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace script.core.character
 {
@@ -86,32 +87,35 @@ namespace script.core.character
             var absX = Mathf.Abs(targetX - selfX);
             var absY = Mathf.Abs(targetY - selfY);
 
-            if (0 < specialCount)
+            if (SceneManager.GetActiveScene().name != "classroom")
             {
-                specialCount -= 1;
-                if (!FreezeFlg)
+                if (0 < specialCount)
                 {
-                    currentRepeatNum++;
-                    if (collisionFlg || currentRepeatNum > repeatNum)
+                    specialCount -= 1;
+                    if (!FreezeFlg)
                     {
-                        type = Random.Range(0, 4);
-                        currentRepeatNum = 0;
+                        currentRepeatNum++;
+                        if (collisionFlg || currentRepeatNum > repeatNum)
+                        {
+                            type = Random.Range(0, 4);
+                            currentRepeatNum = 0;
+                        }
+    
+                        Walk();
+    
+                        Vector3 pos = gameObject.transform.position;
+                        pos.x += hSpeed * speedFactor;
+                        pos.y += vSpeed * speedFactor;
+                        gameObject.transform.position = pos;
                     }
-
-                    Walk();
-
-                    Vector3 pos = gameObject.transform.position;
-                    pos.x += hSpeed * speedFactor;
-                    pos.y += vSpeed * speedFactor;
-                    gameObject.transform.position = pos;
+                    return;
                 }
-                return;
-            }
-            var ran = Random.Range(0, 3000);
-            if (5 == ran)
-            {
-                specialCount = 200;
-                return;
+                var ran = Random.Range(0, 3000);
+                if (5 == ran)
+                {
+                    specialCount = 200;
+                    return;
+                }
             }
 
             if (!Mathf.Approximately(absX, destX) && absX > destX)
