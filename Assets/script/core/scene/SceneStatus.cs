@@ -30,14 +30,16 @@ namespace script.core.scene
 
         public static bool Starting { get; set; }
         
-        public static bool IsCompletedQuizA { get; set; }
+        public static bool CanComeInClassroom { get; set; }
 
         public static bool HasQuizA { get; set; }
 
         public static bool HasCicada { get; set; }
 
         public static bool HasBroom { get; set; }
-        
+
+        public static bool IsCompletedQuizA { get; set; }
+
         public static bool HasQuizB { get; set; }
         
         public static bool CanSearchMarble { get; set; }
