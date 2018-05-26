@@ -78,6 +78,10 @@ namespace script.core.hint
 				var options = new ShowOptions {resultCallback = HandleShowResult};
 				Advertisement.Show(zoneID, options);
 			}
+			else
+			{
+				OnFinished();
+			}
 		}
 
 		private void HandleShowResult(ShowResult result)

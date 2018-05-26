@@ -6,6 +6,7 @@ using script.core.character;
 using script.core.@event;
 using script.core.monoBehaviour;
 using script.core.operation;
+using script.core.quiz;
 using script.core.scene;
 using script.trigger.classroom;
 using UnityEngine;
@@ -175,6 +176,7 @@ namespace script.logic.school
 			vcccMasaki.MinDestNum = 0.771f;
 			masaki.layer = 9;
 			SceneStatus.HasQuizA = true;
+			QuizManager.Instance.Show();
 			EventManager.Instance.NextTask();
 		}
 
