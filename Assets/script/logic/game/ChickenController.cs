@@ -1,5 +1,6 @@
 ﻿using script.core.character;
 using script.core.@event;
+using script.core.hint;
 using UnityEngine;
 
 namespace script.logic.game
@@ -18,6 +19,7 @@ namespace script.logic.game
             {
                 if (other.transform.name == "cover")
                 {
+                    HelpManager.Instance.Hide();
                     Destroy(this);
                     EventManager.Instance.Register(902);
                 }

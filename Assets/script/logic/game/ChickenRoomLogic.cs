@@ -3,6 +3,7 @@ using script.core.asset;
 using script.core.camera;
 using script.core.character;
 using script.core.@event;
+using script.core.hint;
 using script.core.scene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,6 +23,7 @@ namespace script.logic.game
 
         void Start()
         {
+            HelpManager.Instance.Hide();
             EventManager.Instance.Register(901);
         }
 
@@ -215,6 +217,7 @@ namespace script.logic.game
             yield return new WaitForSeconds(1.0f);
             yusuke.AddComponent<ChickenMainCharacterController>();
             yusuke.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            HelpManager.Instance.Show();
             EventManager.Instance.NextTask();
         }
 
