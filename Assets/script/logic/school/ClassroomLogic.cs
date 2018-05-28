@@ -193,7 +193,6 @@ namespace script.logic.school
 			rig.isKinematic = true;
 			var box = yusuke.GetComponent<BoxCollider2D>();
 			box.enabled = false;
-			yusuke.GetComponent<SpriteRenderer>().sortingOrder = 99;
 			var vcccAko = ako.GetComponent<VChaseCharacterController>();
 			vcccAko.enabled = false;
 			var vcccMasaki = masaki.GetComponent<VChaseCharacterController>();
@@ -365,21 +364,35 @@ namespace script.logic.school
 			yield return null;
 
 			
-			if (niccYusuke.Anim.GetBool("Lwait"))
+			niccMasaki.ConditionY = 4.56f;
+			if (4.56f < masaki.transform.position.y)
 			{
-				niccMasaki.ConditionY = 4.56f;
 				niccMasaki.WalkFront();
-				while (true)
-				{
-					if (!niccMasaki.WalkingFlg)
-					{
-						break;
-					}
-					yield return null;
-				}
 			}
+			else
+			{
+				niccMasaki.WalkBack();				
+			}
+			
+			while (true)
+			{
+				if (!niccMasaki.WalkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
+			
 			niccMasaki.ConditionX = 3.0f;
-			niccMasaki.WalkLeft();
+			if (3.0f < masaki.transform.position.x)
+			{
+				niccMasaki.WalkLeft();
+			}
+			else
+			{
+				niccMasaki.WalkRight();				
+			}
+			
 			while (true)
 			{
 				if (!niccMasaki.WalkingFlg)
@@ -392,21 +405,34 @@ namespace script.logic.school
 			niccMasaki.WalkRightNoSpeed();
 			
 			
-			if (niccYusuke.Anim.GetBool("Lwait"))
+			niccAko.ConditionY = 4.56f;
+			if (4.56f < ako.transform.position.y)
 			{
-				niccAko.ConditionY = 4.56f;
 				niccAko.WalkFront();
-				while (true)
-				{
-					if (!niccAko.WalkingFlg)
-					{
-						break;
-					}
-					yield return null;
-				}
 			}
+			else
+			{
+				niccAko.WalkBack();				
+			}
+			
+			while (true)
+			{
+				if (!niccAko.WalkingFlg)
+				{
+					break;
+				}
+				yield return null;
+			}
+
 			niccAko.ConditionX = 4.0f;
-			niccAko.WalkLeft();
+			if (4.0f < ako.transform.position.x)
+			{
+				niccAko.WalkLeft();
+			}
+			else
+			{
+				niccAko.WalkRight();				
+			}
 			while (true)
 			{
 				if (!niccAko.WalkingFlg)
@@ -419,29 +445,37 @@ namespace script.logic.school
 			niccAko.WalkRightNoSpeed();
 			yield return new WaitForSeconds(0.5f);
 
-			if (niccYusuke.Anim.GetBool("Rwait") || niccYusuke.Anim.GetBool("Lwait"))
-			{
-				var rwait = niccYusuke.Anim.GetBool("Rwait");
-				
-				niccYusuke.ConditionY = 4.56f;
-				niccYusuke.WalkFront();
-				while (true)
+			
+			niccYusuke.ConditionY = 4.56f;
+			if (0.6f < Mathf.Abs(ClassroomDeskStatus.DeskX - yusuke.transform.position.x)) {
+				if (4.56f < yusuke.transform.position.y)
 				{
-					if (!niccYusuke.WalkingFlg)
-					{
-						break;
-					}
-					yield return null;
-				}
-				
-				if (rwait) {
-					niccYusuke.ConditionX = yusuke.transform.position.x + 0.7f;
-					niccYusuke.WalkRight();
+					niccYusuke.WalkFront();
 				}
 				else
 				{
-					niccYusuke.ConditionX = yusuke.transform.position.x - 0.7f;
+					niccYusuke.WalkBack();				
+				}
+				while (true)
+				{
+					if (!niccYusuke.WalkingFlg)
+					{
+						break;
+					}
+					yield return null;
+				}
+			}
+			
+			if (0.2f < Mathf.Abs(ClassroomDeskStatus.DeskX - yusuke.transform.position.x))
+			{
+				niccYusuke.ConditionX = ClassroomDeskStatus.DeskX;
+				if (ClassroomDeskStatus.DeskX < yusuke.transform.position.x)
+				{
 					niccYusuke.WalkLeft();
+				}
+				else
+				{
+					niccYusuke.WalkRight();				
 				}
 				
 				while (true)
@@ -452,9 +486,9 @@ namespace script.logic.school
 					}
 					yield return null;
 				}
-				
-				niccYusuke.WalkBackNoSpeed();
 			}
+			yusuke.GetComponent<SpriteRenderer>().sortingOrder = 99;
+			niccYusuke.WalkBackNoSpeed();
 			
 			yield return StartCoroutine(niccYusuke.MoveUpOrDown(5.6f, 0.2f));
 

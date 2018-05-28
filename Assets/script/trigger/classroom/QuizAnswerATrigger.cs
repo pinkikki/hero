@@ -1,6 +1,7 @@
 ﻿using script.core.monoBehaviour;
 using script.core.operation;
 using script.core.scene;
+using script.logic.school;
 using UnityEngine;
 
 namespace script.trigger.classroom
@@ -28,6 +29,7 @@ namespace script.trigger.classroom
 				if ((0.6f < pos.x && pos.x < 1.4f) && 1.4f < pos.y)
 				{
 					registrationFlg = true;
+					ClassroomDeskStatus.DeskX = transform.position.x;
 					SearchButton.Instance.OnRegister(504);
 				}
 
