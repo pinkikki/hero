@@ -23,6 +23,7 @@ namespace script.core.hint
 
         void Start()
         {
+            var obj = Instance;
             Initialize();
 
             if (baseButton == null)
