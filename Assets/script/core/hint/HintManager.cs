@@ -1,4 +1,7 @@
 ﻿using script.core.character;
+using script.core.operation;
+using script.core.quiz;
+using script.core.scene;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -20,10 +23,13 @@ namespace script.core.hint
         [Header("OnSkipped Callback")] public UnityEvent OnSkippedAds;
         [Header("OnFailed Callback")] public UnityEvent OnFailedAds;
 
+        public bool Enabled;
 
         void Start()
         {
             var obj = Instance;
+            Hide();
+            Enabled = true;
             Initialize();
 
             if (baseButton == null)
@@ -109,28 +115,35 @@ namespace script.core.hint
 
         public void ClickBaseButton()
         {
-            baseButton.SetActive(false);
-            contentBoxA.SetActive(true);
-            contentBoxB.SetActive(false);
-            var yusuke = GameObject.Find("yusuke");
-            if (yusuke != null)
+            if (Enabled)
             {
-                var mainCharacterController = yusuke.GetComponent<MainCharacterController>();
-                if (mainCharacterController != null)
+                baseButton.SetActive(false);
+                contentBoxA.SetActive(true);
+                contentBoxB.SetActive(false);
+                SearchButton.Instance.Hide();
+                QuizManager.Instance.Hide();
+                var yusuke = GameObject.Find("yusuke");
+                if (yusuke != null)
                 {
-                    mainCharacterController.FreezeFlg = true;
+                    var mainCharacterController = yusuke.GetComponent<MainCharacterController>();
+                    if (mainCharacterController != null)
+                    {
+                        mainCharacterController.FreezeFlg = true;
+                    }
+                }
+        
+                if (HintRepository.Instance.HasNext())
+                {
+                    yellowButtonTextOfcontentBoxA.text = "動画を見てヒントをもらう";
+                }
+                else
+                {
+                    yellowButtonTextOfcontentBoxA.text = "今見れるヒントはもうないよ";
+                    yellowButtonOfcontentBoxA.interactable = false;
                 }
             }
 
-            if (HintRepository.Instance.HasNext())
-            {
-                yellowButtonTextOfcontentBoxA.text = "動画を見てヒントをもらう";
-            }
-            else
-            {
-                yellowButtonTextOfcontentBoxA.text = "今見れるヒントはもうないよ";
-                yellowButtonOfcontentBoxA.interactable = false;
-            }
+            PlaySe();
         }
 
         public void ClickGreenButtonContentBox()
@@ -138,6 +151,9 @@ namespace script.core.hint
             baseButton.SetActive(true);
             contentBoxA.SetActive(false);
             contentBoxB.SetActive(false);
+            SearchButton.Instance.Show();
+            QuizManager.Instance.Show();
+
             var yusuke = GameObject.Find("yusuke");
             if (yusuke != null)
             {
@@ -150,6 +166,7 @@ namespace script.core.hint
 
             yellowButtonOfcontentBoxA.interactable = true;
             yellowButtonOfcontentBoxB.interactable = true;
+            PlaySe();
         }
 
         public void ClickYellowButtonContentBox()
@@ -158,6 +175,20 @@ namespace script.core.hint
             contentBoxA.SetActive(false);
             contentBoxB.SetActive(false);
             ShowUnityAds();
+            PlaySe();
+        }
+        
+        public void Show()
+        {
+            if (!SceneStatus.CanFlowEndRoll && SceneStatus.Starting)
+            {
+                gameObject.SetActive(true);	
+            }
+        }
+        
+        public void Hide()
+        {
+            gameObject.SetActive(false);	
         }
     }
 }

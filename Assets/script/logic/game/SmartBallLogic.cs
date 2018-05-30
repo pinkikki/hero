@@ -2,7 +2,9 @@
 using script.common.entity;
 using script.core.audio;
 using script.core.character;
+using script.core.hint;
 using script.core.operation;
+using script.core.quiz;
 using UnityEngine;
 
 namespace script.logic.game
@@ -40,6 +42,11 @@ namespace script.logic.game
             SetPosition(bar, barPos);
             SetPosition(ball, ballPos);
             SearchButton.Instance.Hide();
+            QuizManager.Instance.Hide();
+            if (HintManager.Exist())
+            {
+                HintManager.Instance.Hide();
+            }
             MusicEntity entity = MusicDao.SelectByPrimaryKey(6);
             AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
         }
@@ -49,6 +56,11 @@ namespace script.logic.game
             camera.enabled = false;
             subButton.SetActive(false);
             SearchButton.Instance.Show();
+            QuizManager.Instance.Show();
+            if (HintManager.Exist())
+            {
+                HintManager.Instance.Show();
+            }
         }
         
         public void Restart()

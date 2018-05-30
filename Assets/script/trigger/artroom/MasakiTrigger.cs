@@ -19,19 +19,34 @@ namespace script.trigger.artroom
 		{
 			if (other.gameObject.name == "yusuke" && SceneStatus.Procedure == 1)
 			{
-				if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.Smartball)
+				var reQuizObj = GameObject.Find("ReQuiz");
+				if (reQuizObj == null)
 				{
-					SceneStatus.ProcedureWithSceneId("classroom", 5);
-					SceneStatus.CanSearchMarble = true;
-					Register(other, 705);
-				}
-				else if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.None)
-				{
-					Register(other, 703);
-				}
-				else
-				{
-					Register(other, 704);
+					var yusuke = GameObject.Find("yusuke");
+					if (yusuke != null)
+					{
+						var mainCharacterController = yusuke.GetComponent<MainCharacterController>();
+						if (mainCharacterController != null)
+						{
+							if (!mainCharacterController.FreezeFlg)
+							{
+								if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.Smartball)
+								{
+									SceneStatus.ProcedureWithSceneId("classroom", 5);
+									SceneStatus.CanSearchMarble = true;
+									Register(other, 705);
+								}
+								else if (SceneStatus.LastSearchedArtObject == SceneStatus.ArtObject.None)
+								{
+									Register(other, 703);
+								}
+								else
+								{
+									Register(other, 704);
+								}
+							}
+						}
+					}
 				}
 			}
 		}

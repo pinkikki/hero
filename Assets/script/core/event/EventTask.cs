@@ -2,8 +2,10 @@
 using script.common.dao;
 using script.common.entity;
 using script.core.audio;
+using script.core.hint;
 using script.core.message;
 using script.core.operation;
+using script.core.quiz;
 
 namespace script.core.@event
 {
@@ -26,6 +28,11 @@ namespace script.core.@event
         public void Execute()
         {
             SearchButton.Instance.OnNop();
+            QuizManager.Instance.Enabled = false;
+            if (HintManager.Exist())
+            {
+                HintManager.Instance.Enabled = false;
+            }
             for (var i = CurrentIndex; i < eventDetailList.Count; i++)
             {
                 if (StopFlg)
@@ -112,6 +119,11 @@ namespace script.core.@event
                 SearchButton.Instance.OnRegister(eventDetailList[0].EventId);
             } else {
                 SearchButton.Instance.OnDialog();
+            }
+            QuizManager.Instance.Enabled = true;
+            if (HintManager.Exist())
+            {
+                HintManager.Instance.Enabled = true;
             }
         }
 

@@ -1,4 +1,6 @@
 ﻿using script.core.character;
+using script.core.operation;
+using script.core.quiz;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -63,6 +65,9 @@ namespace script.core.hint
         {
             baseButton.SetActive(false);
             contentBoxA.SetActive(true);
+            SearchButton.Instance.Hide();
+            QuizManager.Instance.Hide();
+
 
             var yusuke = GameObject.Find("yusuke");
             if (yusuke != null)
@@ -73,12 +78,16 @@ namespace script.core.hint
                     mainCharacterController.FreezeFlg = true;
                 }
             }
+            PlaySe();
         }
 
         public void ClickGreenButtonContentBox()
         {
             baseButton.SetActive(true);
             contentBoxA.SetActive(false);
+            SearchButton.Instance.Show();
+            QuizManager.Instance.Show();
+
             var yusuke = GameObject.Find("yusuke");
             if (yusuke != null)
             {
@@ -88,6 +97,7 @@ namespace script.core.hint
                     mainCharacterController.FreezeFlg = false;
                 }
             }
+            PlaySe();
         }
 
         public void ClickYellowButtonContentBox()
@@ -95,6 +105,7 @@ namespace script.core.hint
             baseButton.SetActive(false);
             contentBoxA.SetActive(false);
             ShowUnityAds();
+            PlaySe();
         }
 
         public void Show()

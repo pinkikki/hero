@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using script.core.asset;
 using script.core.audio;
 using script.core.character;
+using script.core.hint;
 using script.core.initialization;
 using script.core.monoBehaviour;
 using script.core.operation;
+using script.core.quiz;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -94,6 +96,11 @@ namespace script.core.scene
 				isDuring = true;
 				
 				SearchButton.Instance.Hide();
+				QuizManager.Instance.Hide();
+				if (HintManager.Exist())
+				{
+					HintManager.Instance.Hide();
+				}
 				var raw = CreateLayer();
 
 				var time = 0.0f;
@@ -157,6 +164,11 @@ namespace script.core.scene
 
 				Destroy();
 				SearchButton.Instance.Show();
+				QuizManager.Instance.Show();
+				if (HintManager.Exist())
+				{
+					HintManager.Instance.Show();
+				}
 			}
 			finally
 			{

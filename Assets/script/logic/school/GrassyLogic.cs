@@ -6,6 +6,7 @@ using script.core.camera;
 using script.core.character;
 using script.core.@event;
 using script.core.hint;
+using script.core.quiz;
 using script.core.scene;
 using UnityEngine;
 using UnityEngine.UI;
@@ -157,6 +158,7 @@ namespace script.logic.school
 			Destroy(ako.GetComponent<VChaseCharacterController>());
 			yield return new WaitForSeconds(0.3f);
 			HelpManager.Instance.Hide();
+			QuizManager.Instance.Hide();
 			niccYusuke = yusuke.AddComponent<NoInputCharacterController>();
 			niccMasaki = masaki.AddComponent<NoInputCharacterController>();
 			niccAko = ako.AddComponent<NoInputCharacterController>();

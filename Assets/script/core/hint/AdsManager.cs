@@ -1,4 +1,7 @@
-﻿using script.core.monoBehaviour;
+﻿using script.common.dao;
+using script.common.entity;
+using script.core.audio;
+using script.core.monoBehaviour;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -9,6 +12,8 @@ namespace script.core.hint
 		[SerializeField] protected string zoneID = "rewardedVideo";
 		[SerializeField] protected string gameID_iOS = "";
 		[SerializeField] protected string gameID_Android = "";
+		MusicEntity entity;
+
 
 		protected void Initialize()
 		{
@@ -60,6 +65,15 @@ namespace script.core.hint
 		protected abstract void OnFinished();
 		protected abstract void OnFailed();
 		protected abstract void OnSkipped();
+		
+		protected void PlaySe()
+		{
+			if (entity == null)
+			{
+				entity = MusicDao.SelectByPrimaryKey(7);
+			}
+			AudioManager.Instance.PlaySe(entity.MusicName);
+		}
 
 	}
 }
