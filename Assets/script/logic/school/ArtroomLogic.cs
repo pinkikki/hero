@@ -537,7 +537,7 @@ namespace script.logic.school
 			var autoMasaki = masaki.AddComponent<AutoCharacterController>();
 			var autoAko = ako.AddComponent<AutoCharacterController>();
 			autoMasaki.RepeatNum = 20;
-			autoMasaki.SpeedFactor = 0.10f;
+			autoMasaki.SpeedFactor = 0.05f;
 			autoAko.RepeatNum = 30;
 			autoAko.SpeedFactor = 0.05f;
 		}
