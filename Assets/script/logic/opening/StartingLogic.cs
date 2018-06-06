@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using script.common.dao;
 using script.core.audio;
 using script.core.@event;
@@ -9,8 +10,18 @@ using UnityEngine.UI;
 namespace script.logic.opening
 {
 	public class StartingLogic : MonoBehaviour {
+
+		[SerializeField] GameObject ContinueButton;
 		
-		void Start () {
+		void Start ()
+		{
+			if (ContinueButton == null)
+			{
+				ContinueButton = GameObject.Find("ContinueButton");
+			}
+
+			ContinueButton.SetActive(false);
+			
 			EventManager.Instance.Register(5001);
 		}
 	
@@ -19,16 +30,30 @@ namespace script.logic.opening
 		}
 
 		private bool starting;
-		public void Click()
+		public void StartGame()
 		{
 			if (!starting)
 			{
 				starting = true;
 				AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
+				SaveDao.Delete();
+				SaveDao.Insert();
 				SceneStatus.Starting = true;
 				SceneStatus.Procedure = 1;
 				SceneStatus.EntranceNo = 1;
 				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 5.0f, "classroom", null);
+			}
+		}
+		public void ContinueGame()
+		{
+			if (!starting)
+			{
+				starting = true;
+				AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
+				var saveEntity = SaveDao.SelectAll();
+				saveEntity.reflect();
+				SceneStatus.EntranceNo = 1;
+				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 5.0f, saveEntity.SceneId, null);
 			}
 		}
 		
@@ -39,11 +64,23 @@ namespace script.logic.opening
 
 		IEnumerator Action001Coroutine()
 		{
+			var saveEntity = SaveDao.SelectAll();
+			if (saveEntity.SceneId != "starting")
+			{
+				ContinueButton.SetActive(true);
+			}
 			yield return new WaitForSeconds(3.0f);
 			yield return SpriteIn(GameObject.Find("opening_illust").GetComponent<SpriteRenderer>());
 			yield return new WaitForSeconds(2.0f);
 			yield return SpriteIn(GameObject.Find("opening_title").GetComponent<SpriteRenderer>());
-			yield return TextIn(GameObject.Find("Text").GetComponent<Text>());
+			List<Text> texts = new List<Text>();
+			texts.Add(GameObject.Find("StartButton/Text").GetComponent<Text>());
+			if (saveEntity.SceneId != "starting")
+			{
+				texts.Add(ContinueButton.transform.Find("Text").GetComponent<Text>());
+			}
+			yield return TextsIn(texts);
+			EventManager.Instance.NextTask();
 		}
 		
 		IEnumerator SpriteIn(SpriteRenderer sprite)
@@ -58,15 +95,18 @@ namespace script.logic.opening
 			}
 		}
 		
-		IEnumerator TextIn(Text text)
+		IEnumerator TextsIn(List<Text> texts)
 		{
 			var time = 0.0f;
 			var fadeOutInterval = 2.0f;
 			while (time <= fadeOutInterval)
 			{
-				text.color = new Color(255, 255, 255, Mathf.Lerp(0f, 1f, time / fadeOutInterval));
-				time += Time.deltaTime;
-				yield return null;
+				foreach (var text in texts)
+				{
+					text.color = new Color(255, 255, 255, Mathf.Lerp(0f, 1f, time / fadeOutInterval));
+					time += Time.deltaTime;
+					yield return null;
+				}
 			}
 		}
 	}

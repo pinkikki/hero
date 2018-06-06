@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
+using script.common.dao;
+using script.common.entity;
 using script.core.asset;
 using script.core.camera;
 using script.core.character;

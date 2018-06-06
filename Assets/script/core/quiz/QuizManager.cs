@@ -33,6 +33,7 @@ namespace script.core.quiz
 
 		public void OnClick()
 		{
+			Debug.Log(Enabled);
 			if (Enabled)
 			{
 				string quizName;
@@ -61,6 +62,8 @@ namespace script.core.quiz
 				{
 					return;
 				}
+				
+				Debug.Log(quizName);
 				
 				var obj = (GameObject) Instantiate(AssetLoader.Instance.LoadPrefab("prefab/common/", quizName),
 					new Vector2(0.0f, 0.0f), Quaternion.identity);
