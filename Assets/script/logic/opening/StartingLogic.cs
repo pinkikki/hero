@@ -37,7 +37,7 @@ namespace script.logic.opening
 		
 		}
 
-		private bool starting;
+		private bool starting = true;
 		public void StartGame()
 		{
 			if (!starting)
@@ -48,13 +48,12 @@ namespace script.logic.opening
 				if (saveEntity.SceneId != "starting")
 				{
 					StartSelect.SetActive(true);
+					starting = false;
 				}
 				else
 				{
 					Advance();
-
 				}
-				starting = false;
 			}
 		}
 		
@@ -66,7 +65,6 @@ namespace script.logic.opening
 				AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
 				Advance();
 			}
-			
 		}
 
 		void Advance()
@@ -84,6 +82,7 @@ namespace script.logic.opening
 		{
 			StartSelect.SetActive(false);
 			AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
+			starting = false;
 		}
 		
 		public void ContinueGame()
@@ -123,6 +122,7 @@ namespace script.logic.opening
 				texts.Add(ContinueButton.transform.Find("Text").GetComponent<Text>());
 			}
 			yield return TextsIn(texts);
+			starting = false;
 			EventManager.Instance.NextTask();
 		}
 		
