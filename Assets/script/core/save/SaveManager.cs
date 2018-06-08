@@ -13,7 +13,8 @@ namespace script.core.save
                     SceneStatus.ProcedureBySceneId("classroom"),
                     SceneStatus.ProcedureBySceneId("corridor"),
                     SceneStatus.ProcedureBySceneId("artroom"),
-                    SceneStatus.ProcedureBySceneId("schoolyard")
+                    SceneStatus.ProcedureBySceneId("schoolyard"),
+                    SceneStatus.CompletedList
                 );
         }
 

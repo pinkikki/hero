@@ -3,6 +3,7 @@ using System.Linq;
 using script.common.dao;
 using script.common.entity;
 using script.core.asset;
+using script.core.audio;
 using script.core.camera;
 using script.core.character;
 using script.core.@event;
@@ -32,7 +33,8 @@ namespace script.logic.school
 		{
 			if (SceneStatus.Procedure == 1)
 			{
-				EventManager.Instance.Register(500);
+				// Continue対応によりコメントアウト
+//				EventManager.Instance.Register(500);
 			}
 			else if (SceneStatus.Procedure == 2)
 			{
@@ -51,12 +53,17 @@ namespace script.logic.school
 				}
 			}
 			SearchButton.Instance.Show();
+			MusicEntity entity = MusicDao.SelectByPrimaryKey(1);
+			if (!AudioManager.Instance.Playing(entity.MusicName))
+			{
+				AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
+			}
 		}
 
 		void Update()
 		{
-			if (isRegistered || 17 > EventManager.Instance.CompleteEventSet.Count) return;
-			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 17) return;
+			if (isRegistered || 1 > EventManager.Instance.CompleteEventSet.Count) return;
+			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 1) return;
 			isRegistered = true;
 			SceneStatus.CanComeInClassroom = true;
 			EventManager.Instance.Register(501);
@@ -190,6 +197,11 @@ namespace script.logic.school
 
 		public void Action014()
 		{
+			// Continue対応
+			yusuke = GameObject.Find("yusuke");
+			masaki = GameObject.Find("masaki");
+			ako = GameObject.Find("ako");
+
 			niccYusuke = yusuke.AddComponent<NoInputCharacterController>();
 			var rig = yusuke.GetComponent<Rigidbody2D>();
 			rig.isKinematic = true;

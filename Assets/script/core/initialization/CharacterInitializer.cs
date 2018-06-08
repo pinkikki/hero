@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 using script.common.dao;
 using script.common.entity;
 using script.core.asset;
@@ -13,6 +15,7 @@ namespace script.core.initialization
     public class CharacterInitializer : SingletonMonoBehaviour<CharacterInitializer>
     {
         [SerializeField] List<string> cameraTargetList;
+        [SerializeField] bool mergeFlg;
         AssetLoader.LoadStatus loadStatus = AssetLoader.LoadStatus.LoadWait;
 
         public AssetLoader.LoadStatus LoadStatus
@@ -40,9 +43,38 @@ namespace script.core.initialization
                 return;
             }
 
+            List<LocationEntity> mergedLocationList = locationList;
+            
+            // Continue対応…
+            if (SceneStatus.Continue && mergeFlg)
+            {
+                if (!SceneStatus.HasQuizB)
+                {
+                    int incrementNum = 90;
+                    if (SceneStatus.HasQuizA)
+                    {
+                        incrementNum++;
+                    }
+                    var continueLocationList = LocationDao.SelectBySceneStatus(SceneStatus.SceneId,
+                        SceneStatus.EntranceNo, SceneStatus.Procedure + incrementNum);
+    
+                    mergedLocationList = locationList.Select(
+                        locationEntity =>
+                        {
+                            var findIndex = continueLocationList.FindIndex(
+                                continueEntity => continueEntity.ObjectName == locationEntity.ObjectName);
+    
+                            return findIndex == -1 ? locationEntity : continueLocationList[findIndex];
+                        }
+                    ).ToList();
+                }
+            }
+
+            SceneStatus.Continue = false;
+
             // TODO ちょっとここで実装するべきものじゃない
             var chaseObjs = new Dictionary<string, GameObject>();
-            foreach (var location in locationList)
+            foreach (var location in mergedLocationList)
             {
                 var prefab = AssetLoader.Instance.LoadPrefab(location.AssetBandlesName, location.AssetName);
                 var obj = (GameObject) Instantiate(prefab,

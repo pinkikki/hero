@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using script.common.dao;
 using UnityEngine.SceneManagement;
 
 namespace script.core.scene
 {
-    public class SceneStatus
+    public static class SceneStatus
     {
         public static string SceneId
         {
@@ -30,6 +31,10 @@ namespace script.core.scene
 
         public static int EntranceNo { get; set; }
 
+        public static List<string> CompletedList = new List<string>();
+        
+        public static bool Continue { get; set; }
+
         private static bool starting;
 
         public static bool Starting
@@ -40,7 +45,7 @@ namespace script.core.scene
                 starting = value;
                 if (starting)
                 {
-                    SaveDao.Update("Starting");
+                    CompletedList.Add("Starting");
                 }
             }
         }
@@ -55,7 +60,7 @@ namespace script.core.scene
                 canComeInClassroom = value;
                 if (canComeInClassroom)
                 {
-                    SaveDao.Update("CanComeInClassroom");
+                    CompletedList.Add("CanComeInClassroom");
                 }
             }
         }
@@ -70,7 +75,7 @@ namespace script.core.scene
                 hasQuizA = value;
                 if (hasQuizA)
                 {
-                    SaveDao.Update("HasQuizA");
+                    CompletedList.Add("HasQuizA");
                 }
             }
         }
@@ -85,7 +90,7 @@ namespace script.core.scene
                 hasCicada = value;
                 if (hasCicada)
                 {
-                    SaveDao.Update("HasCicada");
+                    CompletedList.Add("HasCicada");
                 }
             }
         }
@@ -100,7 +105,7 @@ namespace script.core.scene
                 hasBroom = value;
                 if (hasBroom)
                 {
-                    SaveDao.Update("HasBroom");
+                    CompletedList.Add("HasBroom");
                 }
             }
         }
@@ -115,7 +120,7 @@ namespace script.core.scene
                 isCompletedQuizA = value;
                 if (isCompletedQuizA)
                 {
-                    SaveDao.Update("IsCompletedQuizA");
+                    CompletedList.Add("IsCompletedQuizA");
                 }
             }
         }
@@ -130,7 +135,7 @@ namespace script.core.scene
                 hasQuizB = value;
                 if (hasQuizB)
                 {
-                    SaveDao.Update("HasQuizB");
+                    CompletedList.Add("HasQuizB");
                 }
             }
         }
@@ -145,7 +150,7 @@ namespace script.core.scene
                 canSearchMarble = value;
                 if (canSearchMarble)
                 {
-                    SaveDao.Update("CanSearchMarble");
+                    CompletedList.Add("CanSearchMarble");
                 }
             }
         }
@@ -172,7 +177,7 @@ namespace script.core.scene
                 canSearchMatomari = value;
                 if (canSearchMatomari)
                 {
-                    SaveDao.Update("CanSearchMatomari");
+                    CompletedList.Add("CanSearchMatomari");
                 }
             }
         }
@@ -187,7 +192,7 @@ namespace script.core.scene
                 hasGraveRoadA = value;
                 if (hasGraveRoadA)
                 {
-                    SaveDao.Update("HasGraveRoadA");
+                    CompletedList.Add("HasGraveRoadA");
                 }
             }
         }
@@ -202,7 +207,7 @@ namespace script.core.scene
                 canGetGraveRoadB = value;
                 if (canGetGraveRoadB)
                 {
-                    SaveDao.Update("CanGetGraveRoadB");
+                    CompletedList.Add("CanGetGraveRoadB");
                 }
             }
         }
@@ -217,7 +222,7 @@ namespace script.core.scene
                 hasGraveRoadB = value;
                 if (hasGraveRoadB)
                 {
-                    SaveDao.Update("HasGraveRoadB");
+                    CompletedList.Add("HasGraveRoadB");
                 }
             }
         }
@@ -232,7 +237,7 @@ namespace script.core.scene
                 hasMatomari = value;
                 if (hasMatomari)
                 {
-                    SaveDao.Update("HasMatomari");
+                    CompletedList.Add("HasMatomari");
                 }
             }
         }
@@ -247,7 +252,7 @@ namespace script.core.scene
                 canCreateNerikeshi = value;
                 if (canCreateNerikeshi)
                 {
-                    SaveDao.Update("CanCreateNerikeshi");
+                    CompletedList.Add("CanCreateNerikeshi");
                 }
             }
         }
@@ -262,7 +267,7 @@ namespace script.core.scene
                 hasGlue = value;
                 if (hasGlue)
                 {
-                    SaveDao.Update("HasGlue");
+                    CompletedList.Add("HasGlue");
                 }
             }
         }
@@ -277,7 +282,7 @@ namespace script.core.scene
                 isFinishedWashingHands = value;
                 if (isFinishedWashingHands)
                 {
-                    SaveDao.Update("IsFinishedWashingHands");
+                    CompletedList.Add("IsFinishedWashingHands");
                 }
             }
         }
@@ -292,7 +297,7 @@ namespace script.core.scene
                 hasDuster = value;
                 if (hasDuster)
                 {
-                    SaveDao.Update("HasDuster");
+                    CompletedList.Add("HasDuster");
                 }
             }
         }
@@ -307,7 +312,7 @@ namespace script.core.scene
                 hasNerikeshi = value;
                 if (hasNerikeshi)
                 {
-                    SaveDao.Update("HasNerikeshi");
+                    CompletedList.Add("HasNerikeshi");
                 }
             }
         }
@@ -322,7 +327,7 @@ namespace script.core.scene
                 canGetMudDumplings = value;
                 if (canGetMudDumplings)
                 {
-                    SaveDao.Update("CanGetMudDumplings");
+                    CompletedList.Add("CanGetMudDumplings");
                 }
             }
         }
@@ -337,7 +342,7 @@ namespace script.core.scene
                 hasMudDumplings = value;
                 if (hasMudDumplings)
                 {
-                    SaveDao.Update("HasMudDumplings");
+                    CompletedList.Add("HasMudDumplings");
                 }
             }
         }
@@ -352,7 +357,7 @@ namespace script.core.scene
                 hasMarble = value;
                 if (hasMarble)
                 {
-                    SaveDao.Update("HasMarble");
+                    CompletedList.Add("HasMarble");
                 }
             }
         }
@@ -367,7 +372,7 @@ namespace script.core.scene
                 hasQuizC = value;
                 if (hasQuizC)
                 {
-                    SaveDao.Update("HasQuizC");
+                    CompletedList.Add("HasQuizC");
                 }
             }
         }
@@ -382,7 +387,7 @@ namespace script.core.scene
                 hasQuizD = value;
                 if (hasQuizD)
                 {
-                    SaveDao.Update("HasQuizD");
+                    CompletedList.Add("HasQuizD");
                 }
             }
         }
@@ -397,7 +402,7 @@ namespace script.core.scene
                 isFinishedFirstUnLocking = value;
                 if (isFinishedFirstUnLocking)
                 {
-                    SaveDao.Update("IsFinishedFirstUnLocking");
+                    CompletedList.Add("IsFinishedFirstUnLocking");
                 }
             }
         }
@@ -412,7 +417,7 @@ namespace script.core.scene
                 isFinishedSecondUnLocking = value;
                 if (isFinishedSecondUnLocking)
                 {
-                    SaveDao.Update("IsFinishedSecondUnLocking");
+                    CompletedList.Add("IsFinishedSecondUnLocking");
                 }
             }
         }
@@ -427,7 +432,7 @@ namespace script.core.scene
                 hasQuizE = value;
                 if (hasQuizE)
                 {
-                    SaveDao.Update("HasQuizE");
+                    CompletedList.Add("HasQuizE");
                 }
             }
         }
@@ -442,7 +447,7 @@ namespace script.core.scene
                 canFlowEndRoll = value;
                 if (canFlowEndRoll)
                 {
-                    SaveDao.Update("CanFlowEndRoll");
+                    CompletedList.Add("CanFlowEndRoll");
                 }
             }
         }
@@ -457,7 +462,7 @@ namespace script.core.scene
                 isCompletedShinobuRoomA = value;
                 if (isCompletedShinobuRoomA)
                 {
-                    SaveDao.Update("IsCompletedShinobuRoomA");
+                    CompletedList.Add("IsCompletedShinobuRoomA");
                 }
             }
         }

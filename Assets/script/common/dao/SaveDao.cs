@@ -1,7 +1,9 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using Plugins;
 using script.common.entity;
 using script.core.db;
+using UnityEngine;
 
 namespace script.common.dao
 {
@@ -22,19 +24,25 @@ namespace script.common.dao
             DbManager.ExecuteNonQuery(sb.ToString());
         }
         
-        public static void Update(string columnName)
+        public static void Update(List<string> columnNames)
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("UPDATE SAVE SET ")
-                .Append(columnName)
-                .Append(" = ")
-                .Append(1)
-                .Append(";");
+            var sb = new StringBuilder();
+            sb.Append("UPDATE SAVE SET ");
+            columnNames.ForEach(s =>
+                {
+                    sb.Append(s)
+                        .Append(" = ")
+                        .Append(1)
+                        .Append(",");
+                });
+
+            sb.Remove(sb.Length - 2, sb.Length - 1);
+            sb.Append(";");
             DbManager.ExecuteNonQuery(sb.ToString());
         }
         
         public static void Update(string sceneId, int classroomProcedure,
-            int corridorProcedure, int artroomProcedure, int schoolyardProcedure)
+            int corridorProcedure, int artroomProcedure, int schoolyardProcedure, List<string> statusColumnNames)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("UPDATE SAVE SET ")
@@ -57,8 +65,16 @@ namespace script.common.dao
                 .Append(", ")
                 .Append("SCHOOLYARD_PROCEDURE")
                 .Append(" = ")
-                .Append(schoolyardProcedure)
-                .Append(";");
+                .Append(schoolyardProcedure);
+            
+            statusColumnNames.ForEach(s =>
+            {
+                sb.Append(",")
+                    .Append(s)
+                    .Append(" = ")
+                    .Append(1);
+            });
+            sb.Append(";");
             DbManager.ExecuteNonQuery(sb.ToString());
         }
         

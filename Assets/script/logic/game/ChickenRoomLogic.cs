@@ -1,5 +1,8 @@
 ﻿using System.Collections;
+using script.common.dao;
+using script.common.entity;
 using script.core.asset;
+using script.core.audio;
 using script.core.camera;
 using script.core.character;
 using script.core.@event;
@@ -24,6 +27,12 @@ namespace script.logic.game
         void Start()
         {
             HelpManager.Instance.Hide();
+            MusicEntity entity = MusicDao.SelectByPrimaryKey(1);
+            if (!AudioManager.Instance.Playing(entity.MusicName))
+            {
+                AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
+            }
+
             EventManager.Instance.Register(901);
         }
 

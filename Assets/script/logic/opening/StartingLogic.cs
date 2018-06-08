@@ -12,6 +12,7 @@ namespace script.logic.opening
 	public class StartingLogic : MonoBehaviour {
 
 		[SerializeField] GameObject ContinueButton;
+		[SerializeField] GameObject StartSelect;
 		
 		void Start ()
 		{
@@ -21,6 +22,13 @@ namespace script.logic.opening
 			}
 
 			ContinueButton.SetActive(false);
+			
+			if (StartSelect == null)
+			{
+				StartSelect = GameObject.Find("StartSelect");
+			}
+
+			StartSelect.SetActive(false);
 			
 			EventManager.Instance.Register(5001);
 		}
@@ -36,6 +44,20 @@ namespace script.logic.opening
 			{
 				starting = true;
 				AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
+				var saveEntity = SaveDao.SelectAll();
+				if (saveEntity.SceneId != "starting")
+				{
+					StartSelect.SetActive(true);
+				}
+				starting = false;
+			}
+		}
+		
+		public void Yes()
+		{
+			if (!starting)
+			{
+				starting = true;
 				SaveDao.Delete();
 				SaveDao.Insert();
 				SceneStatus.Starting = true;
@@ -43,12 +65,20 @@ namespace script.logic.opening
 				SceneStatus.EntranceNo = 1;
 				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 5.0f, "classroom", null);
 			}
+			
 		}
+		
+		public void No()
+		{
+			StartSelect.SetActive(false);
+		}
+		
 		public void ContinueGame()
 		{
 			if (!starting)
 			{
 				starting = true;
+				SceneStatus.Continue = true;
 				AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
 				var saveEntity = SaveDao.SelectAll();
 				saveEntity.reflect();
