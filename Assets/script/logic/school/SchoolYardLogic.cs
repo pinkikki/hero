@@ -1,4 +1,6 @@
-﻿using script.core.asset;
+﻿using script.common.dao;
+using script.common.entity;
+using script.core.asset;
 using script.core.audio;
 using script.core.character;
 using script.core.@event;
@@ -30,6 +32,12 @@ namespace script.logic.school
 			
 			ClearCompletedGhostStories();
 			
+			MusicEntity entity = MusicDao.SelectByPrimaryKey(1);
+			if (!AudioManager.Instance.Playing(entity.MusicName))
+			{
+				AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
+			}
+
 			AudioManager.Instance.SetDownBgmVolume(1.0f);
 		}
 	

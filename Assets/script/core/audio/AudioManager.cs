@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using script.core.asset;
@@ -33,6 +34,7 @@ namespace script.core.audio
         float crossTime;
         float startTime;
         AssetLoader.LoadStatus loadStatus = AssetLoader.LoadStatus.LoadWait;
+        string currentBgmName;
 
         void Awake()
         {
@@ -153,6 +155,7 @@ namespace script.core.audio
             delayTime = bgmSource.clip.length / bgmSource.clip.samples * 1152;
             bgmSource.loop = true;
             bgmSource.Play();
+            currentBgmName = bgmName;
         }
 
         public void PlayBgm(string bgmName, float tmpCrossTime)
@@ -179,6 +182,7 @@ namespace script.core.audio
                 bgmCrossFadingSource.PlayDelayed(crossTime);
                 bgmCrossFadingSource.time = startTime;
             }
+            currentBgmName = bgmName;
         }
 
         public void StopBgm()
@@ -187,6 +191,12 @@ namespace script.core.audio
             bgmSource.clip = null;
             bgmCrossFadingSource.Stop();
             bgmCrossFadingSource.clip = null;
+            currentBgmName = null;
+        }
+
+        public Boolean Playing(string bgmName)
+        {
+            return currentBgmName == bgmName;
         }
 
         public void StopBgmAtFadeOut(float interval)
