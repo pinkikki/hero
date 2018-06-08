@@ -62,8 +62,8 @@ namespace script.logic.school
 
 		void Update()
 		{
-			if (isRegistered || 1 > EventManager.Instance.CompleteEventSet.Count) return;
-			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 1) return;
+			if (isRegistered || 17 > EventManager.Instance.CompleteEventSet.Count) return;
+			if (EventManager.Instance.CompleteEventSet.Count(e => e < 18) != 17) return;
 			isRegistered = true;
 			SceneStatus.CanComeInClassroom = true;
 			EventManager.Instance.Register(501);

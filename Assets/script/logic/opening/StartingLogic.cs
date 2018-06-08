@@ -49,6 +49,11 @@ namespace script.logic.opening
 				{
 					StartSelect.SetActive(true);
 				}
+				else
+				{
+					Advance();
+
+				}
 				starting = false;
 			}
 		}
@@ -58,19 +63,27 @@ namespace script.logic.opening
 			if (!starting)
 			{
 				starting = true;
-				SaveDao.Delete();
-				SaveDao.Insert();
-				SceneStatus.Starting = true;
-				SceneStatus.Procedure = 1;
-				SceneStatus.EntranceNo = 1;
-				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 5.0f, "classroom", null);
+				AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
+				Advance();
 			}
 			
+		}
+
+		void Advance()
+		{
+			SaveDao.Delete();
+			SaveDao.Insert();
+			SceneStatus.Starting = true;
+			SceneStatus.Procedure = 1;
+			SceneStatus.EntranceNo = 1;
+			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 5.0f, "classroom", null);
+		
 		}
 		
 		public void No()
 		{
 			StartSelect.SetActive(false);
+			AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
 		}
 		
 		public void ContinueGame()
