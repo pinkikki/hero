@@ -4,6 +4,7 @@ using script.core.asset;
 using script.core.audio;
 using script.core.character;
 using script.core.@event;
+using script.core.operation;
 using script.core.scene;
 using UnityEngine;
 
@@ -36,6 +37,7 @@ namespace script.logic.school
 			if (!AudioManager.Instance.Playing(entity.MusicName))
 			{
 				AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
+				SearchButton.Instance.Show();
 			}
 
 			AudioManager.Instance.SetDownBgmVolume(1.0f);

@@ -7,6 +7,7 @@ using script.core.camera;
 using script.core.character;
 using script.core.@event;
 using script.core.hint;
+using script.core.operation;
 using script.core.scene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,6 +32,7 @@ namespace script.logic.game
             if (!AudioManager.Instance.Playing(entity.MusicName))
             {
                 AudioManager.Instance.PlayBgm(entity.MusicName, float.Parse(entity.Time));
+                SearchButton.Instance.Show();
             }
 
             EventManager.Instance.Register(901);

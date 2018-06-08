@@ -143,7 +143,10 @@ namespace script.common.dao
                 Isfinishedsecondunlocking = DaoSupport.GetIntValue(row, "ISFINISHEDSECONDUNLOCKING"),
                 Hasquize = DaoSupport.GetIntValue(row, "HASQUIZE"),
                 Canflowendroll = DaoSupport.GetIntValue(row, "CANFLOWENDROLL"),
-                Iscompletedshinoburooma = DaoSupport.GetIntValue(row, "ISCOMPLETEDSHINOBUROOMA")
+                Iscompletedshinoburooma = DaoSupport.GetIntValue(row, "ISCOMPLETEDSHINOBUROOMA"),
+                Classmateoname = DaoSupport.GetStringValue(row, "CLASSMATEONAME"),
+                Classmatername = DaoSupport.GetStringValue(row, "CLASSMATERNAME"),
+                Classmatesname = DaoSupport.GetStringValue(row, "CLASSMATESNAME")
             };
         }
     }

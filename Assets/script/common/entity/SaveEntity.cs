@@ -1,4 +1,5 @@
 ﻿using script.core.scene;
+using script.logic.school;
 
 namespace script.common.entity
 {
@@ -38,6 +39,9 @@ namespace script.common.entity
         public int Hasquize { get; set; }
         public int Canflowendroll { get; set; }
         public int Iscompletedshinoburooma { get; set; }
+        public string Classmateoname { get; set; }
+        public string Classmatername { get; set; }
+        public string Classmatesname { get; set; }
         
         public void reflect()
         {
@@ -73,6 +77,9 @@ namespace script.common.entity
             SceneStatus.HasQuizE = Hasquize == 1;
             SceneStatus.CanFlowEndRoll = Canflowendroll == 1;
             SceneStatus.IsCompletedShinobuRoomA = Iscompletedshinoburooma == 1;
+            SchoolYardOrsStatus.ClassmateOName = Classmateoname;
+            SchoolYardOrsStatus.ClassmateRName = Classmatername;
+            SchoolYardOrsStatus.ClassmateSName = Classmatesname;
         }
     }
 }
