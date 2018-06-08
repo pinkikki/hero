@@ -104,6 +104,8 @@ namespace script.logic.ending
 
         IEnumerator Action002Coroutine()
         {
+            yield return new WaitForSeconds(3.0f);
+
             var text2 = GameObject.Find("Text2").GetComponent<Text>();
             text2.text = "おわり";
             yield return TextIn(text2);
@@ -122,6 +124,8 @@ namespace script.logic.ending
                 time += Time.deltaTime;
                 yield return null;
             }
+            text.color = new Color(255, 255, 255, 1f);
+            yield return null;
         }
 
         IEnumerator TextAndImageIn(Text text, Image image)
@@ -135,6 +139,9 @@ namespace script.logic.ending
                 time += Time.deltaTime;
                 yield return null;
             }
+            text.color = new Color(255, 255, 255, 1f);
+            image.color = new Color(255, 255, 255, 1f);
+            yield return null;
         }
 
         IEnumerator TextOut(Text text)
@@ -147,6 +154,8 @@ namespace script.logic.ending
                 time += Time.deltaTime;
                 yield return null;
             }
+            text.color = new Color(255, 255, 255, 0f);
+            yield return null;
         }
 
         IEnumerator TextAndImageOut(Text text, Image image)
@@ -160,6 +169,9 @@ namespace script.logic.ending
                 time += Time.deltaTime;
                 yield return null;
             }
+            text.color = new Color(255, 255, 255, 0f);
+            image.color = new Color(255, 255, 255, 0f);
+            yield return null;
         }
 
         IEnumerator AllTextAndImageOut(params Object[] args)
@@ -182,6 +194,18 @@ namespace script.logic.ending
                     yield return null;
                 }
             }
+            foreach (var obj in args)
+            {
+                if (obj.GetType() == typeof(Text))
+                {
+                    ((Text) obj).color = new Color(255, 255, 255, 0f);
+                }
+                else if(obj.GetType() == typeof(Image))
+                {
+                    ((Image) obj).color = new Color(255, 255, 255, 0f);
+                }
+                yield return null;
+            }
         }
         
         IEnumerator AllTextOut(params Text[] args)
@@ -196,6 +220,11 @@ namespace script.logic.ending
                     time += Time.deltaTime;
                     yield return null;
                 }
+            }
+            foreach (var text in args)
+            {
+                text.color = new Color(255, 255, 255, 0f);
+                yield return null;
             }
         }
 
