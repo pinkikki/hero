@@ -42,7 +42,8 @@ namespace script.common.dao
         }
         
         public static void Update(string sceneId, int classroomProcedure,
-            int corridorProcedure, int artroomProcedure, int schoolyardProcedure, List<string> statusColumnNames)
+            int corridorProcedure, int artroomProcedure, int schoolyardProcedure, List<string> statusColumnNames,
+            string classmateOName, string classmateRName, string classmateSName)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("UPDATE SAVE SET ")
@@ -74,6 +75,26 @@ namespace script.common.dao
                     .Append(" = ")
                     .Append(1);
             });
+            
+            sb.Append(",")
+                .Append("CLASSMATEONAME")
+                .Append(" = ")
+                .Append("'")
+                .Append(classmateOName)
+                .Append("'")
+                .Append(",")
+                .Append("CLASSMATERNAME")
+                .Append(" = ")
+                .Append("'")
+                .Append(classmateRName)
+                .Append("'")
+                .Append(",")
+                .Append("CLASSMATESNAME")
+                .Append(" = ")
+                .Append("'")
+                .Append(classmateSName)
+                .Append("'");
+            
             sb.Append(";");
             DbManager.ExecuteNonQuery(sb.ToString());
         }

@@ -4,6 +4,7 @@ using script.core.audio;
 using script.core.character;
 using script.core.operation;
 using script.core.scene;
+using script.logic.school;
 using UnityEngine;
 
 namespace script.core.save
@@ -52,7 +53,10 @@ namespace script.core.save
                     SceneStatus.ProcedureBySceneId("corridor"),
                     SceneStatus.ProcedureBySceneId("artroom"),
                     SceneStatus.ProcedureBySceneId("schoolyard"),
-                    SceneStatus.CompletedList
+                    SceneStatus.CompletedList,
+                    SchoolYardOrsStatus.ClassmateOName,
+                    SchoolYardOrsStatus.ClassmateRName,
+                    SchoolYardOrsStatus.ClassmateSName
                 );
             }
             HideSaveSelect();
