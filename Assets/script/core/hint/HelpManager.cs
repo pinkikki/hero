@@ -40,6 +40,8 @@ namespace script.core.hint
             OnFinishedAds.Invoke();
             gameObject.SetActive(false);
 
+            SearchButton.Instance.Show();
+            QuizManager.Instance.Show();
             var yusuke = GameObject.Find("yusuke");
             if (yusuke != null)
             {
