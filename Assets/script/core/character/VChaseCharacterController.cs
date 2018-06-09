@@ -88,7 +88,8 @@ namespace script.core.character
             var absY = Mathf.Abs(targetY - selfY);
 
             if (SceneManager.GetActiveScene().name != "classroom" &&
-                SceneManager.GetActiveScene().name != "grassy")
+                SceneManager.GetActiveScene().name != "artroom" &&
+                SceneManager.GetActiveScene().name != "grassy" )
             {
                 if (0 < specialCount)
                 {
