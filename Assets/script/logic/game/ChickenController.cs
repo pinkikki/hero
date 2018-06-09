@@ -19,6 +19,7 @@ namespace script.logic.game
             {
                 if (other.transform.name == "cover")
                 {
+                    FreezeFlg = true;
                     HelpManager.Instance.Hide();
                     Destroy(this);
                     EventManager.Instance.Register(902);
