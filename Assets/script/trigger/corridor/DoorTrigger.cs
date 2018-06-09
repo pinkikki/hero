@@ -23,12 +23,12 @@ namespace script.trigger.corridor
 				}
 				else if (gameObject.name == "door_a")
 				{
-					SceneStatus.EntranceNo = 1;
+					SceneStatus.EntranceNo = 2;
 					SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
 				}
 				else if (gameObject.name == "door_b")
 				{
-					SceneStatus.EntranceNo = 2;
+					SceneStatus.EntranceNo = 1;
 					SceneLoadManager.Instance.LoadLevelInLoading(1.0f, "classroom", null);
 				}
 				else if (gameObject.name == "door_c_1")
