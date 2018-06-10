@@ -114,7 +114,7 @@ namespace script.logic.opening
 			yield return new WaitForSeconds(3.0f);
 			yield return SpriteIn(GameObject.Find("opening_illust").GetComponent<SpriteRenderer>());
 			yield return new WaitForSeconds(2.0f);
-			yield return SpriteIn(GameObject.Find("opening_title").GetComponent<SpriteRenderer>());
+			yield return ImageIn(GameObject.Find("opening_title").GetComponent<Image>());
 			List<Text> texts = new List<Text>();
 			texts.Add(GameObject.Find("StartButton/Text").GetComponent<Text>());
 			if (saveEntity.SceneId != "starting")
@@ -133,6 +133,18 @@ namespace script.logic.opening
 			while (time <= fadeOutInterval)
 			{
 				sprite.color = new Color(255, 255, 255, Mathf.Lerp(0f, 1f, time / fadeOutInterval));
+				time += Time.deltaTime;
+				yield return null;
+			}
+		}
+		
+		IEnumerator ImageIn(Image image)
+		{
+			var time = 0.0f;
+			var fadeOutInterval = 6.0f;
+			while (time <= fadeOutInterval)
+			{
+				image.color = new Color(255, 255, 255, Mathf.Lerp(0f, 1f, time / fadeOutInterval));
 				time += Time.deltaTime;
 				yield return null;
 			}
