@@ -110,6 +110,7 @@ namespace script.core.message
                 }
 
                 buttonBase.transform.SetParent(obj.transform);
+                buttonBase.transform.localScale = new Vector3(1,1,1);
             }
         }
     }
