@@ -1,8 +1,9 @@
 ﻿using script.common.dao;
-using script.core.asset;
 using script.core.audio;
 using script.core.character;
+using script.core.hint;
 using script.core.operation;
+using script.core.quiz;
 using script.core.scene;
 using script.logic.school;
 using UnityEngine;
@@ -90,6 +91,17 @@ namespace script.core.save
         {
             AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
             SaveSelect.SetActive(true);
+            SearchButton.Instance.Hide();
+            QuizManager.Instance.Hide();
+            if (HintManager.Exist())
+            {
+                HintManager.Instance.Hide();
+            }
+            if (HelpManager.Exist())
+            {
+                HelpManager.Instance.Hide();
+            }
+
             var yusuke = GameObject.Find("yusuke");
             if (yusuke != null)
             {
@@ -120,6 +132,17 @@ namespace script.core.save
         public void ShowNotSave()
         {
             NotSave.SetActive(true);
+            SearchButton.Instance.Hide();
+            QuizManager.Instance.Hide();
+            if (HintManager.Exist())
+            {
+                HintManager.Instance.Hide();
+            }
+            if (HelpManager.Exist())
+            {
+                HelpManager.Instance.Hide();
+            }
+
             var yusuke = GameObject.Find("yusuke");
             if (yusuke != null)
             {
@@ -143,6 +166,17 @@ namespace script.core.save
             HideSaveSelect();
             HideSaveCompletion();
             HideNotSave();
+            SearchButton.Instance.Show();
+            QuizManager.Instance.Show();
+            if (HintManager.Exist())
+            {
+                HintManager.Instance.Show();
+            }
+            if (HelpManager.Exist())
+            {
+                HelpManager.Instance.Show();
+            }
+
             var yusuke = GameObject.Find("yusuke");
             if (yusuke != null)
             {
