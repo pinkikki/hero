@@ -23,14 +23,22 @@ namespace script.trigger.classroom
 
 		private void OnCollisionStay2D(Collision2D other)
 		{
-			if (!registrationFlg && other.gameObject.name == "yusuke" && !SceneStatus.IsCompletedQuizA && SceneStatus.Procedure == 3)
+			if (other.gameObject.name == "yusuke" && !SceneStatus.IsCompletedQuizA && SceneStatus.Procedure == 3)
 			{
-				var pos = transform.localPosition;
-				if ((0.6f < pos.x && pos.x < 1.4f) && 1.4f < pos.y)
+				var pos = transform.position;
+				if ((4.65f < pos.x && pos.x < 5.65f) && 4.15f < pos.y)
 				{
-					registrationFlg = true;
 					ClassroomDeskStatus.DeskX = transform.position.x;
-					SearchButton.Instance.OnRegister(504);
+					if (!registrationFlg)
+					{
+						registrationFlg = true;
+						SearchButton.Instance.OnRegister(504);
+					}
+				}
+				else
+				{
+					registrationFlg = false;
+					SearchButton.Instance.OnDialog();					
 				}
 
 			}
