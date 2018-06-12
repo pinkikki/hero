@@ -20,6 +20,9 @@ namespace script.logic.game
                 if (other.transform.name == "cover")
                 {
                     FreezeFlg = true;
+                    var rigidbody = gameObject.GetComponent<Rigidbody2D>();
+                    rigidbody.velocity = Vector2.zero;
+                    rigidbody.isKinematic = true;
                     HelpManager.Instance.Hide();
                     Destroy(this);
                     EventManager.Instance.Register(902);
