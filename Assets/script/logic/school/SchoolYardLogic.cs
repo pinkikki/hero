@@ -25,6 +25,14 @@ namespace script.logic.school
 				{
 					changeObjName("classmateR", "classmateRA");
 				}
+				if (SceneStatus.CanGetMudDumplings)
+				{
+					changeObjName("classmateRA", "classmateRB");					
+				}
+				if (SceneStatus.HasMudDumplings)
+				{
+					changeObjName("classmateS", "classmateSA");
+				}
 				if (SceneStatus.HasMarble)
 				{
 					changeObjName("girl_c", "girl_ca");
