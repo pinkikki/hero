@@ -48,6 +48,7 @@ namespace script.logic.opening
 				if (saveEntity.SceneId != "starting")
 				{
 					StartSelect.SetActive(true);
+					ContinueButton.GetComponent<Button>().interactable = false;
 					starting = false;
 				}
 				else
@@ -82,6 +83,7 @@ namespace script.logic.opening
 		{
 			StartSelect.SetActive(false);
 			AudioManager.Instance.PlaySe(MusicDao.SelectByPrimaryKey(7).MusicName);
+			ContinueButton.GetComponent<Button>().interactable = true;
 			starting = false;
 		}
 		
