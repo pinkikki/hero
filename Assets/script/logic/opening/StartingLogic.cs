@@ -75,7 +75,7 @@ namespace script.logic.opening
 			SceneStatus.Starting = true;
 			SceneStatus.Procedure = 1;
 			SceneStatus.EntranceNo = 1;
-			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 5.0f, "classroom", null);
+			SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 3.0f, "classroom", null);
 		
 		}
 		
@@ -97,7 +97,7 @@ namespace script.logic.opening
 				var saveEntity = SaveDao.SelectAll();
 				saveEntity.reflect();
 				SceneStatus.EntranceNo = 1;
-				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 5.0f, saveEntity.SceneId, null);
+				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 3.0f, saveEntity.SceneId, null);
 			}
 		}
 		
@@ -113,9 +113,7 @@ namespace script.logic.opening
 			{
 				ContinueButton.SetActive(true);
 			}
-			yield return new WaitForSeconds(3.0f);
 			yield return SpriteIn(GameObject.Find("opening_illust").GetComponent<SpriteRenderer>());
-			yield return new WaitForSeconds(2.0f);
 			yield return ImageIn(GameObject.Find("opening_title").GetComponent<Image>());
 			List<Text> texts = new List<Text>();
 			texts.Add(GameObject.Find("StartButton/Text").GetComponent<Text>());
@@ -131,7 +129,7 @@ namespace script.logic.opening
 		IEnumerator SpriteIn(SpriteRenderer sprite)
 		{
 			var time = 0.0f;
-			var fadeOutInterval = 6.0f;
+			var fadeOutInterval = 4.0f;
 			while (time <= fadeOutInterval)
 			{
 				sprite.color = new Color(255, 255, 255, Mathf.Lerp(0f, 1f, time / fadeOutInterval));
@@ -143,7 +141,7 @@ namespace script.logic.opening
 		IEnumerator ImageIn(Image image)
 		{
 			var time = 0.0f;
-			var fadeOutInterval = 6.0f;
+			var fadeOutInterval = 3.0f;
 			while (time <= fadeOutInterval)
 			{
 				image.color = new Color(255, 255, 255, Mathf.Lerp(0f, 1f, time / fadeOutInterval));

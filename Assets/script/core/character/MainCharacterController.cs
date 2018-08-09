@@ -13,9 +13,9 @@ namespace script.core.character
             protected set { factorNum = value; }
         }
 
-        private Vector2 beginPos = Vector2.zero;
         private Vector2 endPos = Vector2.zero;
-        private static readonly float startUp = 30.0f;
+        private Vector2 currentEndPos = Vector2.zero;
+        private static readonly float startUp = 15.0f;
         
 
         void Start()
@@ -23,7 +23,6 @@ namespace script.core.character
             Anim = gameObject.GetComponent<Animator>();
         }
 
-        bool provisioning;
         protected void FixedUpdate()
         {
             if (!FreezeFlg && !EventManager.Instance.IsMessageing())
@@ -50,31 +49,30 @@ namespace script.core.character
                     if (0 < Input.touchCount)
                     {
                         var t = Input.touches[0];
+                        Debug.Log(t.phase);
                         switch (t.phase)
                         {
                             case TouchPhase.Began:
-                                provisioning = true;
-                                beginPos = t.position;
+                                WalkStop();
+                                currentEndPos = t.position;
                                 break;
                             case TouchPhase.Canceled:
+                                WalkStop();
                                 break;
                             case TouchPhase.Ended:
+                                WalkStop();
                                 break;
                             case TouchPhase.Moved:
-                                if (!provisioning)
-                                {
-                                    provisioning = true;
-                                    beginPos = t.position;
-                                }
                                 endPos = t.position;
-                                var absX = Mathf.Abs(endPos.x - beginPos.x);
-                                var absY = Mathf.Abs(endPos.y - beginPos.y);
+                                var absX = Mathf.Abs(endPos.x - currentEndPos.x);
+                                var absY = Mathf.Abs(endPos.y - currentEndPos.y);
+
 
                                 if (startUp < absX || startUp < absY)
                                 {
                                     if (absX > absY)
                                     {
-                                        if (endPos.x > beginPos.x)
+                                        if (endPos.x > currentEndPos.x)
                                         {
                                             WalkRight();
                                         }
@@ -85,7 +83,7 @@ namespace script.core.character
                                     }
                                     else
                                     {
-                                        if (endPos.y > beginPos.y)
+                                        if (endPos.y > currentEndPos.y)
                                         {
                                             WalkBack();
                                         }
@@ -95,13 +93,17 @@ namespace script.core.character
                                         }
                                     }
                                 }
+                                else
+                                {
+                                    WalkingFlg = true;
+                                }
                                 break;
                             case TouchPhase.Stationary:
+                                WalkingFlg = true;
                                 break;
                         }
                     }
                 }
-
                 if (!collisionFlg)
                 {
                     if (WalkingFlg)
@@ -122,15 +124,8 @@ namespace script.core.character
                             if (touch.phase == TouchPhase.Moved ||
                                 touch.phase == TouchPhase.Stationary)
                             {
-                                var currentEndPos = touch.position;
-                                var absX = Mathf.Abs(currentEndPos.x - endPos.x);
-                                var absY = Mathf.Abs(currentEndPos.y - endPos.y);
-                                if (startUp < absX || startUp < absY)
-                                {
-                                    endPos = currentEndPos;
-                                    WalkingFlg = false;
-                                }
-                                
+                                currentEndPos = touch.position;
+                                WalkingFlg = false;
                                 var pos = gameObject.transform.position;
                                 pos.x += hSpeed * factorNum;
                                 pos.y += vSpeed * factorNum;
@@ -149,6 +144,7 @@ namespace script.core.character
                 }
                 else
                 {
+                    Debug.Log(collisionFlg);
                     WalkStop();
                 }
             }
