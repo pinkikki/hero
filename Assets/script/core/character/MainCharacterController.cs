@@ -144,7 +144,6 @@ namespace script.core.character
                 }
                 else
                 {
-                    Debug.Log(collisionFlg);
                     WalkStop();
                 }
             }
