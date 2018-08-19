@@ -19,11 +19,17 @@ namespace script.core.hint
 		}
 		
 		void Start () {
-			hintEntityList = HintDao.SelectAll();
+			// migration対応
+//			hintEntityList = HintDao.SelectAll();
 		}
 	
 		void Update () {
 		
+		}
+
+		public void Load()
+		{
+			hintEntityList = HintDao.SelectAll();
 		}
 		
 		public bool HasNext()

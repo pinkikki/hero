@@ -13,7 +13,7 @@ namespace script.common.dao
             List<EventDetailEntity> entityList = new List<EventDetailEntity>();
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM EVENT_DETAIL;");
-            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            DataTable dataTable = DbManager.Instance.ExecuteQuery(sb.ToString());
             dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
             return entityList;
         }
@@ -26,7 +26,7 @@ namespace script.common.dao
                 .Append(" SEQ = ")
                 .Append(seq)
                 .Append(";");
-            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            DataTable dataTable = DbManager.Instance.ExecuteQuery(sb.ToString());
             return dataTable.Rows.Count == 0 ? null : CreateEntity(dataTable[0]);
         }
 
@@ -37,7 +37,7 @@ namespace script.common.dao
             sb.Append("SELECT * FROM EVENT_DETAIL WHERE EVENT_ID = ")
                 .Append(eventId)
                 .Append(";");
-            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            DataTable dataTable = DbManager.Instance.ExecuteQuery(sb.ToString());
             dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
             return entityList;
         }
@@ -60,7 +60,7 @@ namespace script.common.dao
                 .Append(entity.Attr2)
                 .Append("'")
                 .Append(");");
-            DbManager.ExecuteNonQuery(sb.ToString());
+            DbManager.Instance.ExecuteNonQuery(sb.ToString());
         }
 
         public static void Update(EventDetailEntity entity)
@@ -86,7 +86,7 @@ namespace script.common.dao
                 .Append(entity.Attr2)
                 .Append("'")
                 .Append(";");
-            DbManager.ExecuteNonQuery(sb.ToString());
+            DbManager.Instance.ExecuteNonQuery(sb.ToString());
         }
 
         private static EventDetailEntity CreateEntity(DataRow row)

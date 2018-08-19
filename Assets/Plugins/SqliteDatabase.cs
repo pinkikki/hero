@@ -91,7 +91,7 @@ namespace Plugins
         /// <param name='dbName'> 
         /// Data Base name. (the file needs exist in the streamingAssets folder)
         /// </param>
-        public SqliteDatabase (string dbName)
+        public SqliteDatabase (string dbName, bool isCreate)
         {
 		
             pathDB = System.IO.Path.Combine (Application.persistentDataPath, dbName);
@@ -99,7 +99,8 @@ namespace Plugins
             string sourcePath = System.IO.Path.Combine (Application.streamingAssetsPath, dbName);
 		
             //if DB does not exist in persistent data folder (folder "Documents" on iOS) or source DB is newer then copy it
-            if (!System.IO.File.Exists (pathDB) || (System.IO.File.GetLastWriteTimeUtc(sourcePath) > System.IO.File.GetLastWriteTimeUtc(pathDB))) {
+            if (isCreate) {
+//            if (!System.IO.File.Exists (pathDB) || (System.IO.File.GetLastWriteTimeUtc(sourcePath) > System.IO.File.GetLastWriteTimeUtc(pathDB))) {
 			
                 if (sourcePath.Contains ("://")) {
                     // Android	

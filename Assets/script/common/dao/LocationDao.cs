@@ -13,7 +13,7 @@ namespace script.common.dao
             List<LocationEntity> entityList = new List<LocationEntity>();
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM LOCATION;");
-            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            DataTable dataTable = DbManager.Instance.ExecuteQuery(sb.ToString());
             dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
             return entityList;
         }
@@ -24,7 +24,7 @@ namespace script.common.dao
             sb.Append("SELECT * FROM LOCATION WHERE LOCATION_ID = ")
                 .Append(locationId)
                 .Append(";");
-            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            DataTable dataTable = DbManager.Instance.ExecuteQuery(sb.ToString());
             return dataTable.Rows.Count == 0 ? null : CreateEntity(dataTable[0]);
         }
 
@@ -40,7 +40,7 @@ namespace script.common.dao
                 .Append(" AND PROCEDURE = ")
                 .Append(procedure)
                 .Append("");
-            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            DataTable dataTable = DbManager.Instance.ExecuteQuery(sb.ToString());
             dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
             return entityList;
         }
@@ -81,7 +81,7 @@ namespace script.common.dao
                 .Append(",")
                 .Append(entity.Procedure)
                 .Append(");");
-            DbManager.ExecuteNonQuery(sb.ToString());
+            DbManager.Instance.ExecuteNonQuery(sb.ToString());
         }
 
         public static void Update(LocationEntity entity)
@@ -130,7 +130,7 @@ namespace script.common.dao
                 .Append("PROCEDURE = ")
                 .Append(entity.Procedure)
                 .Append(";");
-            DbManager.ExecuteNonQuery(sb.ToString());
+            DbManager.Instance.ExecuteNonQuery(sb.ToString());
         }
 
         private static LocationEntity CreateEntity(DataRow row)

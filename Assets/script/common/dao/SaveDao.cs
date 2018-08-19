@@ -13,7 +13,7 @@ namespace script.common.dao
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM SAVE;");
-            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            DataTable dataTable = DbManager.Instance.ExecuteQuery(sb.ToString());
             return dataTable.Rows.Count == 0 ? null : CreateEntity(dataTable[0]);
         }
 
@@ -21,7 +21,7 @@ namespace script.common.dao
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("INSERT INTO SAVE (SAVE_ID, SCENE_ID) VALUES (1, 'starting');");
-            DbManager.ExecuteNonQuery(sb.ToString());
+            DbManager.Instance.ExecuteNonQuery(sb.ToString());
         }
         
         public static void Update(List<string> columnNames)
@@ -38,7 +38,7 @@ namespace script.common.dao
 
             sb.Remove(sb.Length - 2, sb.Length - 1);
             sb.Append(";");
-            DbManager.ExecuteNonQuery(sb.ToString());
+            DbManager.Instance.ExecuteNonQuery(sb.ToString());
         }
         
         public static void Update(string sceneId, int classroomProcedure,
@@ -96,14 +96,14 @@ namespace script.common.dao
                 .Append("'");
             
             sb.Append(";");
-            DbManager.ExecuteNonQuery(sb.ToString());
+            DbManager.Instance.ExecuteNonQuery(sb.ToString());
         }
         
         public static void Delete()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("DELETE FROM SAVE;");
-            DbManager.ExecuteNonQuery(sb.ToString());
+            DbManager.Instance.ExecuteNonQuery(sb.ToString());
         }
 
         private static SaveEntity CreateEntity(DataRow row)

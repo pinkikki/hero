@@ -13,7 +13,7 @@ namespace script.common.dao
 			List<HintEntity> entityList = new List<HintEntity>();
 			StringBuilder sb = new StringBuilder();
 			sb.Append("SELECT * FROM HINT;");
-			DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+			DataTable dataTable = DbManager.Instance.ExecuteQuery(sb.ToString());
 			dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
 			return entityList;
 		}

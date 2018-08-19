@@ -13,7 +13,7 @@ namespace script.common.dao
             List<EventEntity> entityList = new List<EventEntity>();
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM EVENT;");
-            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            DataTable dataTable = DbManager.Instance.ExecuteQuery(sb.ToString());
             dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
             return entityList;
         }
@@ -24,7 +24,7 @@ namespace script.common.dao
             sb.Append("SELECT * FROM EVENT WHERE EVENT_ID = ")
                 .Append(eventId)
                 .Append(";");
-            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            DataTable dataTable = DbManager.Instance.ExecuteQuery(sb.ToString());
             return dataTable.Rows.Count == 0 ? null : CreateEntity(dataTable[0]);
         }
 
@@ -41,7 +41,7 @@ namespace script.common.dao
                 .Append(99999)
                 .Append(")")
                 .Append(";");
-            DataTable dataTable = DbManager.ExecuteQuery(sb.ToString());
+            DataTable dataTable = DbManager.Instance.ExecuteQuery(sb.ToString());
             dataTable.Rows.ForEach(r => entityList.Add(CreateEntity(r)));
             return entityList;
 
@@ -63,7 +63,7 @@ namespace script.common.dao
                 .Append(",")
                 .Append(entity.Procedure)
                 .Append(");");
-            DbManager.ExecuteNonQuery(sb.ToString());
+            DbManager.Instance.ExecuteNonQuery(sb.ToString());
         }
 
         public static void Update(EventEntity entity)
@@ -86,7 +86,7 @@ namespace script.common.dao
                 .Append("PROCEDURE = ")
                 .Append(entity.Procedure)
                 .Append(";");
-            DbManager.ExecuteNonQuery(sb.ToString());
+            DbManager.Instance.ExecuteNonQuery(sb.ToString());
         }
 
         private static EventEntity CreateEntity(DataRow row)
