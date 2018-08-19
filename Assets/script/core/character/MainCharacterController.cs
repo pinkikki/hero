@@ -1,5 +1,6 @@
 ﻿using script.core.@event;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace script.core.character
 {
@@ -21,6 +22,15 @@ namespace script.core.character
         void Start()
         {
             Anim = gameObject.GetComponent<Animator>();
+            if (SceneManager.GetActiveScene().name == "schoolyard")
+            {
+                factorNum = 0.12f;
+            }
+            else if (SceneManager.GetActiveScene().name == "corridor")
+            {
+                factorNum = 0.10f;
+            }
+            
         }
 
         protected void FixedUpdate()

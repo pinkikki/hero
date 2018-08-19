@@ -162,11 +162,7 @@ namespace script.logic.game
         }
         
         IEnumerator Action004Coroutine()
-        {
-            var controller = chickenTarget.AddComponent<ChickenController>();
-            controller.RepeatNum = 50;
-            controller.SpeedFactor = 0.075f;
-            
+        {            
             var masakiRigidbody = masaki.GetComponent<Rigidbody2D>();
             masakiRigidbody.velocity = Vector2.zero;
             masakiRigidbody.isKinematic = true;
@@ -175,9 +171,9 @@ namespace script.logic.game
             akoRigidbody.velocity = Vector2.zero;
             akoRigidbody.isKinematic = true;
 
-            niccMasaki.ConditionX = -7.15f;
+            niccMasaki.ConditionX = -1.15f;
             niccMasaki.WalkLeft();
-            niccAko.ConditionX = -3.8f;
+            niccAko.ConditionX = 2.19f;
             niccAko.WalkLeft();
             while (true)
             {
@@ -188,7 +184,7 @@ namespace script.logic.game
                 yield return null;
             }
             
-            niccAko.ConditionY = 2.8f;
+            niccAko.ConditionY = 1.8f;
             niccAko.WalkBack();
             
             while (true)
@@ -200,7 +196,7 @@ namespace script.logic.game
                 yield return null;
             }
             
-            niccMasaki.ConditionY = 2.8f;
+            niccMasaki.ConditionY = 1.8f;
             niccMasaki.WalkBack();
 
             while (true)
@@ -216,6 +212,9 @@ namespace script.logic.game
             niccAko.WalkFrontNoSpeed();
             yield return null;
             
+            var controller = chickenTarget.AddComponent<ChickenController>();
+            controller.RepeatNum = 50;
+            controller.SpeedFactor = 0.075f;
                         
             Destroy(niccYusuke);
 
@@ -256,7 +255,7 @@ namespace script.logic.game
         {
             var doorCollider = GameObject.Find("entrance_door").GetComponent<BoxCollider2D>();
             doorCollider.enabled = false;
-            niccYusuke.ConditionX = 6.0f;
+            niccYusuke.ConditionX = 6.8f;
             niccYusuke.WalkRight();
             while (true)
             {
@@ -278,7 +277,7 @@ namespace script.logic.game
                 yield return null;
             }
 
-            niccMasaki.ConditionX = 6.0f;
+            niccMasaki.ConditionX = 6.8f;
             niccMasaki.WalkRight();
             while (true)
             {
@@ -288,7 +287,7 @@ namespace script.logic.game
                 }
                 yield return null;
             }
-            niccAko.ConditionX = 6.0f;
+            niccAko.ConditionX = 6.8f;
             niccAko.WalkRight();
             while (true)
             {
