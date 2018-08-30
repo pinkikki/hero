@@ -171,9 +171,9 @@ namespace script.logic.game
             akoRigidbody.velocity = Vector2.zero;
             akoRigidbody.isKinematic = true;
 
-            niccMasaki.ConditionX = -1.15f;
+            niccMasaki.ConditionX = -0.1f;
             niccMasaki.WalkLeft();
-            niccAko.ConditionX = 2.19f;
+            niccAko.ConditionX = 3.2f;
             niccAko.WalkLeft();
             while (true)
             {
