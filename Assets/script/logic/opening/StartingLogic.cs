@@ -13,6 +13,7 @@ namespace script.logic.opening
 
 		[SerializeField] GameObject ContinueButton;
 		[SerializeField] GameObject StartSelect;
+		[SerializeField] GameObject PrivacyPolicy;
 		
 		void Start ()
 		{
@@ -29,6 +30,13 @@ namespace script.logic.opening
 			}
 
 			StartSelect.SetActive(false);
+			
+			if (PrivacyPolicy == null)
+			{
+				PrivacyPolicy = GameObject.Find("PrivacyPolicy");
+			}
+
+			PrivacyPolicy.SetActive(false);
 			
 			EventManager.Instance.Register(5001);
 		}
@@ -99,6 +107,16 @@ namespace script.logic.opening
 				SceneStatus.EntranceNo = 1;
 				SceneLoadManager.Instance.LoadLevelInLoading(1.0f, 3.0f, saveEntity.SceneId, null);
 			}
+		}
+		
+		public void OpenPrivacyPolicy()
+		{
+			PrivacyPolicy.SetActive(true);
+		}
+		
+		public void ClosePrivacyPolicy()
+		{
+			PrivacyPolicy.SetActive(false);
 		}
 		
 		public void Action001()
