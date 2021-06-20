@@ -40,7 +40,6 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
->>>>>>> 4afc64e5c0f999c8fe9154e2463d942f3734248e
 Assembly-CSharp-Editor-firstpass-vs.csproj
 Assembly-CSharp-Editor-firstpass.csproj
 Assembly-CSharp-Editor-firstpass.pidb
@@ -98,3 +97,5 @@ Assets/Prefabs/Screen/ScreenTeamLibrary/Scripts/LibraryCardonHand.cs
 # ============ #
 Assets/audios
 Assets/imgs
+
+Logs/
