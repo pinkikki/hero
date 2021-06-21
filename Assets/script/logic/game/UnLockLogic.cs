@@ -45,6 +45,7 @@ public class UnLockLogic : MonoBehaviour
         colors.normalColor = Color.yellow;
         colors.highlightedColor = Color.yellow;
         colors.pressedColor = Color.yellow;
+        colors.selectedColor = Color.yellow;
         button.colors = colors;
 
         selectList.Add(num);
@@ -56,6 +57,8 @@ public class UnLockLogic : MonoBehaviour
                 Release();
             }
         }
+
+        return;
     }
 
     void Release()
